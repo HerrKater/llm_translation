@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Web Page Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="url"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .translation {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Page Translator</h1>
+        <div class="form-group">
+            <label for="url">Website URL:</label>
+            <input type="url" id="url" required placeholder="https://example.com">
+        </div>
+        <div class="form-group">
+            <label for="languages">Target Languages (hold Ctrl/Cmd to select multiple):</label>
+            <select id="languages" multiple size="5">
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Italian">Italian</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Korean">Korean</option>
+                <option value="Russian">Russian</option>
+            </select>
+        </div>
+        <button id="translateButton">Translate</button>
+        
+        <div class="loading" id="loading">
+            Translating... Please wait...
+        </div>
+        
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#translateButton').on('click', async function() {
+                const url = $('#url').val();
+                const languages = $('#languages option:selected').map(function() {
+                    return $(this).val();
+                }).get();
+                
+                if (!url || languages.length === 0) {
+                    alert('Please enter a URL and select at least one language');
+                    return;
+                }
+
+                const $loading = $('#loading');
+                const $results = $('#results');
+                
+                $loading.show();
+                $results.empty();
+
+                try {
+                    const response = await fetch('/translate', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            url: url,
+                            target_languages: languages
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.detail || 'Translation failed');
+                    }
+
+                    // Display original text
+                    $results.append(`
+                        <h2>Original Text:</h2>
+                        <div class="translation">${data.original_text}</div>
+                    `);
+
+                    // Display translations
+                    Object.entries(data.translations).forEach(([language, text]) => {
+                        $results.append(`
+                            <h2>${language} Translation:</h2>
+                            <div class="translation">${text}</div>
+                        `);
+                    });
+                } catch (error) {
+                    $results.html(`<p style="color: red;">Error: ${error.message}</p>`);
+                } finally {
+                    $loading.hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
