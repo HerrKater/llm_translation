@@ -6,10 +6,10 @@ from typing import Dict
 
 from infrastructure.config import get_settings
 from infrastructure.web_crawler import HttpWebCrawler
-from infrastructure.content_processor import MarkdownContentProcessor
+from infrastructure.markdown_content_processor import MarkdownContentProcessor
 from infrastructure.translator import OpenAITranslator
 from application.translation_service import TranslationService
-from interfaces.api_models import TranslationRequestDTO, TranslationResponseDTO
+from interfaces.api_models import TranslationRequestDTO, RawTextTranslationRequestDTO, TranslationResponseDTO
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -52,6 +52,32 @@ async def translate_url(request: TranslationRequestDTO):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/translate/raw", response_model=TranslationResponseDTO)
+async def translate_raw_text(request: RawTextTranslationRequestDTO):
+    try:
+        # Create a translation request object
+        from domain.models import TranslationRequest
+        translation_request = TranslationRequest(
+            source_content=request.text,
+            target_languages=request.target_languages
+        )
+        
+        # Translate using the request object
+        translation = await translator.translate(translation_request)
+        
+        return TranslationResponseDTO(
+            original_text=request.text,
+            translations=translation.translations
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/")
 async def read_root():
-    return FileResponse("static/index.html")
+    response = FileResponse("static/index.html")
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response

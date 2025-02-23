@@ -19,6 +19,30 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            margin-bottom: -1px;
+        }
+        .tab.active {
+            background-color: white;
+            border-color: #ddd;
+            border-bottom-color: white;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -64,9 +88,23 @@
 <body>
     <div class="container">
         <h1>Web Page Translator</h1>
-        <div class="form-group">
-            <label for="url">Website URL:</label>
-            <input type="url" id="url" required placeholder="https://example.com">
+        <div class="tabs">
+            <div class="tab active" data-tab="url-tab">URL Input</div>
+            <div class="tab" data-tab="text-tab">Raw Text</div>
+        </div>
+        
+        <div id="url-tab" class="tab-content active">
+            <div class="form-group">
+                <label for="url">Website URL:</label>
+                <input type="url" id="url" required placeholder="https://example.com">
+            </div>
+        </div>
+        
+        <div id="text-tab" class="tab-content">
+            <div class="form-group">
+                <label for="raw-text">Raw Text:</label>
+                <textarea id="raw-text" rows="6" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"></textarea>
+            </div>
         </div>
         <div class="form-group">
             <label for="languages">Target Languages (hold Ctrl/Cmd to select multiple):</label>
@@ -92,18 +130,94 @@
 
     <script>
         $(document).ready(function() {
+            // Tab switching logic
+            $('.tab').on('click', function() {
+                $('.tab').removeClass('active');
+                $('.tab-content').removeClass('active');
+                $(this).addClass('active');
+                $('#' + $(this).data('tab')).addClass('active');
+            });
+
             $('#translateButton').on('click', async function() {
-                const url = $('#url').val();
+                const activeTab = $('.tab.active').data('tab');
                 const languages = $('#languages option:selected').map(function() {
                     return $(this).val();
                 }).get();
                 
-                if (!url || languages.length === 0) {
-                    alert('Please enter a URL and select at least one language');
+                if (languages.length === 0) {
+                    alert('Please select at least one target language');
                     return;
                 }
 
-                const $loading = $('#loading');
+                let endpoint, requestData;
+                
+                if (activeTab === 'url-tab') {
+                    const url = $('#url').val().trim();
+                    if (!url) {
+                        alert('Please enter a URL');
+                        return;
+                    }
+                    try {
+                        // Validate URL format
+                        new URL(url);
+                        endpoint = '/translate';
+                        requestData = { url: url, target_languages: languages };
+                    } catch (e) {
+                        alert('Please enter a valid URL (e.g., https://example.com)');
+                        return;
+                    }
+                } else {
+                    const text = $('#raw-text').val();
+                    if (!text) {
+                        alert('Please enter some text');
+                        return;
+                    }
+                    endpoint = '/translate/raw';
+                    requestData = { text, target_languages: languages };
+                }
+                
+                $('#loading').show();
+                $('#results').empty();
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    // Display original text
+                    $('#results').append(`
+                        <div class="translation">
+                            <h3>Original Text:</h3>
+                            <p>${data.original_text}</p>
+                        </div>
+                    `);
+
+                    // Display translations
+                    Object.entries(data.translations).forEach(([language, translation]) => {
+                        $('#results').append(`
+                            <div class="translation">
+                                <h3>${language} Translation:</h3>
+                                <p>${translation}</p>
+                            </div>
+                        `);
+                    });
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                } finally {
+                    $('#loading').hide();
+                }
+
+
                 const $results = $('#results');
                 
                 $loading.show();

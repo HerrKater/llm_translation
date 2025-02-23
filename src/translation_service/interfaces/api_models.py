@@ -1,9 +1,16 @@
-from pydantic import BaseModel, HttpUrl, ConfigDict
+from pydantic import BaseModel, ConfigDict
 from typing import Dict, List
 
 class TranslationRequestDTO(BaseModel):
     """Data Transfer Object for translation requests"""
-    url: HttpUrl
+    url: str
+    target_languages: List[str]
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+class RawTextTranslationRequestDTO(BaseModel):
+    """Data Transfer Object for raw text translation requests"""
+    text: str
     target_languages: List[str]
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
