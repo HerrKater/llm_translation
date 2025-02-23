@@ -29,11 +29,17 @@ class TranslationApp {
     initializeSelect2() {
         // Populate language options
         const languageOptions = Settings.getLanguageOptions();
-        $('#url-languages, #text-languages').html(languageOptions);
+        $('#url-languages, #text-languages, #evaluation-language').html(languageOptions);
 
-        // Initialize Select2
+        // Initialize Select2 for translation tabs
         $('#url-languages, #text-languages').select2({
             placeholder: 'Select target languages',
+            width: '100%'
+        });
+
+        // Initialize Select2 for evaluation tab
+        $('#evaluation-language').select2({
+            placeholder: 'Select target language',
             width: '100%'
         });
     }
@@ -118,14 +124,27 @@ class TranslationApp {
         
         const fileInput = document.getElementById('csv-file');
         const file = fileInput.files[0];
+        const targetLanguage = $('#evaluation-language').val();
         
         if (!file) {
             UI.showError('Please select a CSV file');
             return;
         }
+
+        if (!targetLanguage) {
+            UI.showError('Please select a target language');
+            return;
+        }
+
+        // Validate file type
+        if (file.type !== 'text/csv' && !file.name.endsWith('.csv')) {
+            UI.showError('Please select a valid CSV file');
+            return;
+        }
         
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('target_language', targetLanguage);
         
         try {
             UI.showLoading('Evaluating translations...');

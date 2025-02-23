@@ -9,7 +9,8 @@ class TranslationAPI {
         });
 
         if (!response.ok) {
-            throw new Error('Translation failed');
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.detail || `Translation failed: ${response.status}`);
         }
 
         return await response.json();
@@ -22,7 +23,8 @@ class TranslationAPI {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to evaluate translations');
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.detail || `Evaluation failed: ${response.status}`);
         }
 
         return await response.json();

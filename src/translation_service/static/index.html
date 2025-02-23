@@ -181,11 +181,23 @@
 
         <div id="evaluation-tab" class="tab-content">
             <div class="form-group">
-                <label for="csv-file">Upload CSV file with translations:</label>
-                <input type="file" id="csv-file" accept=".csv" required>
-                <small>CSV should contain columns: source_text, target_language, translated_value</small>
+                <h3>Translation Evaluation</h3>
+                <p>Upload a CSV file to evaluate translations. The file must have these columns:</p>
+                <ul style="margin-bottom: 20px; padding-left: 20px;">
+                    <li><strong>english</strong>: The English text to translate</li>
+                    <li><strong>translated_value</strong>: The reference translation to compare against</li>
+                </ul>
+                <div class="form-group">
+                    <label for="evaluation-language">Target Language:</label>
+                    <select id="evaluation-language" required></select>
+                </div>
+                <label for="csv-file" class="file-label">
+                    <span>Choose CSV File</span>
+                    <input type="file" id="csv-file" accept=".csv" required>
+                </label>
+                <small style="display: block; margin-top: 5px; color: #666;">File must be in CSV format with the required columns</small>
             </div>
-            <button id="evaluateButton">Evaluate Translations</button>
+            <button id="evaluateButton" class="primary-button">Evaluate Translations</button>
             <div id="evaluation-results"></div>
         </div>
         

@@ -1,6 +1,6 @@
 from io import StringIO
 import pandas as pd
-from fastapi import FastAPI, HTTPException, UploadFile
+from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -80,45 +80,66 @@ async def translate_raw_text(request: RawTextTranslationRequestDTO):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/evaluate-translations")
-async def evaluate_translations(file: UploadFile):
+async def evaluate_translations(file: UploadFile, target_language: str = Form(...)):
     try:
+        if not file.filename.endswith('.csv'):
+            raise HTTPException(status_code=400, detail="Please upload a CSV file")
+
+        if not language_settings.is_language_supported(target_language):
+            raise HTTPException(status_code=400, detail=f"Unsupported language code: {target_language}")
+
         # Read CSV content
         content = await file.read()
-        df = pd.read_csv(StringIO(content.decode()))
+        try:
+            df = pd.read_csv(StringIO(content.decode()))
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Error reading CSV file: {str(e)}")
+
+        # Validate required columns
+        required_columns = ['english', 'translated_value']
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        if missing_columns:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Missing required columns: {', '.join(missing_columns)}. CSV must have columns: {', '.join(required_columns)}"
+            )
         
         results = []
-        for _, row in df.iterrows():
-            # Get source and target language texts
-            source_text = row['source_text']
-            target_language = row['target_language']
-            reference_translation = row['translated_value']
-            
-            if not language_settings.is_language_supported(target_language):
-                raise HTTPException(status_code=400, detail=f"Unsupported language code: {target_language}")
-            
-            # Get new translation
-            request = TranslationRequest(source_content=source_text, target_languages=[target_language])
-            translation = await translator.translate(request)
-            new_translation = translation.translations[target_language]
-            
-            # Evaluate translation
-            llm_eval = await evaluator.evaluate_translation(
-                source_text,
-                reference_translation,
-                new_translation
-            )
+        for index, row in df.iterrows():
+            try:
+                # Get source and target language texts
+                source_text = str(row['english']).strip()
+                reference_translation = str(row['translated_value']).strip()
 
-            results.append(TranslationEvaluationResult(
-                source_text=source_text,
-                reference_translation=reference_translation,
-                new_translation=new_translation,
-                llm_evaluation=LLMEvaluation(
-                    accuracy_score=llm_eval.accuracy_score,
-                    fluency_score=llm_eval.fluency_score,
-                    matches_reference=llm_eval.matches_reference,
-                    comments=llm_eval.comments
+                # Validate non-empty values
+                if not source_text or not reference_translation:
+                    raise ValueError(f"Row {index + 1} contains empty values")
+            
+                # Get new translation
+                request = TranslationRequest(source_content=source_text, target_languages=[target_language])
+                translation = await translator.translate(request)
+                new_translation = translation.translations[target_language]
+                
+                # Evaluate translation
+                llm_eval = await evaluator.evaluate_translation(
+                    source_text,
+                    reference_translation,
+                    new_translation
                 )
-            ))
+
+                results.append(TranslationEvaluationResult(
+                    source_text=source_text,
+                    reference_translation=reference_translation,
+                    new_translation=new_translation,
+                    llm_evaluation=LLMEvaluation(
+                        accuracy_score=llm_eval.accuracy_score,
+                        fluency_score=llm_eval.fluency_score,
+                        matches_reference=llm_eval.matches_reference,
+                        comments=llm_eval.comments
+                    )
+                ))
+            except ValueError as e:
+                raise HTTPException(status_code=400, detail=str(e))
         
         # Calculate summary statistics
         summary = {
