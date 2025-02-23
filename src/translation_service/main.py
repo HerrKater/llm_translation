@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 from domain.model.settings import get_settings
+from domain.model.language_settings import language_settings
 from domain.model.translation_request import TranslationRequest
 from interfaces.evaluation_models import BatchEvaluationRequest, BatchEvaluationResponse, TranslationEvaluationResult, LLMEvaluation
 from domain.services.llm_translation_evaluator_service import LlmTranslationEvaluatorService
@@ -87,14 +88,18 @@ async def evaluate_translations(file: UploadFile):
         
         results = []
         for _, row in df.iterrows():
-            # Get source and reference texts
-            source_text = row['english']
+            # Get source and target language texts
+            source_text = row['source_text']
+            target_language = row['target_language']
             reference_translation = row['translated_value']
             
+            if not language_settings.is_language_supported(target_language):
+                raise HTTPException(status_code=400, detail=f"Unsupported language code: {target_language}")
+            
             # Get new translation
-            request = TranslationRequest(source_content=source_text, target_languages=['hu'])
+            request = TranslationRequest(source_content=source_text, target_languages=[target_language])
             translation = await translator.translate(request)
-            new_translation = translation.translations['hu']
+            new_translation = translation.translations[target_language]
             
             # Evaluate translation
             llm_eval = await evaluator.evaluate_translation(
