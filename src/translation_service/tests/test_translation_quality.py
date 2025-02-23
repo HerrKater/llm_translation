@@ -6,6 +6,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from application.translation_service import TranslationService
 from infrastructure.translator import OpenAITranslator
+from infrastructure.translation_evaluator import OpenAITranslationEvaluator
 from dataclasses import dataclass
 
 @dataclass
@@ -27,44 +28,17 @@ class TranslationEvaluator:
     def __init__(self):
         settings = Settings()
         self.translator = OpenAITranslator(settings)
-        self.openai_client = openai.OpenAI(
-            base_url=os.getenv("OPENAI_URL"),
-            api_key=os.getenv("OPENAI_API_KEY")
-        )
+        self.evaluator = OpenAITranslationEvaluator(settings)
 
     async def evaluate_translation(self, english_text: str, reference_translation: str, new_translation: str) -> Dict:
         """Use LLM to evaluate the translation quality."""
-        prompt = f"""You are a Hungarian language expert. Please evaluate the following translation from English to Hungarian:
-
-Original English text: {english_text}
-Reference translation: {reference_translation}
-New translation: {new_translation}
-
-Please analyze the translations and provide a JSON response with the following structure:
-{{
-    "accuracy_score": <score from 0-10>,
-    "fluency_score": <score from 0-10>,
-    "matches_reference": <true/false>,
-    "comments": "<brief explanation of the evaluation>"
-}}
-
-Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
-
-        response = self.openai_client.chat.completions.create(
-            model=os.getenv("OPENAI_LANGUAGE_MODEL"),
-            messages=[{"role": "system", "content": "You are a Hungarian language expert. Provide evaluation in the exact JSON format requested."},
-                     {"role": "user", "content": prompt}]
-        )
-        
-        try:
-            return json.loads(response.choices[0].message.content)
-        except json.JSONDecodeError:
-            return {
-                "accuracy_score": 0,
-                "fluency_score": 0,
-                "matches_reference": False,
-                "comments": "Error parsing LLM response"
-            }
+        result = await self.evaluator.evaluate_translation(english_text, reference_translation, new_translation)
+        return {
+            "accuracy_score": result.accuracy_score,
+            "fluency_score": result.fluency_score,
+            "matches_reference": result.matches_reference,
+            "comments": result.comments
+        }
 
     async def run_evaluation(self, csv_path: str) -> List[Dict]:
         """Run evaluation on all translations in the CSV file."""
