@@ -28,9 +28,11 @@ class OpenAITranslator(Translator):
             try:
                 system_prompt = (
                     f"You are a professional translator. Translate the following "
-                    f"markdown content into {language}. Maintain the original "
-                    f"structure, formatting, and markdown syntax while ensuring "
-                    f"the translation sounds natural in the target language."
+                    f"markdown content into {language}. Follow these rules strictly:\n"
+                    f"1. Maintain all original structure, formatting, and markdown syntax\n"
+                    f"2. DO NOT translate any text inside square brackets (e.g. [brokerName])\n"
+                    f"3. Ensure the translation sounds natural in {language}\n"
+                    f"4. Keep all placeholders exactly as they appear in the original text"
                 )
                 
                 response = await self.client.chat.completions.create(
