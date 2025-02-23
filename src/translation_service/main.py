@@ -2,13 +2,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from typing import Dict
 
-from infrastructure.config import get_settings
-from infrastructure.web_crawler import HttpWebCrawler
+from domain.model.settings import get_settings
+from domain.model.translation_request import TranslationRequest
+from infrastructure.http_web_crawler import HttpWebCrawler
 from infrastructure.markdown_content_processor import MarkdownContentProcessor
-from infrastructure.translator import OpenAITranslator
-from application.translation_service import TranslationService
+from domain.services.llm_translator_service import LlmTranslatorService
+from application.translation_orchestrator import TranslationOrchestrator
 from interfaces.api_models import TranslationRequestDTO, RawTextTranslationRequestDTO, TranslationResponseDTO
 
 # Initialize FastAPI app
@@ -28,10 +28,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Initialize settings and services
 settings = get_settings()
-translator = OpenAITranslator(settings)
+translator = LlmTranslatorService(settings)
 crawler = HttpWebCrawler()
 processor = MarkdownContentProcessor()
-translation_service = TranslationService(crawler, processor, translator)
+translation_service = TranslationOrchestrator(crawler, processor, translator)
 
 @app.post("/translate", response_model=TranslationResponseDTO)
 async def translate_url(request: TranslationRequestDTO):
@@ -56,7 +56,6 @@ async def translate_url(request: TranslationRequestDTO):
 async def translate_raw_text(request: RawTextTranslationRequestDTO):
     try:
         # Create a translation request object
-        from domain.models import TranslationRequest
         translation_request = TranslationRequest(
             source_content=request.text,
             target_languages=request.target_languages

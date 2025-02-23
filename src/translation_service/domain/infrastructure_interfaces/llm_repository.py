@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
-class LLMClient(ABC):
+class LlmRepository(ABC):
     """Base interface for LLM interactions."""
     
     @abstractmethod

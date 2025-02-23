@@ -1,19 +1,11 @@
-from dataclasses import dataclass
-from typing import Dict
-from infrastructure.config import Settings
-from infrastructure.llm import LLMClient, create_llm_client, LLMProvider
+from domain.model.settings import Settings
+from infrastructure.llm.factory import create_llm_client, LLMProvider
+from domain.domain_interfaces.translation_evaluator import TranslationEvaluatorService, TranslationEvaluationResult
 
-@dataclass
-class TranslationEvaluationResult:
-    accuracy_score: float
-    fluency_score: float
-    matches_reference: bool
-    comments: str
-
-class OpenAITranslationEvaluator:
+class LlmTranslationEvaluatorService(TranslationEvaluatorService):
     def __init__(self, settings: Settings):
         self.llm_client = create_llm_client(
-            provider=LLMProvider.OPENAI,
+            provider=settings.llm_provider,
             settings=settings
         )
         self.model = settings.language_model

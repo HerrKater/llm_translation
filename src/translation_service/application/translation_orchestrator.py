@@ -1,15 +1,19 @@
 from typing import List
-from domain.interfaces import WebCrawler, ContentProcessor, Translator
-from domain.models import TranslationRequest, Translation, WebPage
+from domain.domain_interfaces.web_crawler_repository import WebCrawlerRepository
+from domain.domain_interfaces.content_processor import ContentProcessor
+from domain.domain_interfaces.translator_service import TranslatorService
+from domain.model.translation_request import TranslationRequest
+from domain.model.translation import Translation
+from domain.model.web_page import WebPage
 
-class TranslationService:
+class TranslationOrchestrator:
     """Application service that orchestrates the translation process"""
     
     def __init__(
         self,
-        crawler: WebCrawler,
+        crawler: WebCrawlerRepository,
         processor: ContentProcessor,
-        translator: Translator
+        translator: TranslatorService
     ):
         self.crawler = crawler
         self.processor = processor

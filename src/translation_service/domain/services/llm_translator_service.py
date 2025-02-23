@@ -1,15 +1,16 @@
 from typing import Dict
-from domain.interfaces import Translator
-from domain.models import TranslationRequest, Translation
-from infrastructure.config import Settings
-from infrastructure.llm import create_llm_client, LLMProvider
+from domain.model.translation_request import TranslationRequest
+from domain.model.translation import Translation
+from domain.model.settings import Settings
+from infrastructure.llm.factory import create_llm_client
+from domain.domain_interfaces.translator_service import TranslatorService
 
-class OpenAITranslator(Translator):
+class LlmTranslatorService(TranslatorService):
     """Implementation of Translator using OpenAI's API"""
     
     def __init__(self, settings: Settings):
         self.llm_client = create_llm_client(
-            provider=LLMProvider.OPENAI,
+            provider=settings.llm_provider,
             settings=settings
         )
         self.model = settings.language_model

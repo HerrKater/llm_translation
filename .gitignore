@@ -12,6 +12,12 @@ __pycache__/
 *$py.class
 env.json
 
+# Testing
+.pytest_cache/
+
+# Linting
+.ruff_cache/
+
 # C extensions
 *.so
 output/*.xlsx

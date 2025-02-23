@@ -1,7 +1,7 @@
 from markdownify import markdownify as md
 from bs4 import BeautifulSoup
-from domain.interfaces import ContentProcessor
-from domain.models import WebPage
+from domain.infrastructure_interfaces.content_processor import ContentProcessor
+from domain.model.web_page import WebPage
 
 class MarkdownContentProcessor(ContentProcessor):
     """Implementation of ContentProcessor using markdownify"""

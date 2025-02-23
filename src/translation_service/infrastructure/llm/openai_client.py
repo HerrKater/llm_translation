@@ -1,10 +1,11 @@
 from typing import Dict, List, Optional
 import openai
 
-from ..config import Settings
-from .interfaces import LLMClient
+from domain.model.settings import Settings
+from domain.infrastructure_interfaces.llm_repository import LlmRepository
 
-class OpenAILLMClient(LLMClient):
+
+class OpenAILLMClient(LlmRepository):
     """OpenAI implementation of the LLM client."""
     
     def __init__(self, settings: Settings):

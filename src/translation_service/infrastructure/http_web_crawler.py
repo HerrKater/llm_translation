@@ -1,10 +1,9 @@
 import httpx
 from datetime import datetime
-from typing import Dict
-from domain.interfaces import WebCrawler
-from domain.models import WebPage
+from domain.infrastructure_interfaces.web_crawler_repository import WebCrawlerRepository    
+from domain.model.web_page import WebPage
 
-class HttpWebCrawler(WebCrawler):
+class HttpWebCrawler(WebCrawlerRepository):
     """Implementation of WebCrawler using httpx"""
     
     def __init__(self):
@@ -54,8 +53,8 @@ class HttpWebCrawler(WebCrawler):
         except httpx.HTTPError as e:
             raise ValueError(f"Failed to crawl {url}: {str(e)}")
         
-    async def __aenter__(self):
+    def __enter__(self):
         return self
     
-    async def __aexit__(self, exc_type, exc_val, exc_tb):
-        await self.client.aclose()
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.client.aclose()

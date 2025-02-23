@@ -1,26 +1,22 @@
-import csv
+import json
 import sys
-import os
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Dict, List
+
+import pandas as pd
+from dotenv import load_dotenv
+
 sys.path.append(str(Path(__file__).parent.parent))
 
-from application.translation_service import TranslationService
+from infrastructure.config import Settings
 from infrastructure.translator import OpenAITranslator
 from infrastructure.translation_evaluator import OpenAITranslationEvaluator
-from dataclasses import dataclass
 
 @dataclass
 class TranslationRequest:
     source_content: str
     target_languages: list[str]
-from infrastructure.config import Settings
-from infrastructure.web_crawler import HttpWebCrawler
-from infrastructure.markdown_content_processor import MarkdownContentProcessor
-import openai
-from dotenv import load_dotenv
-import pandas as pd
-from typing import Dict, List
-import json
 
 load_dotenv()
 

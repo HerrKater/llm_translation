@@ -1,10 +1,13 @@
 import pytest
 from datetime import datetime
-from domain.models import WebPage, Translation
-from domain.interfaces import WebCrawler, ContentProcessor, Translator
-from application.translation_service import TranslationService
+from domain.model.web_page import WebPage
+from domain.model.translation import Translation
+from domain.domain_interfaces.web_crawler_repository import WebCrawlerRepository
+from domain.domain_interfaces.content_processor import ContentProcessor
+from domain.domain_interfaces.translator_service import TranslatorService
+from application.translation_service import TranslationOrchestrator
 
-class MockWebCrawler(WebCrawler):
+class MockWebCrawler(WebCrawlerRepository):
     async def crawl(self, url: str) -> WebPage:
         return WebPage(
             url=url,
@@ -17,7 +20,7 @@ class MockContentProcessor(ContentProcessor):
         webpage.markdown_content = "# Test\nContent"
         return webpage
 
-class MockTranslator(Translator):
+class MockTranslator(TranslatorService):
     async def translate(self, request) -> Translation:
         return Translation(
             original_content=request.source_content,
@@ -25,7 +28,7 @@ class MockTranslator(Translator):
         )
 
 @pytest.fixture
-def translation_service():
+def translation_orchestrator():
     return TranslationService(
         MockWebCrawler(),
         MockContentProcessor(),
@@ -33,13 +36,13 @@ def translation_service():
     )
 
 @pytest.mark.asyncio
-async def test_translate_webpage(translation_service):
+async def test_translate_webpage(translation_orchestrator):
     # Arrange
     url = "https://example.com"
     target_languages = ["Spanish"]
     
     # Act
-    result = await translation_service.translate_webpage(url, target_languages)
+    result = await translation_orchestrator.translate_webpage(url, target_languages)
     
     # Assert
     assert result.original_content == "# Test\nContent"
