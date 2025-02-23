@@ -4,22 +4,17 @@ uvicorn==0.34.0
 python-multipart==0.0.6
 
 # HTTP and Networking
-requests==2.31.0
+requests==2.32.2
 httpx==0.24.1
 
 # HTML Processing
 beautifulsoup4>=4.12.3
-markdown-it-py>=3.0.0
+markdownify==0.14.1  # HTML to Markdown converter
 html2text>=2020.1.16
 
 # Data Validation
-pydantic>=2.0.0
-pydantic-settings>=2.0.0
-
-# AI and Translation
-openai==1.58.1
-
-# Configuration
+pydantic==2.10.6
+pydantic-settings==2.8.0
 python-dotenv==1.0.1
 
 # Testing

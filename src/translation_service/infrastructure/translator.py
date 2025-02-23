@@ -9,11 +9,11 @@ class OpenAITranslator(Translator):
     """Implementation of Translator using OpenAI's API"""
     
     def __init__(self, settings: Settings):
-        self.client = openai.OpenAI(
+        self.client = openai.AsyncOpenAI(
             api_key=settings.api_key,
             base_url=settings.url,
             default_headers={"api-version": settings.api_version},
-            http_client=httpx.Client(
+            http_client=httpx.AsyncClient(
                 base_url=settings.url,
                 headers={"api-version": settings.api_version}
             )
