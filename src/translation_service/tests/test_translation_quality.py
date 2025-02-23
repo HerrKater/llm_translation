@@ -9,22 +9,19 @@ from dotenv import load_dotenv
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from infrastructure.config import Settings
-from infrastructure.translator import OpenAITranslator
-from infrastructure.translation_evaluator import OpenAITranslationEvaluator
+from domain.model.settings import Settings, get_settings
+from domain.services.llm_translation_evaluator_service import LlmTranslationEvaluatorService
+from domain.services.llm_translator_service import LlmTranslatorService
+from domain.model.translation_request import TranslationRequest
 
-@dataclass
-class TranslationRequest:
-    source_content: str
-    target_languages: list[str]
 
 load_dotenv()
 
 class TranslationEvaluator:
     def __init__(self):
         settings = Settings()
-        self.translator = OpenAITranslator(settings)
-        self.evaluator = OpenAITranslationEvaluator(settings)
+        self.translator = LlmTranslatorService(settings)
+        self.evaluator = LlmTranslationEvaluatorService(settings)
 
     async def evaluate_translation(self, english_text: str, reference_translation: str, new_translation: str) -> Dict:
         """Use LLM to evaluate the translation quality."""
