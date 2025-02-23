@@ -49,14 +49,66 @@
         label {
             display: block;
             margin-bottom: 5px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .metric {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .metric label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .metric span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .summary-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .translation-text {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        .comments {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }   
+        .comments label {
             font-weight: bold;
         }
-        input[type="url"], select {
+        input[type="url"], select, textarea {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
+        }
+        select[multiple] {
+            height: 120px;
         }
         button {
             background-color: #4CAF50;
@@ -83,6 +135,13 @@
             text-align: center;
             margin: 20px 0;
         }
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +150,7 @@
         <div class="tabs">
             <div class="tab active" data-tab="url-tab">URL Input</div>
             <div class="tab" data-tab="text-tab">Raw Text</div>
+            <div class="tab" data-tab="evaluation-tab">Evaluation</div>
         </div>
         
         <div id="url-tab" class="tab-content active">
@@ -98,38 +158,133 @@
                 <label for="url">Website URL:</label>
                 <input type="url" id="url" required placeholder="https://example.com">
             </div>
+            <div class="form-group">
+                <label for="url-languages">Target Languages:</label>
+                <select id="url-languages" multiple required>
+                    <option value="hu">Hungarian</option>
+                </select>
+            </div>
+            <button id="translateUrlButton">Translate URL</button>
+            <div id="url-results" class="results"></div>
         </div>
         
         <div id="text-tab" class="tab-content">
             <div class="form-group">
                 <label for="raw-text">Raw Text:</label>
-                <textarea id="raw-text" rows="6" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"></textarea>
+                <textarea id="raw-text" rows="6" required></textarea>
             </div>
+            <div class="form-group">
+                <label for="text-languages">Target Languages:</label>
+                <select id="text-languages" multiple required>
+                    <option value="hu">Hungarian</option>
+                </select>
+            </div>
+            <button id="translateTextButton">Translate Text</button>
+            <div id="text-results" class="results"></div>
         </div>
-        <div class="form-group">
-            <label for="languages">Target Languages (hold Ctrl/Cmd to select multiple):</label>
-            <select id="languages" multiple size="5">
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-                <option value="Italian">Italian</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Korean">Korean</option>
-                <option value="Russian">Russian</option>
-            </select>
+
+        <div id="evaluation-tab" class="tab-content">
+            <div class="form-group">
+                <label for="csv-file">Upload CSV file with translations:</label>
+                <input type="file" id="csv-file" accept=".csv" required>
+                <small>CSV should contain columns: source_text, translated_value</small>
+            </div>
+            <button id="evaluateButton">Evaluate Translations</button>
+            <div id="evaluation-results"></div>
         </div>
-        <button id="translateButton">Translate</button>
         
         <div class="loading" id="loading">
-            Translating... Please wait...
+            Processing... Please wait...
         </div>
-        
-        <div class="results" id="results"></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="/static/evaluation.js"></script>
     <script>
+        /**
+         * Shows the loading message
+         * @param {string} message - Optional custom message
+         */
+        function showLoading(message = 'Processing... Please wait...') {
+            $('#loading').text(message).show();
+        }
+
+        /**
+         * Hides the loading message
+         */
+        function hideLoading() {
+            $('#loading').hide();
+        }
+
+        /**
+         * Shows an error message
+         * @param {string} message - Error message
+         */
+        function showError(message) {
+            const errorDiv = $('<div>').addClass('error-message').text(message);
+            $('.results').prepend(errorDiv);
+            hideLoading();
+            setTimeout(() => errorDiv.fadeOut('slow', function() { $(this).remove(); }), 5000);
+            alert(message);
+        }
+
+        /**
+         * Translates content using the given endpoint and request data
+         * @param {string} endpoint - Translation endpoint
+         * @param {Object} requestData - Request data
+         * @param {string} resultsContainer - Container to display results
+         */
+        async function translateContent(endpoint, requestData, resultsContainer) {
+            showLoading('Translating... Please wait...');
+            $(resultsContainer).empty();
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Translation failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Display original text
+                $(resultsContainer).append(`
+                    <div class="translation">
+                        <h3>Original Text:</h3>
+                        <p>${data.original_text}</p>
+                    </div>
+                `);
+
+                // Display translations
+                Object.entries(data.translations).forEach(([language, translation]) => {
+                    $(resultsContainer).append(`
+                        <div class="translation">
+                            <h3>${language} Translation:</h3>
+                            <p>${translation}</p>
+                        </div>
+                    `);
+                });
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
         $(document).ready(function() {
+            // Initialize Select2 for better dropdown experience
+            $('#url-languages, #text-languages').select2({
+                placeholder: 'Select target languages',
+                width: '100%'
+            });
+
             // Tab switching logic
             $('.tab').on('click', function() {
                 $('.tab').removeClass('active');
@@ -138,129 +293,59 @@
                 $('#' + $(this).data('tab')).addClass('active');
             });
 
-            $('#translateButton').on('click', async function() {
-                const activeTab = $('.tab.active').data('tab');
-                const languages = $('#languages option:selected').map(function() {
+            // URL translation
+            $('#translateUrlButton').on('click', async function() {
+                const url = $('#url').val().trim();
+                const languages = $('#url-languages option:selected').map(function() {
                     return $(this).val();
                 }).get();
-                
-                if (languages.length === 0) {
-                    alert('Please select at least one target language');
+
+                if (!url) {
+                    showError('Please enter a URL');
                     return;
                 }
 
-                let endpoint, requestData;
-                
-                if (activeTab === 'url-tab') {
-                    const url = $('#url').val().trim();
-                    if (!url) {
-                        alert('Please enter a URL');
-                        return;
-                    }
-                    try {
-                        // Validate URL format
-                        new URL(url);
-                        endpoint = '/translate';
-                        requestData = { url: url, target_languages: languages };
-                    } catch (e) {
-                        alert('Please enter a valid URL (e.g., https://example.com)');
-                        return;
-                    }
-                } else {
-                    const text = $('#raw-text').val();
-                    if (!text) {
-                        alert('Please enter some text');
-                        return;
-                    }
-                    endpoint = '/translate/raw';
-                    requestData = { text, target_languages: languages };
+                if (languages.length === 0) {
+                    showError('Please select at least one target language');
+                    return;
                 }
-                
-                $('#loading').show();
-                $('#results').empty();
 
                 try {
-                    const response = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(requestData)
-                    });
+                    new URL(url);
+                    await translateContent(
+                        '/translate',
+                        { url, target_languages: languages },
+                        '#url-results'
+                    );
+                } catch (e) {
+                    showError('Please enter a valid URL (e.g., https://example.com)');
+                }
+            });
 
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+            // Text translation
+            $('#translateTextButton').on('click', async function() {
+                const text = $('#raw-text').val().trim();
+                const languages = $('#text-languages option:selected').map(function() {
+                    return $(this).val();
+                }).get();
 
-                    const data = await response.json();
-                    
-                    // Display original text
-                    $('#results').append(`
-                        <div class="translation">
-                            <h3>Original Text:</h3>
-                            <p>${data.original_text}</p>
-                        </div>
-                    `);
-
-                    // Display translations
-                    Object.entries(data.translations).forEach(([language, translation]) => {
-                        $('#results').append(`
-                            <div class="translation">
-                                <h3>${language} Translation:</h3>
-                                <p>${translation}</p>
-                            </div>
-                        `);
-                    });
-                } catch (error) {
-                    alert('Error: ' + error.message);
-                } finally {
-                    $('#loading').hide();
+                if (!text) {
+                    showError('Please enter some text');
+                    return;
                 }
 
-
-                const $results = $('#results');
-                
-                $loading.show();
-                $results.empty();
-
-                try {
-                    const response = await fetch('/translate', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            url: url,
-                            target_languages: languages
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(data.detail || 'Translation failed');
-                    }
-
-                    // Display original text
-                    $results.append(`
-                        <h2>Original Text:</h2>
-                        <div class="translation">${data.original_text}</div>
-                    `);
-
-                    // Display translations
-                    Object.entries(data.translations).forEach(([language, text]) => {
-                        $results.append(`
-                            <h2>${language} Translation:</h2>
-                            <div class="translation">${text}</div>
-                        `);
-                    });
-                } catch (error) {
-                    $results.html(`<p style="color: red;">Error: ${error.message}</p>`);
-                } finally {
-                    $loading.hide();
+                if (languages.length === 0) {
+                    showError('Please select at least one target language');
+                    return;
                 }
+
+                await translateContent(
+                    '/translate/raw',
+                    { text, target_languages: languages },
+                    '#text-results'
+                );
             });
         });
     </script>
 </body>
-</html>
+</html> 
