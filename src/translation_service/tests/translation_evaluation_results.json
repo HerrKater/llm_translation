@@ -7,29 +7,29 @@
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation '15+ éves tapasztalat' accurately conveys the general meaning of '15+ years track record' but uses 'éves' instead of 'évnyi', which slightly alters the nuance. 'Évnyi' implies a duration or span, while 'éves' refers to a fixed number of years. Therefore, the accuracy is high but not a perfect match for the original concept."
+      "comments": "The new translation '15+ éves tapasztalat' is fluent and conveys the general idea, but it slightly diverges from the reference '15+ évnyi tapasztalat'. The term 'évnyi' emphasizes the duration more clearly than 'éves', which refers to years but may not fully capture the concept of a track record or accumulated experience over time."
     }
   },
   {
     "english_text": "125,500 people already found a broker via this tool!",
     "reference_translation": "Már 125,500 ember talált brókert ezzel az eszközzel!",
-    "new_translation": "125,500 ember már talált brókert ezen az eszközön keresztül!",
+    "new_translation": "125,500 ember már talált brókert ezzel az eszközzel!",
     "evaluation": {
       "accuracy_score": 9.0,
-      "fluency_score": 8.0,
+      "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation is semantically accurate, conveying the same meaning as the reference translation. However, the phrase 'ezen az eszközön keresztül' is a bit more complex and less natural compared to 'ezzel az eszközzel,' which affects fluency. Nevertheless, it is still a valid translation."
+      "comments": "The new translation accurately conveys the meaning of the original text and is fluent. However, the placement of 'már' before '125,500 ember' in the reference translation emphasizes the fact that the action has already occurred, which is slightly more idiomatic in Hungarian. The difference is subtle but affects the emphasis in the sentence."
     }
   },
   {
     "english_text": "Mutual funds are available",
     "reference_translation": "Befektetési alapok elérhetőek",
-    "new_translation": "A befektetési alapok elérhetők",
+    "new_translation": "A kölcsönös alapok elérhetők",
     "evaluation": {
-      "accuracy_score": 9.0,
-      "fluency_score": 9.0,
-      "matches_reference": true,
-      "comments": "The new translation 'A befektetési alapok elérhetők' conveys the same meaning as the reference translation but uses 'elérhetők' instead of 'elérhetőek'. Both forms are grammatically correct in Hungarian. The use of 'A' at the beginning adds slight emphasis which can be contextually appropriate. Overall, both translations are accurate and fluent."
+      "accuracy_score": 5.0,
+      "fluency_score": 6.0,
+      "matches_reference": false,
+      "comments": "The new translation uses 'kölcsönös alapok' which translates to 'mutual funds' but is not a common term in Hungarian; 'befektetési alapok' is the standard term for 'investment funds'. The phrase 'elérhetők' is correct, but overall the translation does not match the reference in terminology, leading to a lower accuracy score."
     }
   },
   {
@@ -39,30 +39,30 @@
     "evaluation": {
       "accuracy_score": 9.0,
       "fluency_score": 9.0,
-      "matches_reference": true,
-      "comments": "The new translation 'Legjobb határidős brókerek' accurately conveys the meaning of 'Best futures brokers'. The phrase is fluent and appropriately structured in Hungarian. While the reference translation uses 'brókerek határidős ügyletekre', which is grammatically correct, the new translation is more direct and natural sounding while retaining the original intent."
+      "matches_reference": false,
+      "comments": "The new translation 'Legjobb határidős brókerek' is semantically accurate and conveys the meaning of 'best futures brokers'. However, it slightly differs from the reference translation which emphasizes that these brokers are specifically for futures transactions ('határidős ügyletekre'). Despite this, the new translation is fluent and clear."
     }
   },
   {
     "english_text": "Access to archived threads is only available to registered users. Without this, we can only keep them for you for 1 month.",
     "reference_translation": "A korábbi beszélgetésekhez való hozzáférés csak regisztrált felhasználók számára elérhető. Enélkül csak 1 hónapig tudjuk őket megőrizni neked.",
-    "new_translation": "Az archivált szálakhoz való hozzáférés csak regisztrált felhasználók számára elérhető. Enélkül csak 1 hónapig tudjuk őket megőrizni az Ön számára.",
+    "new_translation": "Az archívált beszélgetésekhez való hozzáférés csak regisztrált felhasználók számára elérhető. E nélkül csak 1 hónapig tudjuk őket megőrizni az Ön számára.",
     "evaluation": {
       "accuracy_score": 9.0,
-      "fluency_score": 9.0,
+      "fluency_score": 8.0,
       "matches_reference": true,
-      "comments": "The new translation accurately conveys the meaning of the original text and maintains a high level of fluency. The use of 'az Ön számára' instead of 'neked' is more formal but still contextually appropriate for the intended audience."
+      "comments": "The new translation accurately conveys the meaning of the original text and maintains the intended message. It uses slightly different wording ('Az archívált beszélgetések' instead of 'A korábbi beszélgetések'), which is acceptable and does not alter the meaning. The phrase 'E nélkül' is a correct alternative to 'Enélkül', though it is less common in conversational language. Overall, the translation is clear and coherent."
     }
   },
   {
     "english_text": "across [dataPoints]+ criteria",
     "reference_translation": "[dataPoints]+ kritérium mentén",
-    "new_translation": "át a [dataPoints]+ kritériumokon",
+    "new_translation": "keresztül [dataPoints]+ kritériumok",
     "evaluation": {
-      "accuracy_score": 6.0,
-      "fluency_score": 7.0,
+      "accuracy_score": 7.0,
+      "fluency_score": 8.0,
       "matches_reference": false,
-      "comments": "The new translation 'át a [dataPoints]+ kritériumokon' conveys a similar meaning but alters the preposition, which changes the nuance. The reference translation 'kritérium mentén' captures the idea of 'across' more precisely, indicating a pathway or alignment with the criteria. The fluency is acceptable, but it is less accurate semantically compared to the reference."
+      "comments": "The new translation 'keresztül [dataPoints]+ kritériumok' is semantically close but diverges from the reference translation in terms of structure. The word 'keresztül' (across) changes the meaning slightly and 'kritériumok' (criteria in plural) differs from 'kritérium mentén' (along the criteria). The reference translation maintains the intended meaning better."
     }
   },
   {
@@ -73,18 +73,18 @@
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation 'Alternatívák a [brokerName] számára' conveys a similar meaning to the reference translation but alters the implication slightly by suggesting 'for [brokerName]' rather than 'instead of [brokerName]'. This change affects the semantic accuracy, reducing the score, although the fluency remains high."
+      "comments": "The new translation 'Alternatívák a [brokerName] számára' conveys the idea of alternatives for [brokerName], but it suggests a slightly different nuance than the reference translation 'Alternatívák [brokerName] helyett', which directly implies alternatives instead of [brokerName]. The new translation is grammatically correct and fluent, but it does not match the precise meaning of the reference."
     }
   },
   {
     "english_text": "Available in [countryName]",
     "reference_translation": "Elérhető [countryName]",
-    "new_translation": "Elérhető [countryName]-ban",
+    "new_translation": "Elérhető [countryName]-ban/ben",
     "evaluation": {
-      "accuracy_score": 7.0,
-      "fluency_score": 8.0,
-      "matches_reference": false,
-      "comments": "The new translation 'Elérhető [countryName]-ban' contains a grammatical error. In Hungarian, the suffix '-ban' (indicating location) should be used with the correct case based on the structure of the phrase. The reference translation 'Elérhető [countryName]' is more accurate and natural as it conveys the intended meaning without any grammatical issues."
+      "accuracy_score": 8.0,
+      "fluency_score": 9.0,
+      "matches_reference": true,
+      "comments": "The new translation 'Elérhető [countryName]-ban/ben' accurately conveys the meaning of the reference translation while adding a grammatical nuance that specifies the location more clearly. However, it is slightly less concise than the reference. Overall, it maintains the intended message effectively."
     }
   },
   {
@@ -95,18 +95,18 @@
       "accuracy_score": 10.0,
       "fluency_score": 10.0,
       "matches_reference": true,
-      "comments": "The new translation is identical to the reference translation and accurately conveys the same meaning. Both versions are fluent and correctly express 'Best forex brokers' in Hungarian."
+      "comments": "The new translation 'Legjobb forex brókerek' is identical to the reference translation and accurately conveys the same meaning as the original English text. It is both semantically accurate and fluent in Hungarian."
     }
   },
   {
     "english_text": "Best stock trading apps",
     "reference_translation": "Legjobb részvénykereskedési appok",
-    "new_translation": "Legjobb részvénykereskedési alkalmazások",
+    "new_translation": "Legjobb részvénykereskedő alkalmazások",
     "evaluation": {
-      "accuracy_score": 8.0,
+      "accuracy_score": 9.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation 'Legjobb részvénykereskedési alkalmazások' is semantically accurate and fluent. It correctly conveys the meaning of the original text. However, it uses 'alkalmazások' instead of 'appok', which alters the casual tone of the reference translation. This change makes it slightly less aligned with the original intention."
+      "comments": "The new translation 'Legjobb részvénykereskedő alkalmazások' is semantically accurate and conveys the same meaning as the reference translation. However, 'alkalmazások' is a more formal term than 'appok', which is commonly used in colloquial language. This makes the new translation slightly less aligned with the casual tone of the original phrase. Overall, both versions are correct, but the reference better matches the informal context."
     }
   },
   {
@@ -117,18 +117,18 @@
       "accuracy_score": 10.0,
       "fluency_score": 10.0,
       "matches_reference": true,
-      "comments": "The new translation accurately reflects the original English text and maintains the same meaning as the reference translation. It is fluent and uses appropriate terminology in Hungarian."
+      "comments": "The new translation is identical to the reference translation. It accurately conveys the meaning of the original English text and maintains fluency in Hungarian. Both versions are appropriate and correct."
     }
   },
   {
     "english_text": "Broker is not available in [countryTheName]",
     "reference_translation": "A bróker nem elérhető [countryTheName]",
-    "new_translation": "A bróker nem elérhető [countryTheName]-ben.",
+    "new_translation": "A bróker nem elérhető [countryTheName] területén.",
     "evaluation": {
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation conveys the general meaning of the original sentence but introduces a minor error in the use of 'ben' at the end. The correct Hungarian structure for location should simply omit the suffix in this context, making the reference translation more appropriate. Therefore, while the translation is fluent and understandable, it does not match the reference exactly."
+      "comments": "The new translation adds 'területén' which means 'in the area of', slightly altering the meaning to suggest geographical limitations rather than simply stating the broker's unavailability. While the addition provides clarity, it diverges from the original reference translation."
     }
   },
   {
@@ -137,20 +137,20 @@
     "new_translation": "Számítsa ki a részvénykereskedelmi jutalékokat különböző brókereknél.",
     "evaluation": {
       "accuracy_score": 8.0,
-      "fluency_score": 7.0,
+      "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation is mostly accurate but employs 'kereskedelmi' instead of 'kereskedési', which slightly alters the context. Additionally, it uses 'jutalékokat' (plural) instead of 'jutalékot' (singular), which can lead to confusion regarding whether the commission is being calculated as a single type or multiple types. Overall, the sentence structure flows well, but the semantic differences affect the fidelity to the original intent."
+      "comments": "The new translation is mostly accurate but uses 'részvénykereskedelmi' instead of 'részvénykereskedési', which slightly alters the meaning. The plural form 'jutalékokat' is also a deviation from the singular 'jutalékot' in the reference. Overall, it is fluent but does not match the reference translation perfectly in terms of meaning."
     }
   },
   {
     "english_text": "Check out the best brokers in [country]",
     "reference_translation": "Nézd meg a legjobb brókereket [country]",
-    "new_translation": "Nézd meg a legjobb brókereket [country] országból!",
+    "new_translation": "Nézd meg a legjobb brókereket [country] területén!",
     "evaluation": {
       "accuracy_score": 8.0,
-      "fluency_score": 7.0,
+      "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation adds 'országból' which alters the meaning from simply inviting to check the brokers to specifying the country as a location. While it is still comprehensible, it diverges from the original focus of just highlighting the best brokers."
+      "comments": "The new translation is generally accurate and fluent, but the addition of 'területén' (in the area of) alters the original meaning slightly. The reference translation is more direct and aligns closely with the original English text, while the new translation implies a geographical context that wasn't present in the original."
     }
   },
   {
@@ -161,18 +161,18 @@
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation 'Teljesítse a Find My Broker kérdőívet' is not semantically incorrect but is slightly more formal than the reference translation. While 'teljesítse' can convey the meaning of completing, 'töltsd ki' is more idiomatic for filling out a questionnaire in this context, making the reference translation sound more natural and fluent. Thus, the two translations differ in tone and register."
+      "comments": "The new translation 'Teljesítse a Find My Broker kérdőívet' is semantically accurate but slightly formal compared to the reference translation. The reference 'Töltsd ki a 'Find My Broker' kérdőívet' uses a more conversational tone with the imperative form 'Töltsd ki', while 'Teljesítse' is more formal and less common in everyday usage. Both convey the same basic meaning, but the reference is more natural in a casual context."
     }
   },
   {
     "english_text": "FX Fee Calculator",
     "reference_translation": "FX Díjkalkulátor",
-    "new_translation": "FX Díjszámító",
+    "new_translation": "FX Díj Kalkulátor",
     "evaluation": {
-      "accuracy_score": 8.0,
+      "accuracy_score": 9.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation 'FX Díjszámító' is accurate and fluent, but it slightly alters the meaning. While both 'Díjkalkulátor' and 'Díjszámító' can refer to a fee calculator, 'Díjkalkulátor' is more commonly used in financial contexts. Therefore, the reference translation is more precise."
+      "comments": "Both translations accurately convey the meaning of 'FX Fee Calculator'. However, the reference translation 'FX Díjkalkulátor' is more fluent as it treats 'Díjkalkulátor' as a single term, which is common in Hungarian. The new translation 'FX Díj Kalkulátor' separates 'Díj' and 'Kalkulátor', which is less conventional but still understandable."
     }
   },
   {
@@ -180,10 +180,10 @@
     "reference_translation": "Kerülendő csaló brókerek",
     "new_translation": "Csaló brókerek, akiket érdemes elkerülni",
     "evaluation": {
-      "accuracy_score": 9.0,
+      "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation 'Csaló brókerek, akiket érdemes elkerülni' conveys the same overall message but is slightly more verbose than the reference translation. The reference is more direct. However, both translations are accurate, and the new one is grammatically correct and fluent in Hungarian."
+      "comments": "The new translation conveys the overall meaning effectively but differs slightly in structure. The phrase 'akiket érdemes elkerülni' adds a degree of emphasis that is not present in the reference translation. While it is still accurate, it is not a direct match to the original phrase 'to avoid', which is more succinctly captured in the reference translation."
     }
   },
   {
@@ -194,7 +194,7 @@
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation uses 'szakmai átlag' instead of 'piaci átlag'. While both terms relate to averages in their respective fields, 'piaci átlag' specifically refers to market averages, making it more appropriate in this context. Despite this, the sentence remains fluent and easy to understand."
+      "comments": "The new translation uses 'szakmai átlag' instead of 'piaci átlag', which slightly alters the meaning. 'Szakmai' refers more to a professional standard, while 'piaci' refers specifically to market average, which is more appropriate in this context. However, the overall fluency of the sentence is good."
     }
   },
   {
@@ -205,29 +205,29 @@
       "accuracy_score": 10.0,
       "fluency_score": 10.0,
       "matches_reference": true,
-      "comments": "The new translation is identical to the reference translation, accurately conveying the same meaning and maintaining fluency in the Hungarian language."
+      "comments": "The new translation is identical to the reference translation. It accurately conveys the same meaning with correct grammatical structure and fluency."
     }
   },
   {
     "english_text": "[number] available broker in [countryName]",
     "reference_translation": "[number] elérhető bróker [countryName] területén",
-    "new_translation": "[number] elérhető bróker [countryName]-ban",
+    "new_translation": "[number] elérhető bróker [countryName]-ben",
     "evaluation": {
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation is mostly accurate, as it conveys the same meaning. However, the use of '-ban' instead of 'területén' presents a slight nuance difference, as 'területén' specifically indicates being available in the area of the country, while '-ban' suggests being in the country. The translation is fluent overall."
+      "comments": "The new translation is mostly accurate but uses 'ben' which implies a location within the country rather than indicating availability across the country. The reference translation uses 'területén' which better captures the intended meaning of availability in the entire country."
     }
   },
   {
     "english_text": "[number] people picked this broker at BrokerChooser in the last 6 months",
     "reference_translation": "[number] ember választotta ezt a brókert a BrokerChooser-nél az elmúlt 6 hónapban",
-    "new_translation": "[number] ember választotta ezt a brókert a BrokerChooser-en az elmúlt 6 hónapban",
+    "new_translation": "[number] ember választotta ezt a brókert a BrokerChooser-en az utolsó 6 hónapban",
     "evaluation": {
       "accuracy_score": 9.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation is semantically accurate but uses 'BrokerChooser-en' instead of 'BrokerChooser-nél'. The correct expression 'nél' implies a point of reference while 'én' indicates location, which slightly alters the original meaning. Overall, the fluency is good and the translation is clear."
+      "comments": "The new translation is mostly accurate and fluent, but it uses 'BrokerChooser-en' instead of 'BrokerChooser-nél'. Although the meaning is still clear, 'nél' is more appropriate for indicating the context of selection, making the reference more precise. Additionally, 'az utolsó 6 hónapban' is acceptable but 'az elmúlt 6 hónapban' is more commonly used in this context."
     }
   },
   {
@@ -238,7 +238,7 @@
       "accuracy_score": 8.0,
       "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation maintains the overall meaning of the original text; however, it uses 'díjak' instead of 'díjai', which modifies the grammatical structure slightly. Additionally, 'kerülnek kiszámításra' is more verbose than 'vannak kiszámítva', affecting the fluency positively but straying from the conciseness of the reference."
+      "comments": "The new translation is mostly accurate, but there is a slight difference in phrasing; 'díjak' is plural, which may slightly alter the meaning compared to 'díjai'. Additionally, 'kerülnek kiszámításra' is slightly more formal than 'vannak kiszámítva', but overall, the meaning is preserved."
     }
   },
   {
@@ -246,10 +246,10 @@
     "reference_translation": "[popularity] ember választotta ezt a brókert",
     "new_translation": "[popularity] emberek választották ezt a brókert",
     "evaluation": {
-      "accuracy_score": 9.0,
-      "fluency_score": 8.0,
+      "accuracy_score": 8.0,
+      "fluency_score": 9.0,
       "matches_reference": false,
-      "comments": "The new translation correctly captures the meaning of the original text but uses the plural 'emberek' instead of the singular 'ember' from the reference translation. This difference implies a broader context, making it more accurate in conveying that multiple people chose the broker. The fluency is slightly impacted by the use of 'ezt a brókert', which is grammatically correct but less natural than possible alternatives. Overall, it is a strong translation with minor differences."
+      "comments": "The new translation uses 'emberek' (people) instead of 'ember' (person), which is more accurate in conveying the plural sense of 'people' in the original text. However, the verb form 'választották' is correctly used but may imply a past action, which slightly diverges from the implied ongoing action of choice in the original. Overall, it is a fluent and mostly accurate translation."
     }
   }
 ]

@@ -1,8 +1,7 @@
-import os
-import openai
 from dataclasses import dataclass
 from typing import Dict
 from infrastructure.config import Settings
+from infrastructure.llm import LLMClient, create_llm_client, LLMProvider
 
 @dataclass
 class TranslationEvaluationResult:
@@ -13,11 +12,11 @@ class TranslationEvaluationResult:
 
 class OpenAITranslationEvaluator:
     def __init__(self, settings: Settings):
-        self.openai_client = openai.OpenAI(
-            base_url=os.getenv("OPENAI_URL"),
-            api_key=os.getenv("OPENAI_API_KEY")
+        self.llm_client = create_llm_client(
+            provider=LLMProvider.OPENAI,
+            settings=settings
         )
-        self.model = os.getenv("OPENAI_LANGUAGE_MODEL")
+        self.model = settings.language_model
 
     async def evaluate_translation(
         self, 
@@ -42,7 +41,7 @@ Please analyze the translations and provide a JSON response with the following s
 
 Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
 
-        response = self.openai_client.chat.completions.create(
+        result = self.llm_client.chat(
             model=self.model,
             messages=[
                 {"role": "system", "content": "You are a Hungarian language expert. Provide evaluation in the exact JSON format requested."},
@@ -51,7 +50,7 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
         )
         
         try:
-            result = response.choices[0].message.content
+            # result is already the message content string
             # Parse the JSON string into a dictionary
             import json
             evaluation_dict = json.loads(result)

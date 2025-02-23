@@ -1,22 +1,16 @@
-import openai
-import httpx
 from typing import Dict
 from domain.interfaces import Translator
 from domain.models import TranslationRequest, Translation
 from infrastructure.config import Settings
+from infrastructure.llm import create_llm_client, LLMProvider
 
 class OpenAITranslator(Translator):
     """Implementation of Translator using OpenAI's API"""
     
     def __init__(self, settings: Settings):
-        self.client = openai.AsyncOpenAI(
-            api_key=settings.api_key,
-            base_url=settings.url,
-            default_headers={"api-version": settings.api_version},
-            http_client=httpx.AsyncClient(
-                base_url=settings.url,
-                headers={"api-version": settings.api_version}
-            )
+        self.llm_client = create_llm_client(
+            provider=LLMProvider.OPENAI,
+            settings=settings
         )
         self.model = settings.language_model
 
@@ -35,7 +29,7 @@ class OpenAITranslator(Translator):
                     f"4. Keep all placeholders exactly as they appear in the original text"
                 )
                 
-                response = await self.client.chat.completions.create(
+                translation = self.llm_client.chat(
                     model=self.model,
                     messages=[
                         {"role": "system", "content": system_prompt},
@@ -45,7 +39,7 @@ class OpenAITranslator(Translator):
                     max_tokens=2000
                 )
                 
-                translations[language] = response.choices[0].message.content
+                translations[language] = translation
                 
             except Exception as e:
                 raise ValueError(f"Translation failed for {language}: {str(e)}")
