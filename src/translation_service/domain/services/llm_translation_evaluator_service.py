@@ -1,3 +1,4 @@
+import json
 from domain.model.settings import Settings
 from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client, LLMProvider
@@ -54,23 +55,29 @@ Please analyze the translations and provide a JSON response with the following s
 }}
 
 Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
-
-        response = self.llm_client.chat(
-            model=model_to_use,
-            messages=[
-                {"role": "system", "content": "You are a Hungarian language expert. Provide evaluation in the exact JSON format requested."},
-                {"role": "user", "content": prompt}
-            ]
-        )
-        
         try:
-            # Parse the JSON string from the response content
-            import json
-            evaluation_dict = json.loads(response['content'])
-            
+            response = self.llm_client.chat(
+                model=model_to_use,
+                messages=[
+                    {"role": "system", "content": f"You are a {language_name} language expert. Provide evaluation in the exact JSON format requested."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+
+            content = response['content'].strip()
+            if content.startswith('```json'):
+                content = content[7:]
+            elif content.startswith('```'):
+                content = content[3:]
+            if content.endswith('```'):
+                content = content[:-3]
+            content = content.strip()
+
+            evaluation_dict = json.loads(content)
+
             # Calculate cost for evaluation
             total_cost, cost_breakdown = LLMPricing.calculate_cost(
-                model=self.model,
+                model=model_to_use,
                 input_tokens=response['usage']['prompt_tokens'],
                 output_tokens=response['usage']['completion_tokens']
             )
@@ -82,7 +89,7 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
                 output_cost=cost_breakdown['output_cost'],
                 input_tokens=cost_breakdown['input_tokens'],
                 output_tokens=cost_breakdown['output_tokens'],
-                model=self.model
+                model=model_to_use
             )
             
             # Create LLM evaluation with cost info for the UI
@@ -102,28 +109,31 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
                 comments=str(evaluation_dict["comments"])
             )
         except (json.JSONDecodeError, KeyError, ValueError, AttributeError) as e:
-            # Return a default result in case of any parsing errors
-            default_cost = CostInfo(
-                total_cost=0.0,
-                input_cost=0.0,
-                output_cost=0.0,
-                input_tokens=0,
-                output_tokens=0,
-                model=self.model
-            )
-            # Create default LLM evaluation with cost info for the UI
-            self.last_evaluation = LLMEvaluation(
-                accuracy_score=0.0,
-                fluency_score=0.0,
-                matches_reference=False,
-                comments=f"Error parsing LLM response: {str(e)}",
-                cost_info=default_cost
-            )
-            
-            # Return interface-compatible result
-            return TranslationEvaluationResult(
-                accuracy_score=0.0,
-                fluency_score=0.0,
-                matches_reference=False,
-                comments=f"Error parsing LLM response: {str(e)}"
-            )
+            error_message = f"Error parsing LLM response: {str(e)}"
+            return self._handle_error(error_message)
+        except Exception as e:
+            error_message = f"Unexpected error during evaluation: {str(e)}"
+            return self._handle_error(error_message)
+
+    def _handle_error(self, error_message: str) -> TranslationEvaluationResult:
+        default_cost = CostInfo(
+            total_cost=0.0,
+            input_cost=0.0,
+            output_cost=0.0,
+            input_tokens=0,
+            output_tokens=0,
+            model=model_to_use
+        )
+        self.last_evaluation = LLMEvaluation(
+            accuracy_score=0.0,
+            fluency_score=0.0,
+            matches_reference=False,
+            comments=error_message,
+            cost_info=default_cost
+        )
+        return TranslationEvaluationResult(
+            accuracy_score=0.0,
+            fluency_score=0.0,
+            matches_reference=False,
+            comments=error_message
+        )
