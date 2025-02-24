@@ -88,6 +88,10 @@ class UI {
                         <label>Average Fluency</label>
                         <span>${data.summary.avg_fluency.toFixed(2)}/10</span>
                     </div>
+                    <div class="metric total-cost">
+                        <label>Total Cost</label>
+                        <span>$${data.total_cost.toFixed(4)}</span>
+                    </div>
                 </div>
             </div>
         `;
@@ -108,6 +112,50 @@ class UI {
                     <div class="metric">
                         <label>Fluency Score</label>
                         <span>${result.llm_evaluation.fluency_score}/10</span>
+                    </div>
+                </div>
+                <div class="costs-grid">
+                    <div class="cost-section">
+                        <h5>Translation Cost</h5>
+                        <div class="cost-details">
+                            <div class="cost-item">
+                                <label>Total:</label>
+                                <span>$${result.translation_cost_info.total_cost.toFixed(4)}</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Input:</label>
+                                <span>$${result.translation_cost_info.input_cost.toFixed(4)} (${result.translation_cost_info.input_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Output:</label>
+                                <span>$${result.translation_cost_info.output_cost.toFixed(4)} (${result.translation_cost_info.output_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Model:</label>
+                                <span>${result.translation_cost_info.model}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cost-section">
+                        <h5>Evaluation Cost</h5>
+                        <div class="cost-details">
+                            <div class="cost-item">
+                                <label>Total:</label>
+                                <span>$${result.llm_evaluation.cost_info.total_cost.toFixed(4)}</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Input:</label>
+                                <span>$${result.llm_evaluation.cost_info.input_cost.toFixed(4)} (${result.llm_evaluation.cost_info.input_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Output:</label>
+                                <span>$${result.llm_evaluation.cost_info.output_cost.toFixed(4)} (${result.llm_evaluation.cost_info.output_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Model:</label>
+                                <span>${result.llm_evaluation.cost_info.model}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="comments">

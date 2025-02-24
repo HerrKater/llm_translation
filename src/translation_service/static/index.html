@@ -65,10 +65,11 @@
             margin-bottom: 15px;
         }
 
-        .cost-grid {
+        .cost-grid, .costs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            margin: 15px 0;
         }
 
         .cost-item {
@@ -85,7 +86,46 @@
         .cost-item span {
             color: #212529;
             font-family: monospace;
-        
+        }
+
+        .cost-section {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .cost-section h5 {
+            color: #2196F3;
+            margin: 0 0 10px 0;
+        }
+
+        .cost-details {
+            display: grid;
+            gap: 8px;
+        }
+
+        .total-cost {
+            grid-column: 1 / -1;
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .total-cost label {
+            color: #1976D2;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .total-cost span {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1976D2;
+            display: block;
+            margin-top: 5px;
         }
         .metrics-grid {
             display: grid;
