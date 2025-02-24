@@ -89,9 +89,6 @@ class TranslationEvaluationOrchestrator:
         )
                
         return evaluation_result
-        
-
-        
 
     async def evaluate_translations(
         self,
@@ -121,6 +118,7 @@ class TranslationEvaluationOrchestrator:
         # Calculate summary statistics
         num_results = len(results)
         summary = {
+            # New translation averages
             'avg_accuracy': sum(r.new_evaluation.accuracy.score for r in results) / num_results if num_results > 0 else 0,
             'avg_fluency': sum(r.new_evaluation.fluency.score for r in results) / num_results if num_results > 0 else 0,
             'avg_adequacy': sum(r.new_evaluation.adequacy.score for r in results) / num_results if num_results > 0 else 0,
@@ -129,7 +127,18 @@ class TranslationEvaluationOrchestrator:
             'avg_terminology_accuracy': sum(r.new_evaluation.terminology_accuracy.score for r in results) / num_results if num_results > 0 else 0,
             'avg_readability': sum(r.new_evaluation.readability.score for r in results) / num_results if num_results > 0 else 0,
             'avg_format_preservation': sum(r.new_evaluation.format_preservation.score for r in results) / num_results if num_results > 0 else 0,
-            'avg_error_rate': sum(r.new_evaluation.error_rate.score for r in results) / num_results if num_results > 0 else 0
+            'avg_error_rate': sum(r.new_evaluation.error_rate.score for r in results) / num_results if num_results > 0 else 0,
+            
+            # Reference translation averages
+            'avg_reference_accuracy': sum(r.reference_evaluation.accuracy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_fluency': sum(r.reference_evaluation.fluency.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_adequacy': sum(r.reference_evaluation.adequacy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_consistency': sum(r.reference_evaluation.consistency.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_contextual_appropriateness': sum(r.reference_evaluation.contextual_appropriateness.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_terminology_accuracy': sum(r.reference_evaluation.terminology_accuracy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_readability': sum(r.reference_evaluation.readability.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_format_preservation': sum(r.reference_evaluation.format_preservation.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_reference_error_rate': sum(r.reference_evaluation.error_rate.score for r in results) / num_results if num_results > 0 else 0
         }
         
         # Calculate total cost (translations + evaluations)
