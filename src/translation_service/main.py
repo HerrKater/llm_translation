@@ -150,7 +150,8 @@ async def evaluate_translations(file: UploadFile, target_language: str = Form(..
             llm_eval = await evaluator.evaluate_translation(
                 source_text,
                 reference_translation,
-                new_translation
+                new_translation,
+                target_language
             )
             
             # Get the full evaluation with cost info

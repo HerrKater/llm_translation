@@ -17,10 +17,26 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
         self, 
         english_text: str, 
         reference_translation: str, 
-        new_translation: str
+        new_translation: str,
+        target_language: str
     ) -> TranslationEvaluationResult:
         """Use LLM to evaluate the translation quality."""
-        prompt = f"""You are a Hungarian language expert. Please evaluate the following translation from English to Hungarian:
+        # Get language name for prompt
+        language_names = {
+            'hu': 'Hungarian',
+            'de': 'German',
+            'fr': 'French',
+            'es': 'Spanish',
+            'it': 'Italian',
+            'pt': 'Portuguese',
+            'ru': 'Russian',
+            'zh': 'Chinese',
+            'ja': 'Japanese',
+            'ko': 'Korean'
+        }
+        language_name = language_names.get(target_language, target_language.upper())
+        
+        prompt = f"""You are a {language_name} language expert. Please evaluate the following translation from English to {language_name}:
 
 Original English text: {english_text}
 Reference translation: {reference_translation}
