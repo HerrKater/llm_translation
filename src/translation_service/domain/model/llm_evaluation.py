@@ -40,21 +40,13 @@ class BatchEvaluationRequest(BaseModel):
     target_language: str = "hu"
     
 class EvaluationResult(BaseModel):
-    """Model for individual evaluation result"""
+    """Model for individual evaluation result containing both reference and new translation evaluations"""
     source_text: str
     reference_translation: str
     new_translation: str
-    accuracy: EvaluationMetric
-    fluency: EvaluationMetric
-    adequacy: EvaluationMetric
-    consistency: EvaluationMetric
-    contextual_appropriateness: EvaluationMetric
-    terminology_accuracy: EvaluationMetric
-    readability: EvaluationMetric
-    format_preservation: EvaluationMetric
-    error_rate: EvaluationMetric
+    reference_evaluation: LLMEvaluation
+    new_evaluation: LLMEvaluation
     matches_reference: bool
-    comments: str
     cost_info: CostInfo
 
 class BatchEvaluationResponse(BaseModel):

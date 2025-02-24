@@ -171,7 +171,7 @@ class UI {
                     <p><strong>New Translation:</strong> ${UI.escapeHtml(result.new_translation)}</p>
                 </div>
                 <div class="metrics-details">
-                    <h5>Evaluation Metrics</h5>
+                    <h5>Reference Translation Evaluation</h5>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -183,48 +183,106 @@ class UI {
                         <tbody>
                             <tr>
                                 <td>Accuracy</td>
-                                <td>${result.accuracy.score}/5</td>
-                                <td>${result.accuracy.explanation}</td>
+                                <td>${result.reference_evaluation.accuracy.score}/5</td>
+                                <td>${result.reference_evaluation.accuracy.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Fluency</td>
-                                <td>${result.fluency.score}/5</td>
-                                <td>${result.fluency.explanation}</td>
+                                <td>${result.reference_evaluation.fluency.score}/5</td>
+                                <td>${result.reference_evaluation.fluency.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Adequacy</td>
-                                <td>${result.adequacy.score}/5</td>
-                                <td>${result.adequacy.explanation}</td>
+                                <td>${result.reference_evaluation.adequacy.score}/5</td>
+                                <td>${result.reference_evaluation.adequacy.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Consistency</td>
-                                <td>${result.consistency.score}/5</td>
-                                <td>${result.consistency.explanation}</td>
+                                <td>${result.reference_evaluation.consistency.score}/5</td>
+                                <td>${result.reference_evaluation.consistency.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Contextual Appropriateness</td>
-                                <td>${result.contextual_appropriateness.score}/5</td>
-                                <td>${result.contextual_appropriateness.explanation}</td>
+                                <td>${result.reference_evaluation.contextual_appropriateness.score}/5</td>
+                                <td>${result.reference_evaluation.contextual_appropriateness.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Terminology Accuracy</td>
-                                <td>${result.terminology_accuracy.score}/5</td>
-                                <td>${result.terminology_accuracy.explanation}</td>
+                                <td>${result.reference_evaluation.terminology_accuracy.score}/5</td>
+                                <td>${result.reference_evaluation.terminology_accuracy.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Readability</td>
-                                <td>${result.readability.score}/5</td>
-                                <td>${result.readability.explanation}</td>
+                                <td>${result.reference_evaluation.readability.score}/5</td>
+                                <td>${result.reference_evaluation.readability.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Format Preservation</td>
-                                <td>${result.format_preservation.score}/5</td>
-                                <td>${result.format_preservation.explanation}</td>
+                                <td>${result.reference_evaluation.format_preservation.score}/5</td>
+                                <td>${result.reference_evaluation.format_preservation.explanation}</td>
                             </tr>
                             <tr>
                                 <td>Error Rate</td>
-                                <td>${result.error_rate.score}/5</td>
-                                <td>${result.error_rate.explanation}</td>
+                                <td>${result.reference_evaluation.error_rate.score}/5</td>
+                                <td>${result.reference_evaluation.error_rate.explanation}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h5>New Translation Evaluation</h5>
+                    <table class="metrics-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Score</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>${result.new_evaluation.accuracy.score}/5</td>
+                                <td>${result.new_evaluation.accuracy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Fluency</td>
+                                <td>${result.new_evaluation.fluency.score}/5</td>
+                                <td>${result.new_evaluation.fluency.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Adequacy</td>
+                                <td>${result.new_evaluation.adequacy.score}/5</td>
+                                <td>${result.new_evaluation.adequacy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Consistency</td>
+                                <td>${result.new_evaluation.consistency.score}/5</td>
+                                <td>${result.new_evaluation.consistency.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Contextual Appropriateness</td>
+                                <td>${result.new_evaluation.contextual_appropriateness.score}/5</td>
+                                <td>${result.new_evaluation.contextual_appropriateness.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Terminology Accuracy</td>
+                                <td>${result.new_evaluation.terminology_accuracy.score}/5</td>
+                                <td>${result.new_evaluation.terminology_accuracy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Readability</td>
+                                <td>${result.new_evaluation.readability.score}/5</td>
+                                <td>${result.new_evaluation.readability.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Format Preservation</td>
+                                <td>${result.new_evaluation.format_preservation.score}/5</td>
+                                <td>${result.new_evaluation.format_preservation.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Error Rate</td>
+                                <td>${result.new_evaluation.error_rate.score}/5</td>
+                                <td>${result.new_evaluation.error_rate.explanation}</td>
                             </tr>
                         </tbody>
                     </table>
