@@ -33,7 +33,7 @@ Please analyze the translations and provide a JSON response with the following s
 
 Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
 
-        result = self.llm_client.chat(
+        response = self.llm_client.chat(
             model=self.model,
             messages=[
                 {"role": "system", "content": "You are a Hungarian language expert. Provide evaluation in the exact JSON format requested."},
@@ -42,10 +42,9 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
         )
         
         try:
-            # result is already the message content string
-            # Parse the JSON string into a dictionary
+            # Parse the JSON string from the response content
             import json
-            evaluation_dict = json.loads(result)
+            evaluation_dict = json.loads(response['content'])
             
             return TranslationEvaluationResult(
                 accuracy_score=float(evaluation_dict["accuracy_score"]),

@@ -50,6 +50,43 @@
             display: block;
             margin-bottom: 5px;
         }
+
+        .cost-info {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cost-summary h4 {
+            color: #495057;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .cost-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .cost-item label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .cost-item span {
+            color: #212529;
+            font-family: monospace;
+        
+        }
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

@@ -14,7 +14,8 @@ from infrastructure.http_web_crawler import HttpWebCrawler
 from infrastructure.markdown_content_processor import MarkdownContentProcessor
 from domain.services.llm_translator_service import LlmTranslatorService
 from application.translation_orchestrator import TranslationOrchestrator
-from interfaces.api_models import TranslationRequestDTO, RawTextTranslationRequestDTO, TranslationResponseDTO
+from interfaces.api_models import (TranslationRequestDTO, RawTextTranslationRequestDTO,
+    TranslationResponseDTO, CostInfoDTO)
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -43,7 +44,7 @@ translation_service = TranslationOrchestrator(crawler, processor, translator)
 async def translate_url(request: TranslationRequestDTO):
     try:
         # Perform translation
-        translation = await translation_service.translate_webpage(
+        translation, cost_info = await translation_service.translate_webpage(
             str(request.url),
             request.target_languages
         )
@@ -51,7 +52,15 @@ async def translate_url(request: TranslationRequestDTO):
         # Convert domain model to DTO
         return TranslationResponseDTO(
             original_text=translation.original_content,
-            translations=translation.translations
+            translations=translation.translations,
+            cost_info=CostInfoDTO(
+                total_cost=cost_info['total_cost'],
+                input_cost=cost_info['input_cost'],
+                output_cost=cost_info['output_cost'],
+                input_tokens=cost_info['input_tokens'],
+                output_tokens=cost_info['output_tokens'],
+                model=cost_info['model']
+            )
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -68,11 +77,19 @@ async def translate_raw_text(request: RawTextTranslationRequestDTO):
         )
         
         # Translate using the request object
-        translation = await translator.translate(translation_request)
+        translation, cost_info = await translator.translate(translation_request)
         
         return TranslationResponseDTO(
             original_text=request.text,
-            translations=translation.translations
+            translations=translation.translations,
+            cost_info=CostInfoDTO(
+                total_cost=cost_info['input_cost']+cost_info['output_cost'],
+                input_cost=cost_info['input_cost'],
+                output_cost=cost_info['output_cost'],
+                input_tokens=cost_info['input_tokens'],
+                output_tokens=cost_info['output_tokens'],
+                model=cost_info['model']
+            )
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -117,7 +134,7 @@ async def evaluate_translations(file: UploadFile, target_language: str = Form(..
             
                 # Get new translation
                 request = TranslationRequest(source_content=source_text, target_languages=[target_language])
-                translation = await translator.translate(request)
+                translation, cost_info = await translator.translate(request)
                 new_translation = translation.translations[target_language]
                 
                 # Evaluate translation

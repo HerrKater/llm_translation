@@ -23,8 +23,14 @@ class OpenAILLMClient(LlmRepository):
         temperature: float = 0.7,
         max_tokens: Optional[int] = None,
         stop: Optional[List[str]] = None,
-    ) -> str:
-        """Generate a completion using OpenAI's completion API."""
+    ) -> Dict[str, any]:
+        """Generate a completion using OpenAI's completion API.
+        
+        Returns:
+            Dictionary containing:
+            - content: The generated text response
+            - usage: Token usage information including prompt_tokens and completion_tokens
+        """
         response = self.client.completions.create(
             model=model or self.model_name,
             prompt=prompt,
@@ -32,7 +38,13 @@ class OpenAILLMClient(LlmRepository):
             max_tokens=max_tokens,
             stop=stop,
         )
-        return response.choices[0].text.strip()
+        return {
+            'content': response.choices[0].text.strip(),
+            'usage': {
+                'prompt_tokens': response.usage.prompt_tokens,
+                'completion_tokens': response.usage.completion_tokens
+            }
+        }
 
     def chat(
         self,
@@ -41,8 +53,14 @@ class OpenAILLMClient(LlmRepository):
         temperature: float = 0.7,
         max_tokens: Optional[int] = None,
         stop: Optional[List[str]] = None,
-    ) -> str:
-        """Generate a chat completion using OpenAI's chat API."""
+    ) -> Dict[str, any]:
+        """Generate a chat completion using OpenAI's chat API.
+        
+        Returns:
+            Dictionary containing:
+            - content: The generated text response
+            - usage: Token usage information including prompt_tokens and completion_tokens
+        """
         response = self.client.chat.completions.create(
             model=model or self.model_name,
             messages=messages,
@@ -50,4 +68,10 @@ class OpenAILLMClient(LlmRepository):
             max_tokens=max_tokens,
             stop=stop,
         )
-        return response.choices[0].message.content.strip()
+        return {
+            'content': response.choices[0].message.content.strip(),
+            'usage': {
+                'prompt_tokens': response.usage.prompt_tokens,
+                'completion_tokens': response.usage.completion_tokens
+            }
+        }

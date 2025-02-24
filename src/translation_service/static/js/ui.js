@@ -24,7 +24,35 @@ class UI {
         const resultsContainer = document.getElementById(container);
         resultsContainer.innerHTML = '';
 
-        // Display original text first
+        // Display cost information
+        const costDiv = document.createElement('div');
+        costDiv.className = 'cost-info';
+        costDiv.innerHTML = `
+            <div class="cost-summary">
+                <h4>Translation Cost Summary</h4>
+                <div class="cost-grid">
+                    <div class="cost-item">
+                        <label>Total Cost:</label>
+                        <span>$${data.cost_info.total_cost.toFixed(4)}</span>
+                    </div>
+                    <div class="cost-item">
+                        <label>Input Cost:</label>
+                        <span>$${data.cost_info.input_cost.toFixed(4)} (${data.cost_info.input_tokens} tokens)</span>
+                    </div>
+                    <div class="cost-item">
+                        <label>Output Cost:</label>
+                        <span>$${data.cost_info.output_cost.toFixed(4)} (${data.cost_info.output_tokens} tokens)</span>
+                    </div>
+                    <div class="cost-item">
+                        <label>Model:</label>
+                        <span>${data.cost_info.model}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        resultsContainer.appendChild(costDiv);
+
+        // Display original text
         const originalDiv = document.createElement('div');
         originalDiv.className = 'translation';
         originalDiv.innerHTML = `

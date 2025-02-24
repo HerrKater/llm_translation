@@ -1,7 +1,8 @@
-from typing import Dict
+from typing import Dict, Tuple
 from domain.model.translation_request import TranslationRequest
 from domain.model.translation import Translation
 from domain.model.settings import Settings
+from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client
 from domain.domain_interfaces.translator_service import TranslatorService
 
@@ -15,9 +16,11 @@ class LlmTranslatorService(TranslatorService):
         )
         self.model = settings.language_model
 
-    async def translate(self, request: TranslationRequest) -> Translation:
-        """Translate content into multiple languages using OpenAI"""
+    async def translate(self, request: TranslationRequest) -> Tuple[Translation, Dict]:
+        """Translate content into multiple languages using OpenAI and track costs"""
         translations: Dict[str, str] = {}
+        total_input_tokens = 0
+        total_output_tokens = 0
         
         for language in request.target_languages:
             try:
@@ -30,7 +33,8 @@ class LlmTranslatorService(TranslatorService):
                     f"4. Keep all placeholders exactly as they appear in the original text"
                 )
                 
-                translation = self.llm_client.chat(
+                # Call LLM and get response with usage info
+                response = self.llm_client.chat(
                     model=self.model,
                     messages=[
                         {"role": "system", "content": system_prompt},
@@ -40,12 +44,26 @@ class LlmTranslatorService(TranslatorService):
                     max_tokens=2000
                 )
                 
-                translations[language] = translation
+                translations[language] = response['content']
+                
+                # Track token usage
+                total_input_tokens += response['usage']['prompt_tokens']
+                total_output_tokens += response['usage']['completion_tokens']
                 
             except Exception as e:
                 raise ValueError(f"Translation failed for {language}: {str(e)}")
         
+        # Calculate cost
+        total_cost, cost_breakdown = LLMPricing.calculate_cost(
+            model=self.model,
+            input_tokens=total_input_tokens,
+            output_tokens=total_output_tokens
+        )
+        
+        # Add model information to cost breakdown
+        cost_breakdown['model'] = self.model
+        
         return Translation(
             original_content=request.source_content,
             translations=translations
-        )
+        ), cost_breakdown

@@ -24,6 +24,12 @@ class LlmRepository(ABC):
         temperature: float = 0.7,
         max_tokens: Optional[int] = None,
         stop: Optional[List[str]] = None,
-    ) -> str:
-        """Generate a chat completion for the given messages."""
+    ) -> Dict[str, any]:
+        """Generate a chat completion for the given messages.
+        
+        Returns:
+            Dictionary containing:
+            - content: The generated text response
+            - usage: Token usage information including prompt_tokens and completion_tokens
+        """
         pass

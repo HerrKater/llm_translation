@@ -23,12 +23,17 @@ class TranslationOrchestrator:
         self,
         url: str,
         target_languages: List[str]
-    ) -> Translation:
+    ) -> tuple[Translation, dict]:
         """
         Orchestrates the complete webpage translation process:
         1. Crawls the webpage
         2. Processes the HTML to markdown
         3. Translates the content
+        
+        Returns:
+            tuple containing:
+            - Translation object
+            - Cost information dictionary
         """
         # Crawl webpage
         webpage: WebPage = await self.crawler.crawl(url)
@@ -44,5 +49,5 @@ class TranslationOrchestrator:
             target_languages=target_languages
         )
         
-        # Translate content
+        # Translate content and get cost info
         return await self.translator.translate(request)
