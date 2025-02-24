@@ -8,11 +8,8 @@ from domain.model.language_settings import language_settings
 from domain.model.translation_request import TranslationRequest
 from domain.services.llm_translator_service import LlmTranslatorService
 from domain.services.llm_translation_evaluator_service import LlmTranslationEvaluatorService
-from interfaces.evaluation_models import (
-    BatchEvaluationResponse,
-    TranslationEvaluationResult,
-    CostInfo
-)
+from domain.model.llm_evaluation import (LLMEvaluation, CostInfo, EvaluationMetric, 
+    BatchEvaluationResponse, EvaluationResult)
 
 class TranslationEvaluationOrchestrator:
     def __init__(
@@ -58,7 +55,7 @@ class TranslationEvaluationOrchestrator:
         target_language: str,
         translation_model: str,
         evaluation_model: str
-    ) -> TranslationEvaluationResult:
+    ) -> EvaluationResult:
         # Get source and target language texts
         source_text = str(row['english']).strip()
         reference_translation = str(row['translated_value']).strip()
@@ -83,7 +80,7 @@ class TranslationEvaluationOrchestrator:
         )
         
         # Evaluate translation with specified model
-        llm_eval = await self.evaluator.evaluate_translation(
+        evaluation = await self.evaluator.evaluate_translation(
             source_text,
             reference_translation,
             new_translation,
@@ -91,16 +88,26 @@ class TranslationEvaluationOrchestrator:
             model=evaluation_model
         )
         
-        # Get the full evaluation with cost info
-        llm_evaluation = self.evaluator.last_evaluation
-
-        return TranslationEvaluationResult(
+        # Convert LLMEvaluation to EvaluationResult
+        return EvaluationResult(
             source_text=source_text,
             reference_translation=reference_translation,
             new_translation=new_translation,
-            llm_evaluation=llm_evaluation,
-            translation_cost_info=translation_cost
+            accuracy=evaluation.accuracy,
+            fluency=evaluation.fluency,
+            adequacy=evaluation.adequacy,
+            consistency=evaluation.consistency,
+            contextual_appropriateness=evaluation.contextual_appropriateness,
+            terminology_accuracy=evaluation.terminology_accuracy,
+            readability=evaluation.readability,
+            format_preservation=evaluation.format_preservation,
+            error_rate=evaluation.error_rate,
+            matches_reference=evaluation.matches_reference,
+            comments=evaluation.comments,
+            cost_info=evaluation.cost_info
         )
+
+        
 
     async def evaluate_translations(
         self,
@@ -130,13 +137,20 @@ class TranslationEvaluationOrchestrator:
         # Calculate summary statistics
         num_results = len(results)
         summary = {
-            'avg_accuracy': sum(r.llm_evaluation.accuracy_score for r in results) / num_results if num_results > 0 else 0,
-            'avg_fluency': sum(r.llm_evaluation.fluency_score for r in results) / num_results if num_results > 0 else 0
+            'avg_accuracy': sum(r.accuracy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_fluency': sum(r.fluency.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_adequacy': sum(r.adequacy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_consistency': sum(r.consistency.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_contextual_appropriateness': sum(r.contextual_appropriateness.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_terminology_accuracy': sum(r.terminology_accuracy.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_readability': sum(r.readability.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_format_preservation': sum(r.format_preservation.score for r in results) / num_results if num_results > 0 else 0,
+            'avg_error_rate': sum(r.error_rate.score for r in results) / num_results if num_results > 0 else 0
         }
         
         # Calculate total cost (translations + evaluations)
         total_cost = sum(
-            r.translation_cost_info.total_cost + r.llm_evaluation.cost_info.total_cost
+            r.cost_info.total_cost
             for r in results
         )
         

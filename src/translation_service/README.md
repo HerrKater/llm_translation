@@ -24,7 +24,7 @@ cd <repository-directory>
 conda create -n translation_service python=3.9
 
 # Activate the environment
-conda activate translation_service
+conda activate translation_service2
 ```
 
 ### 3. Install Dependencies

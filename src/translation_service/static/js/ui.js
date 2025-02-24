@@ -74,28 +74,94 @@ class UI {
     }
 
     static displayEvaluationResults(data) {
+        console.log('Displaying evaluation results:', JSON.stringify(data, null, 2));
         const resultsDiv = document.getElementById('evaluation-results');
+        if (!resultsDiv) {
+            console.error('Could not find evaluation-results div');
+            return;
+        }
         
+        // Clear previous results
+        resultsDiv.innerHTML = '';
+        
+        if (!data || !data.summary) {
+            console.error('Invalid data structure - missing summary:', data);
+            UI.showError('Invalid response format from server');
+            return;
+        }
+        
+        const metricAverages = {
+            accuracy: data.summary.avg_accuracy,
+            fluency: data.summary.avg_fluency,
+            adequacy: data.summary.avg_adequacy,
+            consistency: data.summary.avg_consistency,
+            contextual_appropriateness: data.summary.avg_contextual_appropriateness,
+            terminology_accuracy: data.summary.avg_terminology_accuracy,
+            readability: data.summary.avg_readability,
+            format_preservation: data.summary.avg_format_preservation,
+            error_rate: data.summary.avg_error_rate
+        };
+        
+        console.log('Metric averages:', metricAverages);
+
+        console.log('Generating summary HTML with metrics:', metricAverages);
         const summaryHtml = `
             <div class="summary-card">
-                <h3>Summary</h3>
-                <div class="metrics-grid">
-                    <div class="metric">
-                        <label>Average Accuracy</label>
-                        <span>${data.summary.avg_accuracy.toFixed(2)}/10</span>
-                    </div>
-                    <div class="metric">
-                        <label>Average Fluency</label>
-                        <span>${data.summary.avg_fluency.toFixed(2)}/10</span>
-                    </div>
-                    <div class="metric total-cost">
-                        <label>Total Cost</label>
-                        <span>$${data.total_cost.toFixed(4)}</span>
-                    </div>
+                <h3>Evaluation Summary</h3>
+                <table class="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Average Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>${metricAverages.accuracy}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Fluency</td>
+                            <td>${metricAverages.fluency}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Adequacy</td>
+                            <td>${metricAverages.adequacy}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Consistency</td>
+                            <td>${metricAverages.consistency}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Contextual Appropriateness</td>
+                            <td>${metricAverages.contextual_appropriateness}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Terminology Accuracy</td>
+                            <td>${metricAverages.terminology_accuracy}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Readability</td>
+                            <td>${metricAverages.readability}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Format Preservation</td>
+                            <td>${metricAverages.format_preservation}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Error Rate</td>
+                            <td>${metricAverages.error_rate}/5</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="total-cost">
+                    <label>Total Cost</label>
+                    <span>$${data.total_cost.toFixed(6)}</span>
                 </div>
             </div>
         `;
         
+        console.log('Generating details HTML for results:', data.results);
         const detailsHtml = data.results.map((result, index) => `
             <div class="result-card">
                 <h4>Translation #${index + 1}</h4>
@@ -104,68 +170,96 @@ class UI {
                     <p><strong>Reference:</strong> ${UI.escapeHtml(result.reference_translation)}</p>
                     <p><strong>New Translation:</strong> ${UI.escapeHtml(result.new_translation)}</p>
                 </div>
-                <div class="metrics-grid">
-                    <div class="metric">
-                        <label>Accuracy Score</label>
-                        <span>${result.llm_evaluation.accuracy_score}/10</span>
-                    </div>
-                    <div class="metric">
-                        <label>Fluency Score</label>
-                        <span>${result.llm_evaluation.fluency_score}/10</span>
-                    </div>
+                <div class="metrics-details">
+                    <h5>Evaluation Metrics</h5>
+                    <table class="metrics-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Score</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>${result.accuracy.score}/5</td>
+                                <td>${result.accuracy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Fluency</td>
+                                <td>${result.fluency.score}/5</td>
+                                <td>${result.fluency.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Adequacy</td>
+                                <td>${result.adequacy.score}/5</td>
+                                <td>${result.adequacy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Consistency</td>
+                                <td>${result.consistency.score}/5</td>
+                                <td>${result.consistency.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Contextual Appropriateness</td>
+                                <td>${result.contextual_appropriateness.score}/5</td>
+                                <td>${result.contextual_appropriateness.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Terminology Accuracy</td>
+                                <td>${result.terminology_accuracy.score}/5</td>
+                                <td>${result.terminology_accuracy.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Readability</td>
+                                <td>${result.readability.score}/5</td>
+                                <td>${result.readability.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Format Preservation</td>
+                                <td>${result.format_preservation.score}/5</td>
+                                <td>${result.format_preservation.explanation}</td>
+                            </tr>
+                            <tr>
+                                <td>Error Rate</td>
+                                <td>${result.error_rate.score}/5</td>
+                                <td>${result.error_rate.explanation}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="costs-grid">
-                    <div class="cost-section">
-                        <h5>Translation Cost</h5>
-                        <div class="cost-details">
-                            <div class="cost-item">
-                                <label>Total:</label>
-                                <span>$${result.translation_cost_info.total_cost.toFixed(4)}</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Input:</label>
-                                <span>$${result.translation_cost_info.input_cost.toFixed(4)} (${result.translation_cost_info.input_tokens} tokens)</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Output:</label>
-                                <span>$${result.translation_cost_info.output_cost.toFixed(4)} (${result.translation_cost_info.output_tokens} tokens)</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Model:</label>
-                                <span>${result.translation_cost_info.model}</span>
-                            </div>
+                <div class="cost-section">
+                    <h5>Evaluation Cost</h5>
+                    <div class="cost-details">
+                        <div class="cost-item">
+                            <label>Total:</label>
+                            <span>$${result.cost_info.total_cost.toFixed(4)}</span>
                         </div>
-                    </div>
-                    <div class="cost-section">
-                        <h5>Evaluation Cost</h5>
-                        <div class="cost-details">
-                            <div class="cost-item">
-                                <label>Total:</label>
-                                <span>$${result.llm_evaluation.cost_info.total_cost.toFixed(4)}</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Input:</label>
-                                <span>$${result.llm_evaluation.cost_info.input_cost.toFixed(4)} (${result.llm_evaluation.cost_info.input_tokens} tokens)</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Output:</label>
-                                <span>$${result.llm_evaluation.cost_info.output_cost.toFixed(4)} (${result.llm_evaluation.cost_info.output_tokens} tokens)</span>
-                            </div>
-                            <div class="cost-item">
-                                <label>Model:</label>
-                                <span>${result.llm_evaluation.cost_info.model}</span>
-                            </div>
+                        <div class="cost-item">
+                            <label>Input:</label>
+                            <span>$${result.cost_info.input_cost.toFixed(4)} (${result.cost_info.input_tokens} tokens)</span>
+                        </div>
+                        <div class="cost-item">
+                            <label>Output:</label>
+                            <span>$${result.cost_info.output_cost.toFixed(4)} (${result.cost_info.output_tokens} tokens)</span>
+                        </div>
+                        <div class="cost-item">
+                            <label>Model:</label>
+                            <span>${result.cost_info.model}</span>
                         </div>
                     </div>
                 </div>
                 <div class="comments">
                     <strong>Comments:</strong>
-                    <p>${result.llm_evaluation.comments}</p>
+                    <p>${result.comments}</p>
                 </div>
             </div>
         `).join('');
         
-        resultsDiv.innerHTML = summaryHtml + detailsHtml;
+        const finalHtml = summaryHtml + detailsHtml;
+        console.log('Setting final HTML:', finalHtml);
+        resultsDiv.innerHTML = finalHtml;
     }
 
     static escapeHtml(unsafe) {

@@ -11,7 +11,6 @@ from domain.model.settings import get_settings
 from domain.model.language_settings import language_settings
 from domain.model.language_models import ModelName, LanguageModels
 from domain.model.translation_request import TranslationRequest
-from interfaces.evaluation_models import BatchEvaluationRequest, BatchEvaluationResponse, TranslationEvaluationResult, LLMEvaluation, CostInfo
 from domain.services.llm_translation_evaluator_service import LlmTranslationEvaluatorService
 from infrastructure.http_web_crawler import HttpWebCrawler
 from infrastructure.markdown_content_processor import MarkdownContentProcessor

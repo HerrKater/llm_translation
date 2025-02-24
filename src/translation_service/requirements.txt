@@ -27,5 +27,4 @@ pytest-cov==4.1.0
 ruff==0.9.7
 
 # NLP and Translation Evaluation
-nltk==3.8.1
 pandas==2.2.0

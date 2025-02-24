@@ -1,13 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-
-@dataclass
-class TranslationEvaluationResult:
-    """Result of a translation evaluation"""
-    accuracy_score: float
-    fluency_score: float
-    matches_reference: bool
-    comments: str
+from domain.model.llm_evaluation import LLMEvaluation, CostInfo, EvaluationMetric, BatchEvaluationResponse
 
 class TranslationEvaluatorService(ABC):
     """Interface for evaluating translation quality"""
@@ -19,7 +12,7 @@ class TranslationEvaluatorService(ABC):
         reference_translation: str, 
         new_translation: str,
         target_language: str
-    ) -> TranslationEvaluationResult:
+    ) -> LLMEvaluation:
         """Evaluate the quality of a translation compared to a reference translation.
         
         Args:

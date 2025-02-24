@@ -209,6 +209,7 @@ class TranslationApp {
         try {
             UI.showLoading('Evaluating translations...');
             const result = await TranslationAPI.evaluateTranslations(formData);
+            console.log('Received evaluation result:', result);
             UI.displayEvaluationResults(result);
         } catch (error) {
             UI.showError(error.message);

@@ -2,8 +2,8 @@ import json
 from domain.model.settings import Settings
 from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client, LLMProvider
-from domain.domain_interfaces.translation_evaluator import TranslationEvaluatorService, TranslationEvaluationResult
-from interfaces.evaluation_models import LLMEvaluation, CostInfo
+from domain.domain_interfaces.translation_evaluator import TranslationEvaluatorService
+from domain.model.llm_evaluation import LLMEvaluation, CostInfo, EvaluationMetric
 
 class LlmTranslationEvaluatorService(TranslationEvaluatorService):
     def __init__(self, settings: Settings):
@@ -12,7 +12,6 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
             settings=settings
         )
         self.model = settings.language_model
-        self.last_evaluation = None  # Will store the last LLMEvaluation with cost info
 
     async def evaluate_translation(
         self, 
@@ -21,10 +20,10 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
         new_translation: str,
         target_language: str,
         model: str = None
-    ) -> TranslationEvaluationResult:
+    ) -> LLMEvaluation:
+        """Use LLM to evaluate the translation quality."""
         # Use provided model or fallback to default
         model_to_use = model or self.model
-        """Use LLM to evaluate the translation quality."""
         # Get language name for prompt
         language_names = {
             'hu': 'Hungarian',
@@ -40,21 +39,72 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
         }
         language_name = language_names.get(target_language, target_language.upper())
         
-        prompt = f"""You are a {language_name} language expert. Please evaluate the following translation from English to {language_name}:
+        prompt = f"""You are an expert translator and evaluator. Your task is to assess the quality of a machine-generated translation based on several key criteria. Below are the source text and its translation. Evaluate the translation on each criterion listed, providing a score from 1 to 5 (where 1 is poor and 5 is excellent) and a brief explanation for each score.
 
-Original English text: {english_text}
-Reference translation: {reference_translation}
-New translation: {new_translation}
+Source Text:
+{english_text}
 
-Please analyze the translations and provide a JSON response with the following structure:
+Translated Text:
+{new_translation}
+
+Reference Translation:
+{reference_translation}
+
+Evaluation Criteria:
+
+1. Accuracy: How well does the translation convey the original meaning?
+2. Fluency: Is the translation grammatically correct and natural-sounding?
+3. Adequacy: Are all important elements of the source text present?
+4. Consistency: Is terminology used consistently throughout the translation?
+5. Contextual Appropriateness: Does the translation appropriately reflect the context and cultural nuances?
+6. Terminology Accuracy: Are specialized terms translated correctly?
+7. Readability: Is the translation easy to read and understand?
+8. Format Preservation: Does the translation maintain the original formatting and layout?
+9. Error Rate: Are there any grammatical or typographical errors?
+
+Provide the evaluation as a JSON object with each criterion as a key. Each key should have an object containing two fields:
+"score": An integer between 1 and 5
+"explanation": A brief string explaining the score
+
+Example response format:
 {{
-    "accuracy_score": <score from 0-10>,
-    "fluency_score": <score from 0-10>,
-    "matches_reference": <true/false>,
-    "comments": "<brief explanation of the evaluation>"
-}}
-
-Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
+  "Accuracy": {{
+    "score": 5,
+    "explanation": "The translation perfectly conveys the original meaning without any loss or alteration."
+  }},
+  "Fluency": {{
+    "score": 4,
+    "explanation": "The translation is grammatically correct and reads naturally, with minor stylistic improvements possible."
+  }},
+  "Adequacy": {{
+    "score": 5,
+    "explanation": "All important elements from the source text are present in the translation."
+  }},
+  "Consistency": {{
+    "score": 5,
+    "explanation": "Terminology is used consistently throughout the translation."
+  }},
+  "Contextual_Appropriateness": {{
+    "score": 4,
+    "explanation": "The translation reflects the context and cultural nuances well."
+  }},
+  "Terminology_Accuracy": {{
+    "score": 5,
+    "explanation": "All specialized terms are translated correctly."
+  }},
+  "Readability": {{
+    "score": 4,
+    "explanation": "The translation is clear and easy to understand."
+  }},
+  "Format_Preservation": {{
+    "score": 5,
+    "explanation": "The original formatting and layout are perfectly maintained."
+  }},
+  "Error_Rate": {{
+    "score": 5,
+    "explanation": "There are no grammatical or typographical errors."
+  }}
+}}"""
         try:
             response = self.llm_client.chat(
                 model=model_to_use,
@@ -92,22 +142,32 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
                 model=model_to_use
             )
             
+            # Process each evaluation metric
+            metrics = {}
+            for criterion, data in evaluation_dict.items():
+                raw_score = int(data['score'])
+                metrics[criterion.lower()] = EvaluationMetric(
+                    score=raw_score,
+                    raw_score=raw_score,
+                    explanation=data['explanation']
+                )
+            
             # Create LLM evaluation with cost info for the UI
-            self.last_evaluation = LLMEvaluation(
-                accuracy_score=float(evaluation_dict["accuracy_score"]),
-                fluency_score=float(evaluation_dict["fluency_score"]),
-                matches_reference=bool(evaluation_dict["matches_reference"]),
-                comments=str(evaluation_dict["comments"]),
+            return LLMEvaluation(
+                accuracy=metrics['accuracy'],
+                fluency=metrics['fluency'],
+                adequacy=metrics['adequacy'],
+                consistency=metrics['consistency'],
+                contextual_appropriateness=metrics['contextual_appropriateness'],
+                terminology_accuracy=metrics['terminology_accuracy'],
+                readability=metrics['readability'],
+                format_preservation=metrics['format_preservation'],
+                error_rate=metrics['error_rate'],
+                matches_reference=metrics['accuracy'].score > 7.5,  # Consider it matching if accuracy is high
+                comments="\n".join([f"{k.replace('_', ' ').title()}: {v.explanation}" for k, v in metrics.items()]),
                 cost_info=cost_info
             )
-            
-            # Return interface-compatible result
-            return TranslationEvaluationResult(
-                accuracy_score=float(evaluation_dict["accuracy_score"]),
-                fluency_score=float(evaluation_dict["fluency_score"]),
-                matches_reference=bool(evaluation_dict["matches_reference"]),
-                comments=str(evaluation_dict["comments"])
-            )
+           
         except (json.JSONDecodeError, KeyError, ValueError, AttributeError) as e:
             error_message = f"Error parsing LLM response: {str(e)}"
             return self._handle_error(error_message)
@@ -115,7 +175,7 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
             error_message = f"Unexpected error during evaluation: {str(e)}"
             return self._handle_error(error_message)
 
-    def _handle_error(self, error_message: str) -> TranslationEvaluationResult:
+    def _handle_error(self, error_message: str) -> LLMEvaluation:
         default_cost = CostInfo(
             total_cost=0.0,
             input_cost=0.0,
@@ -131,9 +191,4 @@ Focus on semantic accuracy, fluency, and whether the new translation conveys the
             comments=error_message,
             cost_info=default_cost
         )
-        return TranslationEvaluationResult(
-            accuracy_score=0.0,
-            fluency_score=0.0,
-            matches_reference=False,
-            comments=error_message
-        )
+        return LLMEvaluation()
