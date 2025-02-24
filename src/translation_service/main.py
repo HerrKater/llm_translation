@@ -1,13 +1,15 @@
 from io import StringIO
 import asyncio
 import pandas as pd
+from typing import Dict, List
 from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-from domain.model.settings import get_settings, LLMModel
+from domain.model.settings import get_settings
 from domain.model.language_settings import language_settings
+from domain.model.language_models import ModelName, LanguageModels
 from domain.model.translation_request import TranslationRequest
 from interfaces.evaluation_models import BatchEvaluationRequest, BatchEvaluationResponse, TranslationEvaluationResult, LLMEvaluation, CostInfo
 from domain.services.llm_translation_evaluator_service import LlmTranslationEvaluatorService
@@ -16,7 +18,7 @@ from infrastructure.markdown_content_processor import MarkdownContentProcessor
 from domain.services.llm_translator_service import LlmTranslatorService
 from application.translation_orchestrator import TranslationOrchestrator
 from interfaces.api_models import (TranslationRequestDTO, RawTextTranslationRequestDTO,
-    TranslationResponseDTO, CostInfoDTO)
+    TranslationResponseDTO, CostInfoDTO, ModelConfigDTO)
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -106,12 +108,12 @@ async def evaluate_translations(
 ):
     # Validate models
     try:
-        translation_model_enum = LLMModel(translation_model)
-        evaluation_model_enum = LLMModel(evaluation_model)
+        translation_model_enum = ModelName(translation_model)
+        evaluation_model_enum = ModelName(evaluation_model)
     except ValueError:
         raise HTTPException(
             status_code=422,
-            detail=f"Invalid model. Must be one of: {[model.value for model in LLMModel]}"
+            detail=f"Invalid model. Must be one of: {[model.value for model in ModelName]}"
         )
     try:
         if not file.filename.endswith('.csv'):
@@ -208,6 +210,21 @@ async def evaluate_translations(
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/models", response_model=Dict[str, List[ModelConfigDTO]])
+def get_models():
+    """Get available language models and their configurations"""
+    models = []
+    for model_config in LanguageModels.get_all_models():
+        models.append(ModelConfigDTO(
+            id=model_config.name.value,
+            name=model_config.display_name,
+            description=model_config.description,
+            inputCost=model_config.input_cost_per_1k,
+            outputCost=model_config.output_cost_per_1k,
+            maxTokens=model_config.max_tokens
+        ))
+    return {"models": models}
 
 @app.get("/")
 async def read_root():

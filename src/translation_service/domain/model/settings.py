@@ -6,12 +6,6 @@ class LLMProvider(str, Enum):
     """Supported LLM providers."""
     OPENAI = "openai"
 
-class LLMModel(str, Enum):
-    """Supported LLM models."""
-    GPT4O_MINI = "gpt-4o-mini"
-    GPT4O = "gpt-4o"
-    GPT1O_MINI = "gpt-1o-mini"
-
 class Settings(BaseSettings):
     """Application settings loaded from environment variables"""
     url: str

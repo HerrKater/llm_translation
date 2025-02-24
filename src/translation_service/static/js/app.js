@@ -1,7 +1,19 @@
 class TranslationApp {
     constructor() {
-        this.initializeEventListeners();
-        this.initializeSelect2();
+        this.initialize().catch(error => {
+            console.error('Failed to initialize app:', error);
+        });
+    }
+
+    async initialize() {
+        try {
+            await Settings.initializeModels();
+            this.initializeEventListeners();
+            this.initializeSelect2();
+        } catch (error) {
+            console.error('Error during initialization:', error);
+            throw error;
+        }
     }
 
     initializeEventListeners() {
@@ -9,6 +21,14 @@ class TranslationApp {
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => this.switchTab(tab.dataset.tab));
         });
+
+        // Model selection change handlers
+        $('#translation-model').on('change', (e) => this.updateModelInfo('translation', e.target.value));
+        $('#evaluation-model').on('change', (e) => this.updateModelInfo('evaluation', e.target.value));
+
+        // Initialize model info
+        this.updateModelInfo('translation', $('#translation-model').val());
+        this.updateModelInfo('evaluation', $('#evaluation-model').val());
 
         // Translation buttons
         document.getElementById('translateUrlButton')?.addEventListener('click', () => this.handleUrlTranslation());
@@ -30,6 +50,10 @@ class TranslationApp {
         // Populate language options
         const languageOptions = Settings.getLanguageOptions();
         $('#url-languages, #text-languages, #evaluation-language').html(languageOptions);
+
+        // Populate model options
+        const modelOptions = Settings.getModelOptions();
+        $('#translation-model, #evaluation-model').html(modelOptions);
 
         // Initialize Select2 for translation tabs
         $('#url-languages, #text-languages').select2({
@@ -54,6 +78,28 @@ class TranslationApp {
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.toggle('active', content.id === tabId);
         });
+    }
+
+    updateModelInfo(type, modelId) {
+        if (!modelId) return;
+
+        const model = Settings.getModelConfig(modelId);
+        if (!model) return;
+
+        const infoDiv = document.getElementById(`${type}-model-info`);
+        infoDiv.innerHTML = `
+            <div class="description">${model.description}</div>
+            <div class="costs">
+                <div class="cost-item">
+                    <label>Input Cost</label>
+                    $${model.inputCost.toFixed(3)}/1K tokens
+                </div>
+                <div class="cost-item">
+                    <label>Output Cost</label>
+                    $${model.outputCost.toFixed(3)}/1K tokens
+                </div>
+            </div>
+        `;
     }
 
     async handleUrlTranslation() {

@@ -1,5 +1,17 @@
 from pydantic import BaseModel, ConfigDict
 from typing import Dict, List
+from domain.model.language_models import ModelName
+
+class ModelConfigDTO(BaseModel):
+    """Data Transfer Object for language model configuration"""
+    id: str
+    name: str
+    description: str
+    inputCost: float
+    outputCost: float
+    maxTokens: int
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 class TranslationRequestDTO(BaseModel):
     """Data Transfer Object for translation requests"""
