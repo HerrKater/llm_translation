@@ -125,6 +125,8 @@ class TranslationApp {
         const fileInput = document.getElementById('csv-file');
         const file = fileInput.files[0];
         const targetLanguage = $('#evaluation-language').val();
+        const translationModel = $('#translation-model').val();
+        const evaluationModel = $('#evaluation-model').val();
         
         if (!file) {
             UI.showError('Please select a CSV file');
@@ -133,6 +135,16 @@ class TranslationApp {
 
         if (!targetLanguage) {
             UI.showError('Please select a target language');
+            return;
+        }
+
+        if (!translationModel) {
+            UI.showError('Please select a translation model');
+            return;
+        }
+
+        if (!evaluationModel) {
+            UI.showError('Please select an evaluation model');
             return;
         }
 
@@ -145,6 +157,8 @@ class TranslationApp {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('target_language', targetLanguage);
+        formData.append('translation_model', translationModel);
+        formData.append('evaluation_model', evaluationModel);
         
         try {
             UI.showLoading('Evaluating translations...');

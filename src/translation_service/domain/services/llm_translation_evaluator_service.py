@@ -18,8 +18,11 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
         english_text: str, 
         reference_translation: str, 
         new_translation: str,
-        target_language: str
+        target_language: str,
+        model: str = None
     ) -> TranslationEvaluationResult:
+        # Use provided model or fallback to default
+        model_to_use = model or self.model
         """Use LLM to evaluate the translation quality."""
         # Get language name for prompt
         language_names = {
@@ -53,7 +56,7 @@ Please analyze the translations and provide a JSON response with the following s
 Focus on semantic accuracy, fluency, and whether the new translation conveys the same meaning as the reference."""
 
         response = self.llm_client.chat(
-            model=self.model,
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are a Hungarian language expert. Provide evaluation in the exact JSON format requested."},
                 {"role": "user", "content": prompt}

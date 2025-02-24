@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-from domain.model.settings import get_settings
+from domain.model.settings import get_settings, LLMModel
 from domain.model.language_settings import language_settings
 from domain.model.translation_request import TranslationRequest
 from interfaces.evaluation_models import BatchEvaluationRequest, BatchEvaluationResponse, TranslationEvaluationResult, LLMEvaluation, CostInfo
@@ -98,7 +98,21 @@ async def translate_raw_text(request: RawTextTranslationRequestDTO):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/evaluate-translations")
-async def evaluate_translations(file: UploadFile, target_language: str = Form(...)):
+async def evaluate_translations(
+    file: UploadFile, 
+    target_language: str = Form(...),
+    translation_model: str = Form(...),
+    evaluation_model: str = Form(...)
+):
+    # Validate models
+    try:
+        translation_model_enum = LLMModel(translation_model)
+        evaluation_model_enum = LLMModel(evaluation_model)
+    except ValueError:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid model. Must be one of: {[model.value for model in LLMModel]}"
+        )
     try:
         if not file.filename.endswith('.csv'):
             raise HTTPException(status_code=400, detail="Please upload a CSV file")
@@ -131,9 +145,9 @@ async def evaluate_translations(file: UploadFile, target_language: str = Form(..
             if not source_text or not reference_translation:
                 raise ValueError(f"Row {index + 1} contains empty values")
         
-            # Get new translation
+            # Get new translation with specified model
             request = TranslationRequest(source_content=source_text, target_languages=[target_language])
-            translation, translation_cost_info = await translator.translate(request)
+            translation, translation_cost_info = await translator.translate(request, model=translation_model_enum.value)
             new_translation = translation.translations[target_language]
             
             # Create cost info for translation
@@ -146,12 +160,13 @@ async def evaluate_translations(file: UploadFile, target_language: str = Form(..
                 model=translation_cost_info['model']
             )
             
-            # Evaluate translation
+            # Evaluate translation with specified model
             llm_eval = await evaluator.evaluate_translation(
                 source_text,
                 reference_translation,
                 new_translation,
-                target_language
+                target_language,
+                model=evaluation_model_enum.value
             )
             
             # Get the full evaluation with cost info

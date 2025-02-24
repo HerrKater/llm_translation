@@ -16,7 +16,9 @@ class LlmTranslatorService(TranslatorService):
         )
         self.model = settings.language_model
 
-    async def translate(self, request: TranslationRequest) -> Tuple[Translation, Dict]:
+    async def translate(self, request: TranslationRequest, model: str = None) -> Tuple[Translation, Dict]:
+        # Use provided model or fallback to default
+        model_to_use = model or self.model
         """Translate content into multiple languages using OpenAI and track costs"""
         translations: Dict[str, str] = {}
         total_input_tokens = 0
@@ -35,7 +37,7 @@ class LlmTranslatorService(TranslatorService):
                 
                 # Call LLM and get response with usage info
                 response = self.llm_client.chat(
-                    model=self.model,
+                    model=model_to_use,
                     messages=[
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": request.source_content}
