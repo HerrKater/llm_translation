@@ -6,117 +6,11 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation '15+ éves tapasztalat' accurately conveys the meaning of '15+ years track record' without any alteration. The term 'tapasztalat' appropriately captures the idea of experience or track record in a financial context."
+        "explanation": "The translation '15+ éves tapasztalat' accurately conveys the meaning of '15+ years track record' without altering the original intent."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian. It does not contain awkward phrasing and flows well, making it sound as if it were originally written in Hungarian."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation. There are no omissions or additions, and the meaning is conveyed fully."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology used in the translation is consistent with standard Hungarian usage within the financial context. There are no inconsistencies present."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context. The term 'tapasztalat' is commonly used in this field, making the translation suitable for the target audience."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "The financial term 'tapasztalat' is correctly used in the translation, aligning with established Hungarian terminology for 'track record' in a professional context."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is clear and easy to understand. There are no complexities or unclear phrases that would hinder comprehension."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The format of the original text is maintained in the translation. The numeric representation and text structure are preserved."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation. It is free from any mistakes that would detract from its quality."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation '15+ éves tapasztalat' accurately conveys the meaning of '15+ years track record' without any alteration. The term 'tapasztalat' appropriately captures the idea of experience or track record in a financial context.\nFluency: The translation reads naturally in Hungarian. It does not contain awkward phrasing and flows well, making it sound as if it were originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation. There are no omissions or additions, and the meaning is conveyed fully.\nConsistency: The terminology used in the translation is consistent with standard Hungarian usage within the financial context. There are no inconsistencies present.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. The term 'tapasztalat' is commonly used in this field, making the translation suitable for the target audience.\nTerminology Accuracy: The financial term 'tapasztalat' is correctly used in the translation, aligning with established Hungarian terminology for 'track record' in a professional context.\nReadability: The text is clear and easy to understand. There are no complexities or unclear phrases that would hinder comprehension.\nFormat Preservation: The format of the original text is maintained in the translation. The numeric representation and text structure are preserved.\nError Rate: There are no grammatical or typographical errors in the translation. It is free from any mistakes that would detract from its quality.",
-    "cost_info": {
-      "total_cost": 0.0010357499999999998,
-      "input_cost": 0.00053475,
-      "output_cost": 0.0005009999999999999,
-      "input_tokens": 3565,
-      "output_tokens": 835,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "125,500 people already found a broker via this tool!",
-    "reference_translation": "Már 125,500 ember talált brókert ezzel az eszközzel!",
-    "new_translation": "125,500 ember már talált brókert ezzel az eszközzel!",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text, stating that 125,500 people have found a broker using the tool, with no loss of meaning."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian, maintaining a smooth flow without awkward phrasing."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved without any additions or omissions, making it fully adequate."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology used in the translation is consistent with standard Hungarian usage, particularly in the financial context."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using clear and relevant language."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "All financial terms are correctly translated, using established Hungarian equivalents without borrowing from English."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is perfectly clear and easy to understand, with no ambiguity."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The formatting of the numbers and text is preserved as in the original, following Hungarian conventions."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text, stating that 125,500 people have found a broker using the tool, with no loss of meaning.\nFluency: The translation reads naturally in Hungarian, maintaining a smooth flow without awkward phrasing.\nAdequacy: All information from the original text is preserved without any additions or omissions, making it fully adequate.\nConsistency: The terminology used in the translation is consistent with standard Hungarian usage, particularly in the financial context.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using clear and relevant language.\nTerminology Accuracy: All financial terms are correctly translated, using established Hungarian equivalents without borrowing from English.\nReadability: The text is perfectly clear and easy to understand, with no ambiguity.\nFormat Preservation: The formatting of the numbers and text is preserved as in the original, following Hungarian conventions.\nError Rate: There are no grammatical or typographical errors in the translation.",
-    "cost_info": {
-      "total_cost": 0.0009662999999999999,
-      "input_cost": 0.0005396999999999999,
-      "output_cost": 0.00042659999999999996,
-      "input_tokens": 3598,
-      "output_tokens": 711,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "Mutual funds are available",
-    "reference_translation": "Befektetési alapok elérhetőek",
-    "new_translation": "A befektetési alapok elérhetőek",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text 'Mutual funds are available' without any loss of meaning or alteration."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The phrase 'A befektetési alapok elérhetőek' reads naturally in Hungarian and does not exhibit any awkward phrasing, making it sound as if it were originally written in Hungarian."
+        "explanation": "The phrase reads naturally in Hungarian and does not exhibit awkward phrasing, making it sound as if it were originally written in Hungarian."
       },
       "adequacy": {
         "score": 5.0,
@@ -124,37 +18,143 @@
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used in the translation is consistent with standard financial terms in Hungarian."
+        "explanation": "The terminology used is consistent throughout and aligns with standard Hungarian usage in financial contexts."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using suitable language and terminology."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, maintaining a formal tone suitable for the audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "The financial term 'befektetési alapok' is the correct Hungarian equivalent for 'mutual funds', accurately reflecting the domain-specific terminology."
+        "explanation": "The terminology used is correctly translated and reflects standard Hungarian financial language."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The translation is clear and easy to understand, with no confusing or complex constructions."
+        "explanation": "The text is clear and easy to understand, with no complexities that would hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The formatting of the original text is maintained, with no changes to the structure or layout."
+        "explanation": "The original formatting and layout are perfectly preserved, maintaining the integrity of the source."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation, making it flawless in this regard."
+        "explanation": "No grammatical or typographical errors are present in the translation."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text 'Mutual funds are available' without any loss of meaning or alteration.\nFluency: The phrase 'A befektetési alapok elérhetőek' reads naturally in Hungarian and does not exhibit any awkward phrasing, making it sound as if it were originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation without any additions or omissions.\nConsistency: The terminology used in the translation is consistent with standard financial terms in Hungarian.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using suitable language and terminology.\nTerminology Accuracy: The financial term 'befektetési alapok' is the correct Hungarian equivalent for 'mutual funds', accurately reflecting the domain-specific terminology.\nReadability: The translation is clear and easy to understand, with no confusing or complex constructions.\nFormat Preservation: The formatting of the original text is maintained, with no changes to the structure or layout.\nError Rate: There are no grammatical or typographical errors in the translation, making it flawless in this regard.",
+    "comments": "Accuracy: The translation '15+ éves tapasztalat' accurately conveys the meaning of '15+ years track record' without altering the original intent.\nFluency: The phrase reads naturally in Hungarian and does not exhibit awkward phrasing, making it sound as if it were originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation without any additions or omissions.\nConsistency: The terminology used is consistent throughout and aligns with standard Hungarian usage in financial contexts.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, maintaining a formal tone suitable for the audience.\nTerminology Accuracy: The terminology used is correctly translated and reflects standard Hungarian financial language.\nReadability: The text is clear and easy to understand, with no complexities that would hinder comprehension.\nFormat Preservation: The original formatting and layout are perfectly preserved, maintaining the integrity of the source.\nError Rate: No grammatical or typographical errors are present in the translation.",
     "cost_info": {
-      "total_cost": 0.00099585,
+      "total_cost": 0.0009667499999999999,
+      "input_cost": 0.00053475,
+      "output_cost": 0.000432,
+      "input_tokens": 3565,
+      "output_tokens": 720,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "125,500 people already found a broker via this tool!",
+    "reference_translation": "Már 125,500 ember talált brókert ezzel az eszközzel!",
+    "new_translation": "125,500 ember már talált brókert ezen az eszközön keresztül!",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the original meaning without any alterations. The phrase retains the same message, indicating that 125,500 people used the tool to find a broker."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The translation reads naturally in Hungarian, with no awkward phrasing or unnatural constructions. It flows well and sounds as if it was originally written in Hungarian."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All information from the original text is preserved in the translation. There are no omissions or additions, maintaining the integrity of the message."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology and style are consistent throughout the translation. There are no discrepancies in how terms are used."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for the financial/investment context. The language used is suitable and professional."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "All financial terms are correctly translated. The word 'bróker' is the standard Hungarian term for 'broker' and is used appropriately."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The text is clear and easy to understand. There are no complex phrases that would hinder comprehension."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The original formatting and layout are maintained perfectly, including the use of the comma in the number, which is consistent with Hungarian conventions."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "There are no grammatical or typographical errors in the translation. It is error-free and polished."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the original meaning without any alterations. The phrase retains the same message, indicating that 125,500 people used the tool to find a broker.\nFluency: The translation reads naturally in Hungarian, with no awkward phrasing or unnatural constructions. It flows well and sounds as if it was originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation. There are no omissions or additions, maintaining the integrity of the message.\nConsistency: The terminology and style are consistent throughout the translation. There are no discrepancies in how terms are used.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context. The language used is suitable and professional.\nTerminology Accuracy: All financial terms are correctly translated. The word 'bróker' is the standard Hungarian term for 'broker' and is used appropriately.\nReadability: The text is clear and easy to understand. There are no complex phrases that would hinder comprehension.\nFormat Preservation: The original formatting and layout are maintained perfectly, including the use of the comma in the number, which is consistent with Hungarian conventions.\nError Rate: There are no grammatical or typographical errors in the translation. It is error-free and polished.",
+    "cost_info": {
+      "total_cost": 0.0010301999999999998,
+      "input_cost": 0.0005399999999999999,
+      "output_cost": 0.0004902,
+      "input_tokens": 3600,
+      "output_tokens": 817,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "Mutual funds are available",
+    "reference_translation": "Befektetési alapok elérhetőek",
+    "new_translation": "A befektetési alapok elérhetők",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the meaning of the original text, indicating that mutual funds are available without altering the meaning."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The phrase reads naturally in Hungarian, as it follows the proper structure and sounds like it was originally written in the language."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All information from the original text is preserved; there are no additions or omissions."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology used is consistent with standard financial language in Hungarian."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for a financial context, using terminology that fits the investment field."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "The term 'befektetési alapok' is the correct Hungarian equivalent for 'mutual funds', accurately reflecting financial terminology."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The translation is clear and easy to understand, making the information accessible to the target audience."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The format of the text has been perfectly preserved, maintaining the clarity and structure of the original."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "There are no grammatical or typographical errors present in the translation."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text, indicating that mutual funds are available without altering the meaning.\nFluency: The phrase reads naturally in Hungarian, as it follows the proper structure and sounds like it was originally written in the language.\nAdequacy: All information from the original text is preserved; there are no additions or omissions.\nConsistency: The terminology used is consistent with standard financial language in Hungarian.\nContextual Appropriateness: The translation is perfectly appropriate for a financial context, using terminology that fits the investment field.\nTerminology Accuracy: The term 'befektetési alapok' is the correct Hungarian equivalent for 'mutual funds', accurately reflecting financial terminology.\nReadability: The translation is clear and easy to understand, making the information accessible to the target audience.\nFormat Preservation: The format of the text has been perfectly preserved, maintaining the clarity and structure of the original.\nError Rate: There are no grammatical or typographical errors present in the translation.",
+    "cost_info": {
+      "total_cost": 0.00099465,
       "input_cost": 0.00053505,
-      "output_cost": 0.0004608,
+      "output_cost": 0.0004596,
       "input_tokens": 3567,
-      "output_tokens": 768,
+      "output_tokens": 766,
       "model": "gpt-4o-mini"
     }
   },
@@ -165,88 +165,35 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation 'Legjobb határidős brókerek' accurately conveys the meaning of 'Best futures brokers', preserving the original intent without altering the meaning."
+        "explanation": "The translation 'Legjobb határidős brókerek' accurately conveys the meaning of 'Best futures brokers' without altering its essence."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrase reads naturally in Hungarian, as it follows the typical structure and conventions of the language without awkward phrasing."
+        "explanation": "The translation reads naturally in Hungarian and does not exhibit any awkward phrasing, making it sound as if it was originally written in the language."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the source text is preserved without omissions or unnecessary additions; the translation is a direct equivalent."
+        "explanation": "All information present in the original text is preserved in the translation without any additions or omissions."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "There are no inconsistencies in terminology or style; the translation maintains a uniform approach throughout."
+        "explanation": "The terminology used in the translation is consistent and adheres to standard language use, ensuring coherence throughout."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using terminology that aligns well with industry standards."
+        "explanation": "The translation is completely appropriate for the financial/investment context, using terminology that fits the industry."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, with 'határidős brókerek' being the standard term for 'futures brokers' in Hungarian."
+        "explanation": "All financial terms are correctly translated, with 'határidős brókerek' being the standard Hungarian terminology for 'futures brokers.'"
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, presenting no barriers to comprehension."
+        "explanation": "The translation is clear and easy to understand, making it accessible to the target audience."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The format of the original text is perfectly preserved, with no alterations to structure or layout."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation, making it flawless in this regard."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation 'Legjobb határidős brókerek' accurately conveys the meaning of 'Best futures brokers', preserving the original intent without altering the meaning.\nFluency: The phrase reads naturally in Hungarian, as it follows the typical structure and conventions of the language without awkward phrasing.\nAdequacy: All information from the source text is preserved without omissions or unnecessary additions; the translation is a direct equivalent.\nConsistency: There are no inconsistencies in terminology or style; the translation maintains a uniform approach throughout.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using terminology that aligns well with industry standards.\nTerminology Accuracy: All financial terms are correctly translated, with 'határidős brókerek' being the standard term for 'futures brokers' in Hungarian.\nReadability: The text is clear and easy to understand, presenting no barriers to comprehension.\nFormat Preservation: The format of the original text is perfectly preserved, with no alterations to structure or layout.\nError Rate: There are no grammatical or typographical errors in the translation, making it flawless in this regard.",
-    "cost_info": {
-      "total_cost": 0.0009742500000000001,
-      "input_cost": 0.00053505,
-      "output_cost": 0.0004392,
-      "input_tokens": 3567,
-      "output_tokens": 732,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "Access to archived threads is only available to registered users. Without this, we can only keep them for you for 1 month.",
-    "reference_translation": "A korábbi beszélgetésekhez való hozzáférés csak regisztrált felhasználók számára elérhető. Enélkül csak 1 hónapig tudjuk őket megőrizni neked.",
-    "new_translation": "Az archívált beszélgetésekhez való hozzáférés csak regisztrált felhasználók számára elérhető. E nélkül csak 1 hónapig tudjuk megőrizni őket Önnek.",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the source text without altering any key information."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian, with no awkward phrasing or structure."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved without any omissions or unnecessary additions."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation, matching the context."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is highly appropriate for a financial/investment context, maintaining a formal tone."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "All financial terms are correctly translated, adhering to standard Hungarian terminology."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity present."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved in the translation."
+        "explanation": "The original formatting and layout are maintained perfectly in the translation."
       },
       "error_rate": {
         "score": 5.0,
@@ -254,48 +201,48 @@
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the source text without altering any key information.\nFluency: The translation reads naturally in Hungarian, with no awkward phrasing or structure.\nAdequacy: All information from the original text is preserved without any omissions or unnecessary additions.\nConsistency: The terminology and style are consistent throughout the translation, matching the context.\nContextual Appropriateness: The translation is highly appropriate for a financial/investment context, maintaining a formal tone.\nTerminology Accuracy: All financial terms are correctly translated, adhering to standard Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity present.\nFormat Preservation: The original formatting and layout are perfectly preserved in the translation.\nError Rate: There are no grammatical or typographical errors present in the translation.",
+    "comments": "Accuracy: The translation 'Legjobb határidős brókerek' accurately conveys the meaning of 'Best futures brokers' without altering its essence.\nFluency: The translation reads naturally in Hungarian and does not exhibit any awkward phrasing, making it sound as if it was originally written in the language.\nAdequacy: All information present in the original text is preserved in the translation without any additions or omissions.\nConsistency: The terminology used in the translation is consistent and adheres to standard language use, ensuring coherence throughout.\nContextual Appropriateness: The translation is completely appropriate for the financial/investment context, using terminology that fits the industry.\nTerminology Accuracy: All financial terms are correctly translated, with 'határidős brókerek' being the standard Hungarian terminology for 'futures brokers.'\nReadability: The translation is clear and easy to understand, making it accessible to the target audience.\nFormat Preservation: The original formatting and layout are maintained perfectly in the translation.\nError Rate: There are no grammatical or typographical errors present in the translation.",
     "cost_info": {
-      "total_cost": 0.0009903,
-      "input_cost": 0.0005516999999999999,
-      "output_cost": 0.0004386,
-      "input_tokens": 3678,
-      "output_tokens": 731,
+      "total_cost": 0.00099465,
+      "input_cost": 0.00053505,
+      "output_cost": 0.00045959999999999995,
+      "input_tokens": 3567,
+      "output_tokens": 766,
       "model": "gpt-4o-mini"
     }
   },
   {
-    "english_text": "across [dataPoints]+ criteria",
-    "reference_translation": "[dataPoints]+ kritérium mentén",
-    "new_translation": "át [dataPoints]+ kritériumokon",
+    "english_text": "Access to archived threads is only available to registered users. Without this, we can only keep them for you for 1 month.",
+    "reference_translation": "A korábbi beszélgetésekhez való hozzáférés csak regisztrált felhasználók számára elérhető. Enélkül csak 1 hónapig tudjuk őket megőrizni neked.",
+    "new_translation": "Az archívumhoz való hozzáférés csak regisztrált felhasználók számára elérhető. Enélkül csak 1 hónapig tudjuk megőrizni őket az Ön számára.",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation conveys the meaning of the source text accurately, preserving the intended meaning without any alteration."
+        "explanation": "The translation accurately conveys the meaning of the original text without any loss or alteration of meaning."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrase reads naturally in Hungarian, without awkward phrasing, making it sound as if it was originally written in Hungarian."
+        "explanation": "The translation reads naturally and smoothly in Hungarian, resembling original Hungarian writing."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation without any omissions or additions."
+        "explanation": "All information from the original text is preserved without any omissions or unnecessary additions."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style used in the translation are consistent with standard Hungarian usage."
+        "explanation": "The terminology and style are consistently applied throughout the translation."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, maintaining the required formality and terminology."
+        "explanation": "The translation is perfectly appropriate for the financial/investment context and audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, adhering to established Hungarian terminology."
+        "explanation": "All financial and investment terms are correctly translated and used in context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension."
+        "explanation": "The text is perfectly clear and easy to understand, with no ambiguity."
       },
       "format_preservation": {
         "score": 5.0,
@@ -307,13 +254,66 @@
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation conveys the meaning of the source text accurately, preserving the intended meaning without any alteration.\nFluency: The phrase reads naturally in Hungarian, without awkward phrasing, making it sound as if it was originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation without any omissions or additions.\nConsistency: The terminology and style used in the translation are consistent with standard Hungarian usage.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, maintaining the required formality and terminology.\nTerminology Accuracy: All financial terms are correctly translated, adhering to established Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension.\nFormat Preservation: The original formatting and layout are maintained perfectly in the translation.\nError Rate: No grammatical or typographical errors are present in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any loss or alteration of meaning.\nFluency: The translation reads naturally and smoothly in Hungarian, resembling original Hungarian writing.\nAdequacy: All information from the original text is preserved without any omissions or unnecessary additions.\nConsistency: The terminology and style are consistently applied throughout the translation.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context and audience.\nTerminology Accuracy: All financial and investment terms are correctly translated and used in context.\nReadability: The text is perfectly clear and easy to understand, with no ambiguity.\nFormat Preservation: The original formatting and layout are maintained perfectly in the translation.\nError Rate: No grammatical or typographical errors are present in the translation.",
     "cost_info": {
-      "total_cost": 0.0009444,
+      "total_cost": 0.0009989999999999999,
+      "input_cost": 0.0005513999999999999,
+      "output_cost": 0.00044759999999999993,
+      "input_tokens": 3676,
+      "output_tokens": 746,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "across [dataPoints]+ criteria",
+    "reference_translation": "[dataPoints]+ kritérium mentén",
+    "new_translation": "át [dataPoints]+ kritériumokon",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the meaning of the original text without altering its intent or context."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The phrase reads naturally in Hungarian, as it follows the typical syntax and structure of the language."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All necessary information is preserved in the translation, with no additions or omissions."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology used is consistent with standards in the financial context."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using relevant terminology."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "All terms used are accurate and standard within the financial domain in Hungarian."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The text is clear and easy to understand, without any ambiguity."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The formatting of the original content is perfectly maintained in the translation."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "There are no grammatical or typographical errors in the translation."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering its intent or context.\nFluency: The phrase reads naturally in Hungarian, as it follows the typical syntax and structure of the language.\nAdequacy: All necessary information is preserved in the translation, with no additions or omissions.\nConsistency: The terminology used is consistent with standards in the financial context.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using relevant terminology.\nTerminology Accuracy: All terms used are accurate and standard within the financial domain in Hungarian.\nReadability: The text is clear and easy to understand, without any ambiguity.\nFormat Preservation: The formatting of the original content is perfectly maintained in the translation.\nError Rate: There are no grammatical or typographical errors in the translation.",
+    "cost_info": {
+      "total_cost": 0.0009545999999999999,
       "input_cost": 0.0005352,
-      "output_cost": 0.00040919999999999997,
+      "output_cost": 0.0004194,
       "input_tokens": 3568,
-      "output_tokens": 682,
+      "output_tokens": 699,
       "model": "gpt-4o-mini"
     }
   },
@@ -324,88 +324,88 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any alteration. The phrase 'Alternatívák a [brokerName] számára' correctly preserves the intended meaning of 'Alternatives to [brokerName]'."
+        "explanation": "The translation accurately conveys the meaning of the original text without altering its intent. 'Alternatívák a [brokerName] számára' correctly translates to 'Alternatives to [brokerName]', maintaining the original message."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian and does not exhibit any awkward phrasing. It flows smoothly as if it were originally written in Hungarian."
+        "explanation": "The translation reads naturally in Hungarian, as it uses proper grammatical structures and phrasing that would be expected by native speakers."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information is preserved without any omissions or additions. The translation directly corresponds to the original English text, maintaining the same informational content."
+        "explanation": "All information from the original text is preserved in the translation with no omissions or additions, ensuring the intended meaning is fully maintained."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation. The structure and phraseology align with standard Hungarian usage, ensuring uniformity."
+        "explanation": "There are no inconsistencies in terminology or style throughout the translation, as it maintains a uniform approach to the subject matter."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context. The phrasing used is suitable for discussions regarding alternatives in a financial setting."
+        "explanation": "The translation is entirely appropriate for a financial/investment context, using relevant language that fits the target audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms and phrases are correctly translated. The term 'alternatívák' is the appropriate Hungarian equivalent for 'alternatives' in this context."
+        "explanation": "All terms used are correctly translated and appropriate for the financial context, without any inappropriate borrowings from English."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The translation is clear and easy to understand. It conveys the intended message effectively without any confusing elements."
+        "explanation": "The translation is clear and easy to understand, with no complex constructions that would hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting is preserved perfectly. The structure of the text remains unchanged, with the parameter '[brokerName]' correctly integrated."
+        "explanation": "The original formatting is perfectly preserved, as the translation maintains the structure and layout of the source text."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation. It is free from any mistakes and adheres to proper Hungarian language rules."
+        "explanation": "There are no grammatical or typographical errors present in the translation, indicating a high level of accuracy in language use."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alteration. The phrase 'Alternatívák a [brokerName] számára' correctly preserves the intended meaning of 'Alternatives to [brokerName]'.\nFluency: The translation reads naturally in Hungarian and does not exhibit any awkward phrasing. It flows smoothly as if it were originally written in Hungarian.\nAdequacy: All information is preserved without any omissions or additions. The translation directly corresponds to the original English text, maintaining the same informational content.\nConsistency: The terminology and style are consistent throughout the translation. The structure and phraseology align with standard Hungarian usage, ensuring uniformity.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. The phrasing used is suitable for discussions regarding alternatives in a financial setting.\nTerminology Accuracy: All financial terms and phrases are correctly translated. The term 'alternatívák' is the appropriate Hungarian equivalent for 'alternatives' in this context.\nReadability: The translation is clear and easy to understand. It conveys the intended message effectively without any confusing elements.\nFormat Preservation: The original formatting is preserved perfectly. The structure of the text remains unchanged, with the parameter '[brokerName]' correctly integrated.\nError Rate: There are no grammatical or typographical errors in the translation. It is free from any mistakes and adheres to proper Hungarian language rules.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering its intent. 'Alternatívák a [brokerName] számára' correctly translates to 'Alternatives to [brokerName]', maintaining the original message.\nFluency: The translation reads naturally in Hungarian, as it uses proper grammatical structures and phrasing that would be expected by native speakers.\nAdequacy: All information from the original text is preserved in the translation with no omissions or additions, ensuring the intended meaning is fully maintained.\nConsistency: There are no inconsistencies in terminology or style throughout the translation, as it maintains a uniform approach to the subject matter.\nContextual Appropriateness: The translation is entirely appropriate for a financial/investment context, using relevant language that fits the target audience.\nTerminology Accuracy: All terms used are correctly translated and appropriate for the financial context, without any inappropriate borrowings from English.\nReadability: The translation is clear and easy to understand, with no complex constructions that would hinder comprehension.\nFormat Preservation: The original formatting is perfectly preserved, as the translation maintains the structure and layout of the source text.\nError Rate: There are no grammatical or typographical errors present in the translation, indicating a high level of accuracy in language use.",
     "cost_info": {
-      "total_cost": 0.0010194,
+      "total_cost": 0.000984,
       "input_cost": 0.0005352,
-      "output_cost": 0.00048419999999999995,
+      "output_cost": 0.00044879999999999996,
       "input_tokens": 3568,
-      "output_tokens": 807,
+      "output_tokens": 748,
       "model": "gpt-4o-mini"
     }
   },
   {
     "english_text": "Available in [countryName]",
     "reference_translation": "Elérhető [countryName]",
-    "new_translation": "Elérhető [countryName]-ban",
+    "new_translation": "Elérhető [countryName]-ban/ben",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any changes or omissions."
+        "explanation": "The translation accurately conveys the meaning of the original text. The phrase 'Elérhető [countryName]-ban/ben' correctly translates to 'Available in [countryName]' without altering the meaning."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrase reads naturally in Hungarian, sounding like it was originally written in the language."
+        "explanation": "The translation reads naturally in Hungarian. The structure is appropriate, and the phrase flows well without awkwardness."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved without any additions or omissions."
+        "explanation": "All information from the original text is preserved in the translation without any additions or omissions."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation."
+        "explanation": "The terminology and style are consistent throughout the translation, maintaining the same structure and meaning as the original."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using language that is suitable for the audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All terms are correctly translated, adhering to established Hungarian terminology."
+        "explanation": "No financial terms are incorrectly translated; the term 'elérhető' is standard and appropriate in this context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity."
+        "explanation": "The text is clear and easy to understand, with no complex structures that would hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The formatting and layout of the original text are perfectly preserved."
+        "explanation": "The original formatting is maintained, with the parameter [countryName] integrated correctly within the sentence."
       },
       "error_rate": {
         "score": 5.0,
@@ -413,13 +413,13 @@
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any changes or omissions.\nFluency: The phrase reads naturally in Hungarian, sounding like it was originally written in the language.\nAdequacy: All information from the original text is preserved without any additions or omissions.\nConsistency: The terminology and style are consistent throughout the translation.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context.\nTerminology Accuracy: All terms are correctly translated, adhering to established Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity.\nFormat Preservation: The formatting and layout of the original text are perfectly preserved.\nError Rate: There are no grammatical or typographical errors present in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text. The phrase 'Elérhető [countryName]-ban/ben' correctly translates to 'Available in [countryName]' without altering the meaning.\nFluency: The translation reads naturally in Hungarian. The structure is appropriate, and the phrase flows well without awkwardness.\nAdequacy: All information from the original text is preserved in the translation without any additions or omissions.\nConsistency: The terminology and style are consistent throughout the translation, maintaining the same structure and meaning as the original.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using language that is suitable for the audience.\nTerminology Accuracy: No financial terms are incorrectly translated; the term 'elérhető' is standard and appropriate in this context.\nReadability: The text is clear and easy to understand, with no complex structures that would hinder comprehension.\nFormat Preservation: The original formatting is maintained, with the parameter [countryName] integrated correctly within the sentence.\nError Rate: There are no grammatical or typographical errors present in the translation.",
     "cost_info": {
-      "total_cost": 0.0009494999999999999,
-      "input_cost": 0.0005342999999999999,
-      "output_cost": 0.00041519999999999995,
-      "input_tokens": 3562,
-      "output_tokens": 692,
+      "total_cost": 0.00099,
+      "input_cost": 0.0005346,
+      "output_cost": 0.0004554,
+      "input_tokens": 3564,
+      "output_tokens": 759,
       "model": "gpt-4o-mini"
     }
   },
@@ -430,88 +430,35 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation 'Legjobb forex brókerek' perfectly conveys the meaning of the original text 'Best forex brokers' without any alteration."
+        "explanation": "The translation 'Legjobb forex brókerek' accurately conveys the meaning of the original text 'Best forex brokers' without altering the intended message."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrase reads naturally in Hungarian, maintaining a fluidity that aligns with the way native speakers would express this idea."
+        "explanation": "The translation reads very naturally in Hungarian, as it follows the typical structure and flow of the language."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved without any omissions or additions, making the translation fully adequate."
+        "explanation": "All information from the original text is preserved without any additions or omissions, maintaining the original intent."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used is consistent with standard Hungarian expressions for financial contexts, particularly in the use of 'brókerek' as a standard term for brokers."
+        "explanation": "There are no inconsistencies in terminology or style within the translation, as it consistently employs standard terms."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is entirely appropriate for the financial/investment context, using terminology that would be familiar to the target audience."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using terminology that is relevant and suitable."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "The term 'forex' is widely recognized in Hungarian financial discourse, and 'brókerek' is the correct translation for 'brokers,' ensuring accurate terminology usage."
+        "explanation": "All financial terms used in the translation are correctly translated, specifically 'forex' and 'brókerek', which are standard in the industry."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The phrase is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension."
+        "explanation": "The translation is perfectly clear and easy to understand, presenting the information concisely."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The format of the translation is preserved perfectly, as it maintains the structure and meaning of the original text."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation, making it flawless in this regard."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation 'Legjobb forex brókerek' perfectly conveys the meaning of the original text 'Best forex brokers' without any alteration.\nFluency: The phrase reads naturally in Hungarian, maintaining a fluidity that aligns with the way native speakers would express this idea.\nAdequacy: All information from the original text is preserved without any omissions or additions, making the translation fully adequate.\nConsistency: The terminology used is consistent with standard Hungarian expressions for financial contexts, particularly in the use of 'brókerek' as a standard term for brokers.\nContextual Appropriateness: The translation is entirely appropriate for the financial/investment context, using terminology that would be familiar to the target audience.\nTerminology Accuracy: The term 'forex' is widely recognized in Hungarian financial discourse, and 'brókerek' is the correct translation for 'brokers,' ensuring accurate terminology usage.\nReadability: The phrase is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension.\nFormat Preservation: The format of the translation is preserved perfectly, as it maintains the structure and meaning of the original text.\nError Rate: There are no grammatical or typographical errors in the translation, making it flawless in this regard.",
-    "cost_info": {
-      "total_cost": 0.0010163999999999998,
-      "input_cost": 0.0005334,
-      "output_cost": 0.0004829999999999999,
-      "input_tokens": 3556,
-      "output_tokens": 805,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "Best stock trading apps",
-    "reference_translation": "Legjobb részvénykereskedési appok",
-    "new_translation": "Legjobb részvénykereskedő alkalmazások",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation 'Legjobb részvénykereskedő alkalmazások' accurately conveys the meaning of the original text 'Best stock trading apps' without altering the intended message."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian and does not exhibit any awkward phrasing or unnatural constructions."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation without any omissions or unnecessary additions."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation, with no noticeable variations in terms used."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context and aligns well with the target audience."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "All financial and investment terms are correctly translated, utilizing established Hungarian terminology."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is perfectly clear and easy to understand, making it accessible to the target audience."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The original formatting and layout are fully maintained in the translation."
+        "explanation": "The original formatting and layout are maintained, with no alterations to the presentation of the text."
       },
       "error_rate": {
         "score": 5.0,
@@ -519,13 +466,66 @@
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation 'Legjobb részvénykereskedő alkalmazások' accurately conveys the meaning of the original text 'Best stock trading apps' without altering the intended message.\nFluency: The translation reads naturally in Hungarian and does not exhibit any awkward phrasing or unnatural constructions.\nAdequacy: All information from the original text is preserved in the translation without any omissions or unnecessary additions.\nConsistency: The terminology and style are consistent throughout the translation, with no noticeable variations in terms used.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context and aligns well with the target audience.\nTerminology Accuracy: All financial and investment terms are correctly translated, utilizing established Hungarian terminology.\nReadability: The text is perfectly clear and easy to understand, making it accessible to the target audience.\nFormat Preservation: The original formatting and layout are fully maintained in the translation.\nError Rate: There are no grammatical or typographical errors present in the translation.",
+    "comments": "Accuracy: The translation 'Legjobb forex brókerek' accurately conveys the meaning of the original text 'Best forex brokers' without altering the intended message.\nFluency: The translation reads very naturally in Hungarian, as it follows the typical structure and flow of the language.\nAdequacy: All information from the original text is preserved without any additions or omissions, maintaining the original intent.\nConsistency: There are no inconsistencies in terminology or style within the translation, as it consistently employs standard terms.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using terminology that is relevant and suitable.\nTerminology Accuracy: All financial terms used in the translation are correctly translated, specifically 'forex' and 'brókerek', which are standard in the industry.\nReadability: The translation is perfectly clear and easy to understand, presenting the information concisely.\nFormat Preservation: The original formatting and layout are maintained, with no alterations to the presentation of the text.\nError Rate: There are no grammatical or typographical errors present in the translation.",
     "cost_info": {
-      "total_cost": 0.0009776999999999997,
+      "total_cost": 0.0009851999999999999,
+      "input_cost": 0.0005334,
+      "output_cost": 0.0004518,
+      "input_tokens": 3556,
+      "output_tokens": 753,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "Best stock trading apps",
+    "reference_translation": "Legjobb részvénykereskedési appok",
+    "new_translation": "Legjobb részvénykereskedési alkalmazások",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the meaning of the original text without any alterations, correctly representing the concept of 'best stock trading apps' as 'legjobb részvénykereskedési alkalmazások'."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The translation reads naturally in Hungarian, flowing smoothly as it would in original Hungarian text, without any awkward phrasing."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All relevant information from the original text is preserved in the translation, with no omissions or unnecessary additions."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology and style are consistent throughout the translation, adhering to standard Hungarian usage."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for the financial/investment context, using terminology and phrasing suitable for the target audience."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "All financial terms are correctly translated, with 'részvénykereskedési alkalmazások' being an accepted term in the context of stock trading applications."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The text is clear and easy to understand, presenting the information in an accessible manner that aligns with Hungarian linguistic norms."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The original formatting and layout are perfectly preserved, as the translation is a direct conversion of the original text without any formatting issues."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "No grammatical or typographical errors are detected in the translation; it is free from mistakes."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alterations, correctly representing the concept of 'best stock trading apps' as 'legjobb részvénykereskedési alkalmazások'.\nFluency: The translation reads naturally in Hungarian, flowing smoothly as it would in original Hungarian text, without any awkward phrasing.\nAdequacy: All relevant information from the original text is preserved in the translation, with no omissions or unnecessary additions.\nConsistency: The terminology and style are consistent throughout the translation, adhering to standard Hungarian usage.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using terminology and phrasing suitable for the target audience.\nTerminology Accuracy: All financial terms are correctly translated, with 'részvénykereskedési alkalmazások' being an accepted term in the context of stock trading applications.\nReadability: The text is clear and easy to understand, presenting the information in an accessible manner that aligns with Hungarian linguistic norms.\nFormat Preservation: The original formatting and layout are perfectly preserved, as the translation is a direct conversion of the original text without any formatting issues.\nError Rate: No grammatical or typographical errors are detected in the translation; it is free from mistakes.",
+    "cost_info": {
+      "total_cost": 0.0010263,
       "input_cost": 0.0005348999999999999,
-      "output_cost": 0.0004428,
+      "output_cost": 0.0004913999999999999,
       "input_tokens": 3566,
-      "output_tokens": 738,
+      "output_tokens": 819,
       "model": "gpt-4o-mini"
     }
   },
@@ -536,27 +536,27 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any alterations."
+        "explanation": "The translation 'BrokerChooser Díjak [year]' accurately conveys the meaning of the original text, maintaining the same reference to awards in a financial context."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrasing is completely natural in Hungarian, making it read as if it were originally written in the language."
+        "explanation": "The phrase reads naturally in Hungarian without awkwardness, making it sound as though it was originally written in Hungarian."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved, with no additions or omissions."
+        "explanation": "All information from the original text is preserved without additions or omissions, including the reference to the year."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used is consistent throughout, maintaining the same phrasing as expected in both English and Hungarian contexts."
+        "explanation": "The terminology is consistent throughout, using 'Díjak' appropriately for 'Awards' in a financial context."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly suited for a financial/investment context, using appropriate terminology and style."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using standard terminology that is widely understood."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, using standard Hungarian terminology."
+        "explanation": "The term 'Díjak' is the correct Hungarian equivalent for 'Awards,' ensuring that the financial terminology is accurately represented."
       },
       "readability": {
         "score": 5.0,
@@ -564,21 +564,21 @@
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The formatting of the original text is fully preserved, including the use of brackets."
+        "explanation": "The original formatting is perfectly preserved, including the use of brackets for the year."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors detected in the translation."
+        "explanation": "There are no grammatical or typographical errors in the translation."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alterations.\nFluency: The phrasing is completely natural in Hungarian, making it read as if it were originally written in the language.\nAdequacy: All information from the original text is preserved, with no additions or omissions.\nConsistency: The terminology used is consistent throughout, maintaining the same phrasing as expected in both English and Hungarian contexts.\nContextual Appropriateness: The translation is perfectly suited for a financial/investment context, using appropriate terminology and style.\nTerminology Accuracy: All financial terms are correctly translated, using standard Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity present.\nFormat Preservation: The formatting of the original text is fully preserved, including the use of brackets.\nError Rate: There are no grammatical or typographical errors detected in the translation.",
+    "comments": "Accuracy: The translation 'BrokerChooser Díjak [year]' accurately conveys the meaning of the original text, maintaining the same reference to awards in a financial context.\nFluency: The phrase reads naturally in Hungarian without awkwardness, making it sound as though it was originally written in Hungarian.\nAdequacy: All information from the original text is preserved without additions or omissions, including the reference to the year.\nConsistency: The terminology is consistent throughout, using 'Díjak' appropriately for 'Awards' in a financial context.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using standard terminology that is widely understood.\nTerminology Accuracy: The term 'Díjak' is the correct Hungarian equivalent for 'Awards,' ensuring that the financial terminology is accurately represented.\nReadability: The text is clear and easy to understand, with no ambiguity present.\nFormat Preservation: The original formatting is perfectly preserved, including the use of brackets for the year.\nError Rate: There are no grammatical or typographical errors in the translation.",
     "cost_info": {
-      "total_cost": 0.0009941999999999998,
+      "total_cost": 0.0009792,
       "input_cost": 0.000534,
-      "output_cost": 0.0004601999999999999,
+      "output_cost": 0.0004452,
       "input_tokens": 3560,
-      "output_tokens": 767,
+      "output_tokens": 742,
       "model": "gpt-4o-mini"
     }
   },
@@ -589,155 +589,155 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the original meaning, stating that the broker is not available in the specified country without altering the meaning."
+        "explanation": "The translation accurately conveys the meaning of the original text without altering it. The phrase 'A bróker nem elérhető [countryTheName]-ban' correctly reflects that the broker is unavailable in the specified country."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads smoothly and naturally in Hungarian, maintaining proper grammatical structure."
+        "explanation": "The translation reads naturally in Hungarian and flows smoothly. There are no awkward constructions or phrasing that would disrupt comprehension."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All necessary information from the original text is preserved without any omissions or additions."
+        "explanation": "All information from the original text is preserved without any additions or omissions. The translation includes the necessary context regarding the broker's availability."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "Terminology and style are consistent throughout the translation, with no discrepancies noted."
+        "explanation": "The terminology and style used in the translation are consistent with standard Hungarian usage, particularly in the financial context."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using suitable language."
+        "explanation": "The translation is perfectly appropriate for the financial/investment context. The language used is formal and suitable for such a setting."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, with no inappropriate borrowing from English."
+        "explanation": "All financial terms are correctly translated. The term 'bróker' is appropriate and widely accepted in Hungarian financial discourse."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no confusing phrases or constructions."
+        "explanation": "The text is clear and easy to understand, with no complicated phrases or jargon that could hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original format and layout are perfectly preserved, including the handling of the parameter."
+        "explanation": "The format of the original message is preserved, including the proper integration of the placeholder '[countryTheName]' which is appropriately used in the context."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "No grammatical or typographical errors were detected in the translation."
+        "explanation": "There are no grammatical or typographical errors in the translation. The sentence is well-structured and adheres to Hungarian language rules."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the original meaning, stating that the broker is not available in the specified country without altering the meaning.\nFluency: The translation reads smoothly and naturally in Hungarian, maintaining proper grammatical structure.\nAdequacy: All necessary information from the original text is preserved without any omissions or additions.\nConsistency: Terminology and style are consistent throughout the translation, with no discrepancies noted.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using suitable language.\nTerminology Accuracy: All financial terms are correctly translated, with no inappropriate borrowing from English.\nReadability: The text is clear and easy to understand, with no confusing phrases or constructions.\nFormat Preservation: The original format and layout are perfectly preserved, including the handling of the parameter.\nError Rate: No grammatical or typographical errors were detected in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering it. The phrase 'A bróker nem elérhető [countryTheName]-ban' correctly reflects that the broker is unavailable in the specified country.\nFluency: The translation reads naturally in Hungarian and flows smoothly. There are no awkward constructions or phrasing that would disrupt comprehension.\nAdequacy: All information from the original text is preserved without any additions or omissions. The translation includes the necessary context regarding the broker's availability.\nConsistency: The terminology and style used in the translation are consistent with standard Hungarian usage, particularly in the financial context.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context. The language used is formal and suitable for such a setting.\nTerminology Accuracy: All financial terms are correctly translated. The term 'bróker' is appropriate and widely accepted in Hungarian financial discourse.\nReadability: The text is clear and easy to understand, with no complicated phrases or jargon that could hinder comprehension.\nFormat Preservation: The format of the original message is preserved, including the proper integration of the placeholder '[countryTheName]' which is appropriately used in the context.\nError Rate: There are no grammatical or typographical errors in the translation. The sentence is well-structured and adheres to Hungarian language rules.",
     "cost_info": {
-      "total_cost": 0.0009812999999999998,
+      "total_cost": 0.0009920999999999999,
       "input_cost": 0.0005372999999999999,
-      "output_cost": 0.00044399999999999995,
+      "output_cost": 0.0004548,
       "input_tokens": 3582,
-      "output_tokens": 740,
+      "output_tokens": 758,
       "model": "gpt-4o-mini"
     }
   },
   {
     "english_text": "Calculate stock trade commission at various brokers.",
     "reference_translation": "Számítsd ki a részvénykereskedési jutalékot különböző brókereknél.",
-    "new_translation": "Számítsa ki a részvénykereskedelmi jutalékokat különböző brókereknél.",
+    "new_translation": "Számolja ki a részvénykereskedelmi jutalékot különböző brókereknél.",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without altering any essential information."
+        "explanation": "The translation accurately conveys the meaning of the original text without any alterations. The phrase 'Számolja ki a részvénykereskedelmi jutalékot különböző brókereknél' directly corresponds to the instruction to calculate stock trade commissions at various brokers."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads smoothly in Hungarian and does not sound like a direct translation from English."
+        "explanation": "The sentence reads naturally in Hungarian, employing standard grammatical structures and vocabulary that flow well together, making it sound as if it were originally written in Hungarian."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved without any omissions or additions."
+        "explanation": "All information from the source text is preserved in the translation without any omissions or additions, ensuring full comprehension of the original instruction."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used in the translation is consistent and coherent throughout."
+        "explanation": "The terminology used in the translation is consistent with financial language norms in Hungarian, maintaining uniformity throughout the text."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using the correct terminology."
+        "explanation": "The translation is entirely appropriate for a financial/investment context, using terminology and phrasing that fit the professional setting."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial and investment terms are correctly translated and align with standard Hungarian terminology."
+        "explanation": "All financial terms are correctly translated, using established Hungarian equivalents without introducing any incorrect or borrowed terms."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, making it accessible to the target audience."
+        "explanation": "The translation is clear and easy to understand, with straightforward language that effectively communicates the intended message."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The format of the original text is perfectly preserved in the translation."
+        "explanation": "The original formatting and layout have been perfectly preserved in the translation, maintaining the structure of the sentence as it appeared in English."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation."
+        "explanation": "No grammatical or typographical errors are present in the translation, indicating a high level of accuracy and professionalism."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering any essential information.\nFluency: The translation reads smoothly in Hungarian and does not sound like a direct translation from English.\nAdequacy: All information from the original text is preserved without any omissions or additions.\nConsistency: The terminology used in the translation is consistent and coherent throughout.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using the correct terminology.\nTerminology Accuracy: All financial and investment terms are correctly translated and align with standard Hungarian terminology.\nReadability: The text is clear and easy to understand, making it accessible to the target audience.\nFormat Preservation: The format of the original text is perfectly preserved in the translation.\nError Rate: There are no grammatical or typographical errors in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alterations. The phrase 'Számolja ki a részvénykereskedelmi jutalékot különböző brókereknél' directly corresponds to the instruction to calculate stock trade commissions at various brokers.\nFluency: The sentence reads naturally in Hungarian, employing standard grammatical structures and vocabulary that flow well together, making it sound as if it were originally written in Hungarian.\nAdequacy: All information from the source text is preserved in the translation without any omissions or additions, ensuring full comprehension of the original instruction.\nConsistency: The terminology used in the translation is consistent with financial language norms in Hungarian, maintaining uniformity throughout the text.\nContextual Appropriateness: The translation is entirely appropriate for a financial/investment context, using terminology and phrasing that fit the professional setting.\nTerminology Accuracy: All financial terms are correctly translated, using established Hungarian equivalents without introducing any incorrect or borrowed terms.\nReadability: The translation is clear and easy to understand, with straightforward language that effectively communicates the intended message.\nFormat Preservation: The original formatting and layout have been perfectly preserved in the translation, maintaining the structure of the sentence as it appeared in English.\nError Rate: No grammatical or typographical errors are present in the translation, indicating a high level of accuracy and professionalism.",
     "cost_info": {
-      "total_cost": 0.0010191,
-      "input_cost": 0.0005403,
-      "output_cost": 0.0004788,
-      "input_tokens": 3602,
-      "output_tokens": 798,
+      "total_cost": 0.00100635,
+      "input_cost": 0.00054015,
+      "output_cost": 0.00046619999999999995,
+      "input_tokens": 3601,
+      "output_tokens": 777,
       "model": "gpt-4o-mini"
     }
   },
   {
     "english_text": "Check out the best brokers in [country]",
     "reference_translation": "Nézd meg a legjobb brókereket [country]",
-    "new_translation": "Nézd meg a legjobb brókereket [country] országból",
+    "new_translation": "Nézd meg a legjobb brókereket [country] államban",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any alterations. The phrase 'Nézd meg a legjobb brókereket [country] országból' correctly communicates the intended message of checking out the best brokers in a specified country."
+        "explanation": "The translation conveys the exact meaning of the original text without altering it. The term 'legjobb brókereket' accurately translates to 'best brokers,' and the inclusion of '[country]' maintains the intended reference."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian. It does not exhibit awkward phrasing, and the sentence flows well, making it easy to understand."
+        "explanation": "The phrase reads smoothly and naturally in Hungarian. It does not exhibit any awkward phrasing typical of machine translations and flows like a native Hungarian sentence."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation. There are no omissions or unnecessary additions, making it fully adequate."
+        "explanation": "All information from the original text is preserved without any additions or omissions. The translation captures the full intent of the source."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation. There are no variations that could confuse the reader."
+        "explanation": "Terminology and style are consistent throughout the translation. The use of 'brókereket' aligns with standard usage in financial contexts."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context. It uses proper terminology and maintains a formal tone suitable for the audience."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context. The language used is suitable for the target audience interested in brokers."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated. The term 'brókerek' is appropriate and commonly understood in the context of finance."
+        "explanation": "All financial terms are accurately translated. The term 'brókerek' is the correct Hungarian equivalent for 'brokers' in this context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand. There are no complexities that would hinder comprehension, making it very readable."
+        "explanation": "The text is clear and easy to understand. It does not present any ambiguity or complexity that would hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved. The bracketed parameter '[country]' is correctly maintained."
+        "explanation": "The formatting of the original text is perfectly preserved. The structure of the sentence remains intact, and the parameter '[country]' is appropriately included."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors present in the translation, ensuring a high standard of quality."
+        "explanation": "There are no grammatical or typographical errors present in the translation. The sentence adheres to Hungarian grammatical rules."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alterations. The phrase 'Nézd meg a legjobb brókereket [country] országból' correctly communicates the intended message of checking out the best brokers in a specified country.\nFluency: The translation reads naturally in Hungarian. It does not exhibit awkward phrasing, and the sentence flows well, making it easy to understand.\nAdequacy: All information from the original text is preserved in the translation. There are no omissions or unnecessary additions, making it fully adequate.\nConsistency: The terminology and style are consistent throughout the translation. There are no variations that could confuse the reader.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. It uses proper terminology and maintains a formal tone suitable for the audience.\nTerminology Accuracy: All financial terms are correctly translated. The term 'brókerek' is appropriate and commonly understood in the context of finance.\nReadability: The text is clear and easy to understand. There are no complexities that would hinder comprehension, making it very readable.\nFormat Preservation: The original formatting and layout are perfectly preserved. The bracketed parameter '[country]' is correctly maintained.\nError Rate: There are no grammatical or typographical errors present in the translation, ensuring a high standard of quality.",
+    "comments": "Accuracy: The translation conveys the exact meaning of the original text without altering it. The term 'legjobb brókereket' accurately translates to 'best brokers,' and the inclusion of '[country]' maintains the intended reference.\nFluency: The phrase reads smoothly and naturally in Hungarian. It does not exhibit any awkward phrasing typical of machine translations and flows like a native Hungarian sentence.\nAdequacy: All information from the original text is preserved without any additions or omissions. The translation captures the full intent of the source.\nConsistency: Terminology and style are consistent throughout the translation. The use of 'brókereket' aligns with standard usage in financial contexts.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. The language used is suitable for the target audience interested in brokers.\nTerminology Accuracy: All financial terms are accurately translated. The term 'brókerek' is the correct Hungarian equivalent for 'brokers' in this context.\nReadability: The text is clear and easy to understand. It does not present any ambiguity or complexity that would hinder comprehension.\nFormat Preservation: The formatting of the original text is perfectly preserved. The structure of the sentence remains intact, and the parameter '[country]' is appropriately included.\nError Rate: There are no grammatical or typographical errors present in the translation. The sentence adheres to Hungarian grammatical rules.",
     "cost_info": {
-      "total_cost": 0.00101985,
-      "input_cost": 0.00053745,
-      "output_cost": 0.0004823999999999999,
-      "input_tokens": 3583,
-      "output_tokens": 804,
+      "total_cost": 0.0010604999999999998,
+      "input_cost": 0.0005372999999999999,
+      "output_cost": 0.0005231999999999999,
+      "input_tokens": 3582,
+      "output_tokens": 872,
       "model": "gpt-4o-mini"
     }
   },
@@ -748,49 +748,49 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any loss or alteration of meaning."
+        "explanation": "The translation accurately conveys the meaning of the original text 'Complete Find My Broker questionnaire' without altering the intended message."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally and smoothly, as if it were originally written in Hungarian."
+        "explanation": "The translation reads naturally in Hungarian and does not sound awkward or forced, indicating it flows well as a native expression."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved without any additions or omissions."
+        "explanation": "All information from the original text is preserved in the translation without any additions or omissions, providing a complete representation."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "There are no inconsistencies in terminology or style within the translation."
+        "explanation": "The terminology used in the translation is consistent with standard Hungarian usage for similar contexts, maintaining uniformity in style."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context."
+        "explanation": "The translation is perfectly appropriate for the financial/investment context, using formal language suitable for a questionnaire."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, adhering to standard Hungarian terminology."
+        "explanation": "All terms related to the financial context are correctly translated, with no inappropriate borrowing of English terms."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity present."
+        "explanation": "The translation is clear and easy to understand, presenting no barriers to comprehension for Hungarian speakers."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved."
+        "explanation": "The original formatting and layout are perfectly preserved in the translation, maintaining the intended structure."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors in the translation."
+        "explanation": "There are no grammatical or typographical errors present in the translation, ensuring a high standard of quality."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any loss or alteration of meaning.\nFluency: The translation reads naturally and smoothly, as if it were originally written in Hungarian.\nAdequacy: All information from the original text is preserved without any additions or omissions.\nConsistency: There are no inconsistencies in terminology or style within the translation.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context.\nTerminology Accuracy: All financial terms are correctly translated, adhering to standard Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity present.\nFormat Preservation: The original formatting and layout are perfectly preserved.\nError Rate: There are no grammatical or typographical errors in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text 'Complete Find My Broker questionnaire' without altering the intended message.\nFluency: The translation reads naturally in Hungarian and does not sound awkward or forced, indicating it flows well as a native expression.\nAdequacy: All information from the original text is preserved in the translation without any additions or omissions, providing a complete representation.\nConsistency: The terminology used in the translation is consistent with standard Hungarian usage for similar contexts, maintaining uniformity in style.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using formal language suitable for a questionnaire.\nTerminology Accuracy: All terms related to the financial context are correctly translated, with no inappropriate borrowing of English terms.\nReadability: The translation is clear and easy to understand, presenting no barriers to comprehension for Hungarian speakers.\nFormat Preservation: The original formatting and layout are perfectly preserved in the translation, maintaining the intended structure.\nError Rate: There are no grammatical or typographical errors present in the translation, ensuring a high standard of quality.",
     "cost_info": {
-      "total_cost": 0.0009487499999999999,
+      "total_cost": 0.00103575,
       "input_cost": 0.00053655,
-      "output_cost": 0.00041219999999999994,
+      "output_cost": 0.0004992,
       "input_tokens": 3577,
-      "output_tokens": 687,
+      "output_tokens": 832,
       "model": "gpt-4o-mini"
     }
   },
@@ -801,49 +801,49 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The term 'FX Díjszámító' accurately conveys the meaning of 'FX Fee Calculator' without altering its essence."
+        "explanation": "The translation 'FX Díjszámító' accurately conveys the meaning of the original text 'FX Fee Calculator' without any alterations. The term 'FX' is commonly understood in financial contexts, and 'Díjszámító' correctly translates to 'Fee Calculator'."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "'FX Díjszámító' reads naturally in Hungarian, resembling a phrase that was originally created in the language."
+        "explanation": "The phrase 'FX Díjszámító' reads naturally in Hungarian. There are no awkward phrasings or unnatural constructions, making it sound as if it were originally written in Hungarian."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All relevant information from the original text is preserved in the translation, with no omissions or additions."
+        "explanation": "All relevant information from the original text is preserved in the translation. There are no omissions or additions that alter the meaning."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used is consistent with standard Hungarian expressions for financial terms."
+        "explanation": "The terminology used is consistent with standard financial terms in Hungarian. There are no inconsistencies present in the translation."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context, clearly indicating its purpose."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using terminology and phrasing that align with industry standards."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "'Díjszámító' is an established term in Hungarian for 'calculator' in financial contexts, ensuring accurate terminology."
+        "explanation": "The financial terms used in the translation are correctly translated. 'Díjszámító' is the established Hungarian term for 'fee calculator' in a financial context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The phrase 'FX Díjszámító' is clear and easy to understand, presenting no difficulties for the reader."
+        "explanation": "The translation is clear and easy to understand. There are no issues that would impede comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The formatting of the phrase remains unchanged and retains its original structure."
+        "explanation": "The original formatting is preserved in the translation. The structure remains intact and properly represents the source text."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors present in the translation."
+        "explanation": "There are no grammatical or typographical errors present in the translation. It is free from any issues that would detract from its quality."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The term 'FX Díjszámító' accurately conveys the meaning of 'FX Fee Calculator' without altering its essence.\nFluency: 'FX Díjszámító' reads naturally in Hungarian, resembling a phrase that was originally created in the language.\nAdequacy: All relevant information from the original text is preserved in the translation, with no omissions or additions.\nConsistency: The terminology used is consistent with standard Hungarian expressions for financial terms.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, clearly indicating its purpose.\nTerminology Accuracy: 'Díjszámító' is an established term in Hungarian for 'calculator' in financial contexts, ensuring accurate terminology.\nReadability: The phrase 'FX Díjszámító' is clear and easy to understand, presenting no difficulties for the reader.\nFormat Preservation: The formatting of the phrase remains unchanged and retains its original structure.\nError Rate: There are no grammatical or typographical errors present in the translation.",
+    "comments": "Accuracy: The translation 'FX Díjszámító' accurately conveys the meaning of the original text 'FX Fee Calculator' without any alterations. The term 'FX' is commonly understood in financial contexts, and 'Díjszámító' correctly translates to 'Fee Calculator'.\nFluency: The phrase 'FX Díjszámító' reads naturally in Hungarian. There are no awkward phrasings or unnatural constructions, making it sound as if it were originally written in Hungarian.\nAdequacy: All relevant information from the original text is preserved in the translation. There are no omissions or additions that alter the meaning.\nConsistency: The terminology used is consistent with standard financial terms in Hungarian. There are no inconsistencies present in the translation.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using terminology and phrasing that align with industry standards.\nTerminology Accuracy: The financial terms used in the translation are correctly translated. 'Díjszámító' is the established Hungarian term for 'fee calculator' in a financial context.\nReadability: The translation is clear and easy to understand. There are no issues that would impede comprehension.\nFormat Preservation: The original formatting is preserved in the translation. The structure remains intact and properly represents the source text.\nError Rate: There are no grammatical or typographical errors present in the translation. It is free from any issues that would detract from its quality.",
     "cost_info": {
-      "total_cost": 0.0009719999999999999,
+      "total_cost": 0.0010512,
       "input_cost": 0.0005334,
-      "output_cost": 0.00043859999999999993,
+      "output_cost": 0.0005177999999999999,
       "input_tokens": 3556,
-      "output_tokens": 731,
+      "output_tokens": 863,
       "model": "gpt-4o-mini"
     }
   },
@@ -854,102 +854,102 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text, maintaining the essential message about brokers that should be avoided."
+        "explanation": "The translation accurately conveys the original meaning of 'Scam brokers to avoid' without any distortion or change in meaning."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads smoothly and naturally in Hungarian, as it does not reflect awkward phrasing or unnatural structures."
+        "explanation": "The phrase reads naturally in Hungarian, as it follows the typical structure and phrasing used in the language."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved without any omissions or additions, providing a complete translation."
+        "explanation": "All relevant information from the original text is preserved, and there are no additions or omissions in the translation."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation, with no noticeable discrepancies."
+        "explanation": "The terminology used is consistent with standard Hungarian translations for financial contexts."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context, using terminology that suits the audience."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, using language suitable for the audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms have been correctly translated, ensuring that the translation uses standard Hungarian financial terminology."
+        "explanation": "All financial terms are correctly translated, with no inappropriate English terms used."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no issues that could hinder comprehension."
+        "explanation": "The text is clear and easy to understand, with no ambiguity present."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original format and layout of the text have been perfectly preserved in the translation."
+        "explanation": "The formatting of the original text is perfectly preserved in the translation."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "No grammatical or typographical errors are present in the translation, indicating a high level of accuracy."
+        "explanation": "There are no grammatical or typographical errors present in the translation."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text, maintaining the essential message about brokers that should be avoided.\nFluency: The translation reads smoothly and naturally in Hungarian, as it does not reflect awkward phrasing or unnatural structures.\nAdequacy: All information from the original text is preserved without any omissions or additions, providing a complete translation.\nConsistency: The terminology and style are consistent throughout the translation, with no noticeable discrepancies.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using terminology that suits the audience.\nTerminology Accuracy: All financial terms have been correctly translated, ensuring that the translation uses standard Hungarian financial terminology.\nReadability: The text is clear and easy to understand, with no issues that could hinder comprehension.\nFormat Preservation: The original format and layout of the text have been perfectly preserved in the translation.\nError Rate: No grammatical or typographical errors are present in the translation, indicating a high level of accuracy.",
+    "comments": "Accuracy: The translation accurately conveys the original meaning of 'Scam brokers to avoid' without any distortion or change in meaning.\nFluency: The phrase reads naturally in Hungarian, as it follows the typical structure and phrasing used in the language.\nAdequacy: All relevant information from the original text is preserved, and there are no additions or omissions in the translation.\nConsistency: The terminology used is consistent with standard Hungarian translations for financial contexts.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using language suitable for the audience.\nTerminology Accuracy: All financial terms are correctly translated, with no inappropriate English terms used.\nReadability: The text is clear and easy to understand, with no ambiguity present.\nFormat Preservation: The formatting of the original text is perfectly preserved in the translation.\nError Rate: There are no grammatical or typographical errors present in the translation.",
     "cost_info": {
-      "total_cost": 0.00098925,
+      "total_cost": 0.0009616499999999999,
       "input_cost": 0.0005356499999999999,
-      "output_cost": 0.00045359999999999997,
+      "output_cost": 0.00042599999999999995,
       "input_tokens": 3571,
-      "output_tokens": 756,
+      "output_tokens": 710,
       "model": "gpt-4o-mini"
     }
   },
   {
     "english_text": "[Broker name] [param name] fees are about half of the industry average.",
     "reference_translation": "[Broker name] [param name] díjai körülbelül a piaci átlag felét teszik ki.",
-    "new_translation": "[Broker name] [param name] díjak körülbelül a szektor átlagának felét teszik ki.",
+    "new_translation": "[Broker name] [param name] díjai körülbelül a iparági átlag felét teszik ki.",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any alterations or omissions."
+        "explanation": "The translation accurately conveys the meaning of the source text, stating that the fees of the broker are about half of the industry average, which is consistent with the original."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally and smoothly in Hungarian, as if it were originally written in the language."
+        "explanation": "The translation reads naturally in Hungarian, maintaining a smooth and coherent structure, which makes it clear and easy to understand."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved with no additions or omissions."
+        "explanation": "All relevant information from the original text is preserved without any omissions or additions, ensuring that the message is fully intact."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "There are no inconsistencies in terminology or style; the translation is uniform throughout."
+        "explanation": "The terminology and style used in the translation are consistent and align with the financial context throughout the text."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using suitable language."
+        "explanation": "The translation is perfectly appropriate for the financial/investment context, using language and structure suitable for the target audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated, adhering to established Hungarian terminology."
+        "explanation": "All financial terms are correctly translated, utilizing appropriate Hungarian terminology for the context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity or confusion."
+        "explanation": "The text is clear and straightforward, with no ambiguity, making it easy for the reader to understand the intended message."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout of the text are maintained perfectly."
+        "explanation": "The original formatting and layout are perfectly preserved in the translation, maintaining the structure as intended."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors detected in the translation."
+        "explanation": "There are no grammatical or typographical errors in the translation, ensuring a high standard of quality."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alterations or omissions.\nFluency: The translation reads naturally and smoothly in Hungarian, as if it were originally written in the language.\nAdequacy: All information from the original text is preserved with no additions or omissions.\nConsistency: There are no inconsistencies in terminology or style; the translation is uniform throughout.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using suitable language.\nTerminology Accuracy: All financial terms are correctly translated, adhering to established Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity or confusion.\nFormat Preservation: The original formatting and layout of the text are maintained perfectly.\nError Rate: There are no grammatical or typographical errors detected in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the source text, stating that the fees of the broker are about half of the industry average, which is consistent with the original.\nFluency: The translation reads naturally in Hungarian, maintaining a smooth and coherent structure, which makes it clear and easy to understand.\nAdequacy: All relevant information from the original text is preserved without any omissions or additions, ensuring that the message is fully intact.\nConsistency: The terminology and style used in the translation are consistent and align with the financial context throughout the text.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using language and structure suitable for the target audience.\nTerminology Accuracy: All financial terms are correctly translated, utilizing appropriate Hungarian terminology for the context.\nReadability: The text is clear and straightforward, with no ambiguity, making it easy for the reader to understand the intended message.\nFormat Preservation: The original formatting and layout are perfectly preserved in the translation, maintaining the structure as intended.\nError Rate: There are no grammatical or typographical errors in the translation, ensuring a high standard of quality.",
     "cost_info": {
-      "total_cost": 0.0009586499999999999,
+      "total_cost": 0.0009994499999999998,
       "input_cost": 0.0005428499999999999,
-      "output_cost": 0.00041579999999999997,
+      "output_cost": 0.00045659999999999993,
       "input_tokens": 3619,
-      "output_tokens": 693,
+      "output_tokens": 761,
       "model": "gpt-4o-mini"
     }
   },
@@ -960,141 +960,35 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without altering any essential information."
+        "explanation": "The translation accurately conveys the meaning of the source text without altering its intent or context, maintaining the comparative structure."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The phrase reads naturally in Hungarian and does not reflect any awkward phrasing or structure."
+        "explanation": "The phrase reads naturally in Hungarian, without any awkward phrasing or unnatural constructions, making it easily recognizable as Hungarian."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation without any omissions or additions."
+        "explanation": "All relevant information from the original text is preserved in the translation without omissions or additions."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology used is consistent with standard Hungarian usage, and there are no discrepancies."
+        "explanation": "Terminology and style are consistent throughout the translation, with no discrepancies noted."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using the correct terminology and tone."
+        "explanation": "The translation is perfectly appropriate for a financial/investment context, reflecting the necessary formal tone."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial and investment terms are translated correctly, adhering to standard Hungarian terminology."
+        "explanation": "All terms are accurately translated, and there are no issues with the use of financial terminology."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension."
+        "explanation": "The text is clear and easy to understand, conveying the intended meaning without confusion."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved, maintaining the intended structure."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors present in the translation."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering any essential information.\nFluency: The phrase reads naturally in Hungarian and does not reflect any awkward phrasing or structure.\nAdequacy: All information from the original text is preserved in the translation without any omissions or additions.\nConsistency: The terminology used is consistent with standard Hungarian usage, and there are no discrepancies.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using the correct terminology and tone.\nTerminology Accuracy: All financial and investment terms are translated correctly, adhering to standard Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension.\nFormat Preservation: The original formatting and layout are perfectly preserved, maintaining the intended structure.\nError Rate: There are no grammatical or typographical errors present in the translation.",
-    "cost_info": {
-      "total_cost": 0.0010019999999999999,
-      "input_cost": 0.0005394,
-      "output_cost": 0.0004625999999999999,
-      "input_tokens": 3596,
-      "output_tokens": 771,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "[number] available broker in [countryName]",
-    "reference_translation": "[number] elérhető bróker [countryName] területén",
-    "new_translation": "[number] elérhető bróker [countryName]-ban",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without altering any information."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian, as it maintains a fluent and coherent structure."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation without any omissions or additions."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology and style are consistent throughout the translation, with no discrepancies noted."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context, using suitable language for the target audience."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "All financial terms are translated accurately, with no inappropriate borrowing of English terms."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no complexity that would hinder comprehension."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The formatting and layout of the original text are perfectly preserved in the translation."
-      },
-      "error_rate": {
-        "score": 5.0,
-        "explanation": "No grammatical or typographical errors are present in the translation."
-      }
-    },
-    "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering any information.\nFluency: The translation reads naturally in Hungarian, as it maintains a fluent and coherent structure.\nAdequacy: All information from the original text is preserved in the translation without any omissions or additions.\nConsistency: The terminology and style are consistent throughout the translation, with no discrepancies noted.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, using suitable language for the target audience.\nTerminology Accuracy: All financial terms are translated accurately, with no inappropriate borrowing of English terms.\nReadability: The text is clear and easy to understand, with no complexity that would hinder comprehension.\nFormat Preservation: The formatting and layout of the original text are perfectly preserved in the translation.\nError Rate: No grammatical or typographical errors are present in the translation.",
-    "cost_info": {
-      "total_cost": 0.0010095,
-      "input_cost": 0.0005379,
-      "output_cost": 0.00047159999999999997,
-      "input_tokens": 3586,
-      "output_tokens": 786,
-      "model": "gpt-4o-mini"
-    }
-  },
-  {
-    "english_text": "[number] people picked this broker at BrokerChooser in the last 6 months",
-    "reference_translation": "[number] ember választotta ezt a brókert a BrokerChooser-nél az elmúlt 6 hónapban",
-    "new_translation": "[number] ember választotta ezt a brókert a BrokerChooser-en az elmúlt 6 hónapban",
-    "metrics": {
-      "accuracy": {
-        "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without any alteration or distortion."
-      },
-      "fluency": {
-        "score": 5.0,
-        "explanation": "The translation reads naturally and smoothly in Hungarian, as if it were originally written in the language."
-      },
-      "adequacy": {
-        "score": 5.0,
-        "explanation": "All information from the original text is preserved without any additions or omissions."
-      },
-      "consistency": {
-        "score": 5.0,
-        "explanation": "The terminology and style used in the translation are consistent throughout the text."
-      },
-      "contextual_appropriateness": {
-        "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context."
-      },
-      "terminology_accuracy": {
-        "score": 5.0,
-        "explanation": "All financial terms are correctly translated, adhering to standard Hungarian terminology."
-      },
-      "readability": {
-        "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity."
-      },
-      "format_preservation": {
-        "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved in the translation."
+        "explanation": "The original formatting and layout are perfectly preserved, with no alterations."
       },
       "error_rate": {
         "score": 5.0,
@@ -1102,66 +996,172 @@
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without any alteration or distortion.\nFluency: The translation reads naturally and smoothly in Hungarian, as if it were originally written in the language.\nAdequacy: All information from the original text is preserved without any additions or omissions.\nConsistency: The terminology and style used in the translation are consistent throughout the text.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context.\nTerminology Accuracy: All financial terms are correctly translated, adhering to standard Hungarian terminology.\nReadability: The text is clear and easy to understand, with no ambiguity.\nFormat Preservation: The original formatting and layout are perfectly preserved in the translation.\nError Rate: There are no grammatical or typographical errors detected in the translation.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the source text without altering its intent or context, maintaining the comparative structure.\nFluency: The phrase reads naturally in Hungarian, without any awkward phrasing or unnatural constructions, making it easily recognizable as Hungarian.\nAdequacy: All relevant information from the original text is preserved in the translation without omissions or additions.\nConsistency: Terminology and style are consistent throughout the translation, with no discrepancies noted.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context, reflecting the necessary formal tone.\nTerminology Accuracy: All terms are accurately translated, and there are no issues with the use of financial terminology.\nReadability: The text is clear and easy to understand, conveying the intended meaning without confusion.\nFormat Preservation: The original formatting and layout are perfectly preserved, with no alterations.\nError Rate: There are no grammatical or typographical errors detected in the translation.",
     "cost_info": {
-      "total_cost": 0.0009607499999999999,
-      "input_cost": 0.0005425499999999999,
-      "output_cost": 0.0004182,
-      "input_tokens": 3617,
-      "output_tokens": 697,
+      "total_cost": 0.0010086000000000001,
+      "input_cost": 0.0005394,
+      "output_cost": 0.0004691999999999999,
+      "input_tokens": 3596,
+      "output_tokens": 782,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "[number] available broker in [countryName]",
+    "reference_translation": "[number] elérhető bróker [countryName] területén",
+    "new_translation": "[number] elérhető bróker [countryName]-ban/ből",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the meaning of the source text without any alteration. The phrase '[number] elérhető bróker [countryName]-ban/ből' maintains the original intent and meaning clearly."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The translation reads naturally in Hungarian. It does not exhibit any awkward phrasing or structure that would indicate it was translated from English."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All information from the original text is preserved in the translation. There are no omissions or additions that affect the overall message."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology and style are consistent throughout the translation. The use of 'bróker' and the structure is uniform with financial context."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for a financial/investment context. The terminology and structure align well with industry standards."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "All financial terms are correctly translated. The term 'bróker' is an established term in Hungarian finance and is used appropriately."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The text is clear and easy to understand. There are no convoluted sentences or jargon that would hinder comprehension."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The formatting and layout are perfectly preserved as per the original text. The placeholders for numbers and country names are appropriately retained."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "There are no grammatical or typographical errors detected in the translation. The sentence structure adheres to Hungarian grammar rules."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the meaning of the source text without any alteration. The phrase '[number] elérhető bróker [countryName]-ban/ből' maintains the original intent and meaning clearly.\nFluency: The translation reads naturally in Hungarian. It does not exhibit any awkward phrasing or structure that would indicate it was translated from English.\nAdequacy: All information from the original text is preserved in the translation. There are no omissions or additions that affect the overall message.\nConsistency: The terminology and style are consistent throughout the translation. The use of 'bróker' and the structure is uniform with financial context.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. The terminology and structure align well with industry standards.\nTerminology Accuracy: All financial terms are correctly translated. The term 'bróker' is an established term in Hungarian finance and is used appropriately.\nReadability: The text is clear and easy to understand. There are no convoluted sentences or jargon that would hinder comprehension.\nFormat Preservation: The formatting and layout are perfectly preserved as per the original text. The placeholders for numbers and country names are appropriately retained.\nError Rate: There are no grammatical or typographical errors detected in the translation. The sentence structure adheres to Hungarian grammar rules.",
+    "cost_info": {
+      "total_cost": 0.0010152,
+      "input_cost": 0.0005382,
+      "output_cost": 0.00047699999999999994,
+      "input_tokens": 3588,
+      "output_tokens": 795,
+      "model": "gpt-4o-mini"
+    }
+  },
+  {
+    "english_text": "[number] people picked this broker at BrokerChooser in the last 6 months",
+    "reference_translation": "[number] ember választotta ezt a brókert a BrokerChooser-nél az elmúlt 6 hónapban",
+    "new_translation": "A(z) [number] ember választotta ezt a brókert a BrokerChooser-en az elmúlt 6 hónapban.",
+    "metrics": {
+      "accuracy": {
+        "score": 5.0,
+        "explanation": "The translation accurately conveys the meaning of the original English text without altering its sense. The phrase structure is preserved, and the information is precisely the same."
+      },
+      "fluency": {
+        "score": 5.0,
+        "explanation": "The translation reads naturally in Hungarian, without awkward phrasing or unnatural constructions. It flows smoothly as if it were originally written in Hungarian."
+      },
+      "adequacy": {
+        "score": 5.0,
+        "explanation": "All information from the original text is preserved in the translation without any omissions or unnecessary additions."
+      },
+      "consistency": {
+        "score": 5.0,
+        "explanation": "The terminology and style are consistent throughout the translation, maintaining uniformity with the original text."
+      },
+      "contextual_appropriateness": {
+        "score": 5.0,
+        "explanation": "The translation is perfectly appropriate for the financial/investment context, using language and style suited for the target audience."
+      },
+      "terminology_accuracy": {
+        "score": 5.0,
+        "explanation": "All financial terms are correctly translated, adhering to established Hungarian terminology without introducing inappropriate English terms."
+      },
+      "readability": {
+        "score": 5.0,
+        "explanation": "The text is clear and easy to understand, with no issues that would hinder comprehension."
+      },
+      "format_preservation": {
+        "score": 5.0,
+        "explanation": "The original formatting and layout are perfectly preserved, with the dynamic parameter seamlessly integrated."
+      },
+      "error_rate": {
+        "score": 5.0,
+        "explanation": "There are no grammatical or typographical errors in the translation, ensuring a high level of accuracy and professionalism."
+      }
+    },
+    "matches_reference": true,
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original English text without altering its sense. The phrase structure is preserved, and the information is precisely the same.\nFluency: The translation reads naturally in Hungarian, without awkward phrasing or unnatural constructions. It flows smoothly as if it were originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation without any omissions or unnecessary additions.\nConsistency: The terminology and style are consistent throughout the translation, maintaining uniformity with the original text.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using language and style suited for the target audience.\nTerminology Accuracy: All financial terms are correctly translated, adhering to established Hungarian terminology without introducing inappropriate English terms.\nReadability: The text is clear and easy to understand, with no issues that would hinder comprehension.\nFormat Preservation: The original formatting and layout are perfectly preserved, with the dynamic parameter seamlessly integrated.\nError Rate: There are no grammatical or typographical errors in the translation, ensuring a high level of accuracy and professionalism.",
+    "cost_info": {
+      "total_cost": 0.0009701999999999998,
+      "input_cost": 0.0005429999999999999,
+      "output_cost": 0.0004272,
+      "input_tokens": 3620,
+      "output_tokens": 712,
       "model": "gpt-4o-mini"
     }
   },
   {
     "english_text": "[param name] fees are calculated as follows: [param description]",
     "reference_translation": "[param name] díjai a következőképpen vannak kiszámítva: [param description]",
-    "new_translation": "[param name] díjak a következőképpen kerülnek kiszámításra: [param description]",
+    "new_translation": "[param name] díjai a következőképpen kerülnek kiszámításra: [param description]",
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text without altering the intended message. The phrase '[param name] fees are calculated as follows' is correctly translated to '[param name] díjak a következőképpen kerülnek kiszámításra', preserving the original meaning."
+        "explanation": "The translation accurately conveys the meaning of the original text without altering the intended message."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads smoothly and naturally in Hungarian. It does not exhibit any awkward phrasing or unnatural sentence structures, making it clear that it was written in Hungarian."
+        "explanation": "The translation reads naturally in Hungarian, seamlessly integrating into the language's structure."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation. There are no omissions or unnecessary additions, ensuring the message is conveyed fully."
+        "explanation": "All information from the original text is preserved without any omissions or unnecessary additions."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style used in the translation are consistent throughout. The term 'díjak' for 'fees' is consistently used in a financial context."
+        "explanation": "There are no inconsistencies in terminology or style; the translation maintains a uniform approach."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for a financial/investment context. It uses formal and correct language suitable for the audience."
+        "explanation": "The translation is perfectly suited for a financial/investment context, using appropriate language."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial terms are correctly translated. The use of 'díjak' for 'fees' is a standard term in financial contexts in Hungarian."
+        "explanation": "All financial terms are correctly translated, adhering to established Hungarian standards."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is perfectly clear and easy to understand. The structure and choice of words contribute to a straightforward comprehension of the message."
+        "explanation": "The text is clear and easy to understand, with no ambiguity or confusion."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout are maintained perfectly. The use of brackets for parameters is consistent with the original text."
+        "explanation": "The original formatting and layout are fully maintained in the translation."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "There are no grammatical or typographical errors present in the translation. The text adheres to Hungarian language rules."
+        "explanation": "No grammatical or typographical errors are present in the translation."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering the intended message. The phrase '[param name] fees are calculated as follows' is correctly translated to '[param name] díjak a következőképpen kerülnek kiszámításra', preserving the original meaning.\nFluency: The translation reads smoothly and naturally in Hungarian. It does not exhibit any awkward phrasing or unnatural sentence structures, making it clear that it was written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation. There are no omissions or unnecessary additions, ensuring the message is conveyed fully.\nConsistency: The terminology and style used in the translation are consistent throughout. The term 'díjak' for 'fees' is consistently used in a financial context.\nContextual Appropriateness: The translation is perfectly appropriate for a financial/investment context. It uses formal and correct language suitable for the audience.\nTerminology Accuracy: All financial terms are correctly translated. The use of 'díjak' for 'fees' is a standard term in financial contexts in Hungarian.\nReadability: The text is perfectly clear and easy to understand. The structure and choice of words contribute to a straightforward comprehension of the message.\nFormat Preservation: The original formatting and layout are maintained perfectly. The use of brackets for parameters is consistent with the original text.\nError Rate: There are no grammatical or typographical errors present in the translation. The text adheres to Hungarian language rules.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text without altering the intended message.\nFluency: The translation reads naturally in Hungarian, seamlessly integrating into the language's structure.\nAdequacy: All information from the original text is preserved without any omissions or unnecessary additions.\nConsistency: There are no inconsistencies in terminology or style; the translation maintains a uniform approach.\nContextual Appropriateness: The translation is perfectly suited for a financial/investment context, using appropriate language.\nTerminology Accuracy: All financial terms are correctly translated, adhering to established Hungarian standards.\nReadability: The text is clear and easy to understand, with no ambiguity or confusion.\nFormat Preservation: The original formatting and layout are fully maintained in the translation.\nError Rate: No grammatical or typographical errors are present in the translation.",
     "cost_info": {
-      "total_cost": 0.00101085,
+      "total_cost": 0.0009490499999999999,
       "input_cost": 0.00054105,
-      "output_cost": 0.0004698,
+      "output_cost": 0.00040799999999999994,
       "input_tokens": 3607,
-      "output_tokens": 783,
+      "output_tokens": 680,
       "model": "gpt-4o-mini"
     }
   },
@@ -1172,49 +1172,49 @@
     "metrics": {
       "accuracy": {
         "score": 5.0,
-        "explanation": "The translation accurately conveys the meaning of the original text, preserving the intent that a certain number of people chose this broker."
+        "explanation": "The translation accurately conveys the meaning of the original text. The term 'ember' correctly represents 'people', and there are no changes in meaning."
       },
       "fluency": {
         "score": 5.0,
-        "explanation": "The translation reads naturally in Hungarian, with no awkward phrasing. It feels like it was originally written in Hungarian."
+        "explanation": "The translation reads naturally in Hungarian. It does not appear awkward or forced, making it sound like it was originally written in Hungarian."
       },
       "adequacy": {
         "score": 5.0,
-        "explanation": "All information from the original text is preserved in the translation, with no additions or omissions."
+        "explanation": "All information from the original text is preserved without any omissions or additions. The message remains intact."
       },
       "consistency": {
         "score": 5.0,
-        "explanation": "The terminology and style used in the translation are consistent throughout, with no discrepancies."
+        "explanation": "The terminology and style are consistent throughout the translation. The use of 'brókert' aligns well with the financial context."
       },
       "contextual_appropriateness": {
         "score": 5.0,
-        "explanation": "The translation is perfectly appropriate for the financial/investment context, using suitable language for the audience."
+        "explanation": "The translation is perfectly appropriate for the financial/investment context. The language used is suitable for the target audience."
       },
       "terminology_accuracy": {
         "score": 5.0,
-        "explanation": "All financial and investment terms are correctly translated and appropriate for the context."
+        "explanation": "All financial terms are correctly translated. The term 'bróker' is widely accepted in the Hungarian financial context."
       },
       "readability": {
         "score": 5.0,
-        "explanation": "The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension."
+        "explanation": "The text is clear and easy to understand, with no complex structures that would hinder comprehension."
       },
       "format_preservation": {
         "score": 5.0,
-        "explanation": "The original formatting and layout are perfectly preserved in the translation, with no alterations."
+        "explanation": "The original formatting and layout are perfectly maintained, with the brackets around 'popularity' preserved."
       },
       "error_rate": {
         "score": 5.0,
-        "explanation": "No grammatical or typographical errors are present; the translation is error-free."
+        "explanation": "There are no grammatical or typographical errors in the translation. The sentence is free of mistakes."
       }
     },
     "matches_reference": true,
-    "comments": "Accuracy: The translation accurately conveys the meaning of the original text, preserving the intent that a certain number of people chose this broker.\nFluency: The translation reads naturally in Hungarian, with no awkward phrasing. It feels like it was originally written in Hungarian.\nAdequacy: All information from the original text is preserved in the translation, with no additions or omissions.\nConsistency: The terminology and style used in the translation are consistent throughout, with no discrepancies.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context, using suitable language for the audience.\nTerminology Accuracy: All financial and investment terms are correctly translated and appropriate for the context.\nReadability: The text is clear and easy to understand, with no ambiguity or complexity that would hinder comprehension.\nFormat Preservation: The original formatting and layout are perfectly preserved in the translation, with no alterations.\nError Rate: No grammatical or typographical errors are present; the translation is error-free.",
+    "comments": "Accuracy: The translation accurately conveys the meaning of the original text. The term 'ember' correctly represents 'people', and there are no changes in meaning.\nFluency: The translation reads naturally in Hungarian. It does not appear awkward or forced, making it sound like it was originally written in Hungarian.\nAdequacy: All information from the original text is preserved without any omissions or additions. The message remains intact.\nConsistency: The terminology and style are consistent throughout the translation. The use of 'brókert' aligns well with the financial context.\nContextual Appropriateness: The translation is perfectly appropriate for the financial/investment context. The language used is suitable for the target audience.\nTerminology Accuracy: All financial terms are correctly translated. The term 'bróker' is widely accepted in the Hungarian financial context.\nReadability: The text is clear and easy to understand, with no complex structures that would hinder comprehension.\nFormat Preservation: The original formatting and layout are perfectly maintained, with the brackets around 'popularity' preserved.\nError Rate: There are no grammatical or typographical errors in the translation. The sentence is free of mistakes.",
     "cost_info": {
-      "total_cost": 0.0010275,
+      "total_cost": 0.0009764999999999999,
       "input_cost": 0.0005367,
-      "output_cost": 0.0004908,
+      "output_cost": 0.00043979999999999996,
       "input_tokens": 3578,
-      "output_tokens": 818,
+      "output_tokens": 733,
       "model": "gpt-4o-mini"
     }
   }
