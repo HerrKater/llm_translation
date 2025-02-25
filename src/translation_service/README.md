@@ -1,104 +1,54 @@
 # Translation Service
 
-A FastAPI-based service for handling translations with terminology awareness and language model integration.
+A service for evaluating translation quality using LLM-based translation and evaluation.
 
 ## Prerequisites
 
-- Python 3.9+
-- Conda (Miniconda or Anaconda)
-- Git
+- Python 3.12+
+- OpenAI API key
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. Install Dependencies
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
-```
-
-### 2. Create and Activate Conda Environment
-
-```bash
-# Create a new conda environment
-conda create -n translation_service python=3.9
-
-# Activate the environment
-conda activate translation_service2
-```
-
-### 3. Install Dependencies
-
-```bash
-# Navigate to the translation service directory
-cd src/translation_service
-
 # Install the requirements
 pip install -r requirements.txt
-
 ```
 
-### 4. Environment Configuration
+### 2. Environment Configuration
 
-Create a `.env` file in the `src/translation_service` directory with the following template:
+Create a `.env` file in the root directory with the following:
 
 ```env
 # OpenAI Configuration
-OPENAI_URL=your_openai_url_here
 OPENAI_API_KEY=your_api_key_here
 ```
 
-Replace the placeholder values with your actual configuration.
+Replace `your_api_key_here` with your actual OpenAI API key.
 
-### 5. Running the Application
-
-```bash
-# Make sure you're in the translation_service directory
-cd src/translation_service
-
-# Start the application with hot reload
-uvicorn main:app --reload
-
-```
-
-The application will be available at `http://localhost:8000`
-
-- API Documentation: `http://localhost:8000/docs`
-- Alternative API Documentation: `http://localhost:8000/redoc`
-
-### 6. Running Tests
+### 3. Running Translation Quality Tests
 
 ```bash
-# Run all tests
-pytest
-
-# Run tests with coverage report
-pytest --cov=. tests/
-
-# Run specific test file
-pytest tests/test_specific_file.py
+# Run the translation quality test
+python tests/test_translation_quality.py
 ```
 
-### 7. Code Quality Tools
-
-```bash
-# Run type checking
-mypy .
-
-# Run code linting
-ruff check .
-```
+The test will:
+1. Read English text samples from `tests/translated_output.csv`
+2. Generate new translations using the LLM translator
+3. Evaluate translation quality using the LLM evaluator
+4. Save detailed results to `tests/translation_evaluation_results.json`
 
 ## Project Structure
 
 ```
 translation_service/
-├── application/       # Application layer with use cases
-├── domain/           # Domain layer with core business logic
-├── infrastructure/   # Infrastructure layer (external services, databases)
-├── interfaces/       # Interface adapters
-├── static/          # Static files
-├── tests/           # Test files
+├── domain/           # Core translation and evaluation logic
+│   ├── model/       # Domain models and data structures
+│   └── services/    # Translation and evaluation services
+├── tests/           # Translation quality tests
+```
 ├── main.py          # FastAPI application entry point
 └── requirements.txt  # Project dependencies
 ```

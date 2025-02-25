@@ -28,3 +28,4 @@ ruff==0.9.7
 
 # NLP and Translation Evaluation
 pandas==2.2.0
+openai==1.12.0
