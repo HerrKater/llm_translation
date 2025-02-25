@@ -17,7 +17,11 @@ class TranslationAPI {
     }
 
     static async evaluateTranslations(formData) {
-        console.log('Sending evaluation request with formData:', formData);
+        console.log('Starting evaluation request...');
+        console.log('FormData contents:');
+        for (let [key, value] of formData.entries()) {
+            console.log(key, ':', value);
+        }
         const response = await fetch('/api/evaluate-translations', {
             method: 'POST',
             body: formData
@@ -30,7 +34,9 @@ class TranslationAPI {
         }
 
         const data = await response.json();
-        console.log('Received evaluation response:', JSON.stringify(data, null, 2));
+        console.log('Raw evaluation response:', response);
+        console.log('Parsed evaluation data:', data);
+        console.log('Results array:', data.results);
         return data;
     }
 }

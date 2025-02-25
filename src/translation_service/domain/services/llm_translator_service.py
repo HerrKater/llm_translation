@@ -36,7 +36,7 @@ class LlmTranslatorService(TranslatorService):
                 )
                 
                 # Call LLM and get response with usage info
-                response = self.llm_client.chat(
+                response = await self.llm_client.chat(
                     model=model_to_use,
                     messages=[
                         {"role": "system", "content": system_prompt},

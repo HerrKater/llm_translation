@@ -112,54 +112,44 @@ class UI {
                     <thead>
                         <tr>
                             <th>Metric</th>
-                            <th>Reference Average</th>
-                            <th>New Translation Average</th>
+                            <th>Average Score</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Accuracy</td>
-                            <td>${data.summary.avg_reference_accuracy}/5</td>
                             <td>${metricAverages.accuracy}/5</td>
                         </tr>
                         <tr>
                             <td>Fluency</td>
-                            <td>${data.summary.avg_reference_fluency}/5</td>
                             <td>${metricAverages.fluency}/5</td>
                         </tr>
                         <tr>
                             <td>Adequacy</td>
-                            <td>${data.summary.avg_reference_adequacy}/5</td>
                             <td>${metricAverages.adequacy}/5</td>
                         </tr>
                         <tr>
                             <td>Consistency</td>
-                            <td>${data.summary.avg_reference_consistency}/5</td>
                             <td>${metricAverages.consistency}/5</td>
                         </tr>
                         <tr>
                             <td>Contextual Appropriateness</td>
-                            <td>${data.summary.avg_reference_contextual_appropriateness}/5</td>
                             <td>${metricAverages.contextual_appropriateness}/5</td>
                         </tr>
                         <tr>
                             <td>Terminology Accuracy</td>
-                            <td>${data.summary.avg_reference_terminology_accuracy}/5</td>
                             <td>${metricAverages.terminology_accuracy}/5</td>
                         </tr>
                         <tr>
                             <td>Readability</td>
-                            <td>${data.summary.avg_reference_readability}/5</td>
                             <td>${metricAverages.readability}/5</td>
                         </tr>
                         <tr>
                             <td>Format Preservation</td>
-                            <td>${data.summary.avg_reference_format_preservation}/5</td>
                             <td>${metricAverages.format_preservation}/5</td>
                         </tr>
                         <tr>
                             <td>Error Rate</td>
-                            <td>${data.summary.avg_reference_error_rate}/5</td>
                             <td>${metricAverages.error_rate}/5</td>
                         </tr>
                     </tbody>
@@ -320,7 +310,7 @@ class UI {
                 </div>
                 <div class="comments">
                     <strong>Comments:</strong>
-                    <p>${result.comments}</p>
+                    <p>${result.new_evaluation.comments}</p>
                 </div>
             </div>
         `).join('');

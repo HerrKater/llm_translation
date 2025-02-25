@@ -5,7 +5,7 @@ class LlmRepository(ABC):
     """Base interface for LLM interactions."""
     
     @abstractmethod
-    def complete(
+    async def complete(
         self,
         prompt: str,
         model: str,
@@ -17,7 +17,7 @@ class LlmRepository(ABC):
         pass
 
     @abstractmethod
-    def chat(
+    async def chat(
         self,
         messages: List[Dict[str, str]],
         model: str,

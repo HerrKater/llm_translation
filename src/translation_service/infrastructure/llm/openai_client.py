@@ -1,5 +1,5 @@
 from typing import Dict, List, Optional
-import openai
+from openai import AsyncOpenAI
 
 from domain.model.settings import Settings
 from domain.infrastructure_interfaces.llm_repository import LlmRepository
@@ -10,13 +10,13 @@ class OpenAILLMClient(LlmRepository):
     
     def __init__(self, settings: Settings):
         """Initialize the OpenAI client with settings."""
-        self.client = openai.OpenAI(
+        self.client = AsyncOpenAI(
             api_key=settings.api_key,
             base_url=settings.url
         )
         self.model_name = settings.language_model
         
-    def complete(
+    async def complete(
         self,
         prompt: str,
         model: str,
@@ -31,7 +31,7 @@ class OpenAILLMClient(LlmRepository):
             - content: The generated text response
             - usage: Token usage information including prompt_tokens and completion_tokens
         """
-        response = self.client.completions.create(
+        response = await self.client.completions.create(
             model=model or self.model_name,
             prompt=prompt,
             temperature=temperature,
@@ -46,7 +46,7 @@ class OpenAILLMClient(LlmRepository):
             }
         }
 
-    def chat(
+    async def chat(
         self,
         messages: List[Dict[str, str]],
         model: str,
@@ -61,7 +61,7 @@ class OpenAILLMClient(LlmRepository):
             - content: The generated text response
             - usage: Token usage information including prompt_tokens and completion_tokens
         """
-        response = self.client.chat.completions.create(
+        response = await self.client.chat.completions.create(
             model=model or self.model_name,
             messages=messages,
             temperature=temperature,

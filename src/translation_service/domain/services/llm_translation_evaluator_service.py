@@ -1,4 +1,5 @@
 import json
+import asyncio
 from domain.model.settings import Settings
 from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client, LLMProvider
@@ -38,30 +39,31 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
             'ko': 'Korean'
         }
         language_name = language_names.get(target_language, target_language.upper())
-        # Evaluate reference translation
+        # Evaluate reference and new translations in parallel
         try:
-          reference_prompt = self.create_prompt(english_text, reference_translation)
-          reference_response = self.llm_client.chat(
-              model=model_to_use,
-              messages=[
-                  {"role": "system", "content": f"You are a {language_name} language expert. Provide evaluation in the exact JSON format requested."},
-                  {"role": "user", "content": reference_prompt}
-              ]
+          reference_prompt = self.create_prompt(english_text, reference_translation, language_name)
+          new_prompt = self.create_prompt(english_text, new_translation, language_name)
+
+          # Run evaluations in parallel
+          reference_response, new_response = await asyncio.gather(
+              self.llm_client.chat(
+                  model=model_to_use,
+                  messages=[
+                      {"role": "system", "content": f"You are a {language_name} language expert. Provide evaluation in the exact JSON format requested."},
+                      {"role": "user", "content": reference_prompt}
+                  ]
+              ),
+              self.llm_client.chat(
+                  model=model_to_use,
+                  messages=[
+                      {"role": "system", "content": f"You are a {language_name} language expert. Provide evaluation in the exact JSON format requested."},
+                      {"role": "user", "content": new_prompt}
+                  ]
+              )
           )
+
+          # Parse responses
           reference_evaluation = self.parse_evaluation_response(reference_response, model_to_use)
-
-          # Evaluate new translation
-          new_prompt = self.create_prompt(english_text, new_translation)
-
-        
-          new_response = self.llm_client.chat(
-              model=model_to_use,
-              messages=[
-                  {"role": "system", "content": f"You are a {language_name} language expert. Provide evaluation in the exact JSON format requested."},
-                  {"role": "user", "content": new_prompt}
-              ]
-          )
-
           new_evaluation = self.parse_evaluation_response(new_response, model_to_use)
           
           # Calculate total cost
@@ -92,127 +94,143 @@ class LlmTranslationEvaluatorService(TranslationEvaluatorService):
             error_message = f"Unexpected error during evaluation: {str(e)}"
             return self._handle_error(error_message)
 
-    def create_prompt(original_text, translation):
-      prompt = f"""You are an expert translator and evaluator. Your task is to assess the quality of a machine-generated translation based on several key criteria. Below are the source text and its translation. Evaluate the translation on each criterion listed, providing a score from 1 to 5 (where 1 is poor and 5 is excellent) and a brief explanation for each score.
+    def create_prompt(self, original_text: str, translation: str, target_language: str) -> str:
+      """
+      Creates a system prompt for evaluating translation quality.
+      
+      Args:
+          original_text: The source text in English
+          translation: The translated text to evaluate
+          target_language: The language of the translation (e.g., "Hungarian", "Spanish")
+          
+      Returns:
+          A formatted system prompt string for LLM translation evaluation
+      """
+      prompt = f"""# System Prompt for Translation Quality Evaluation
 
-Source Text:
-{original_text}
+  You are a specialized evaluator for translations in a financial/investment context. Your task is to assess the translation of the provided English text to {target_language}, evaluating for accuracy, naturalness, and cultural appropriateness, and provide standardized scores in a structured JSON format.
 
-Translated Text:
-{translation}
+  ## Original Text
+  ```
+  {original_text}
+  ```
 
+  ## Translation to Evaluate
+  ```
+  {translation}
+  ```
 
-Evaluation Criteria:
+  ## Target Language
+  {target_language}
 
-1. Accuracy: How well does the translation convey the original meaning?
-2. Fluency: Is the translation grammatically correct and natural-sounding?
-3. Adequacy: Are all important elements of the source text present?
-4. Consistency: Is terminology used consistently throughout the translation?
-5. Contextual Appropriateness: Does the translation appropriately reflect the context and cultural nuances?
-6. Terminology Accuracy: Are specialized terms translated correctly?
-7. Readability: Is the translation easy to read and understand?
-8. Format Preservation: Does the translation maintain the original formatting and layout?
-9. Error Rate: Are there any grammatical or typographical errors?
+  ## Key Evaluation Criteria
 
-Provide the evaluation as a JSON object with each criterion as a key. Each key should have an object containing two fields:
-"score": An integer between 1 and 5
-"explanation": A brief string explaining the score
+  1. **Grammatical Accuracy**
+    - Ensure proper use of grammatical features specific to {target_language} (cases, gender, tense, etc.)
+    - Check that all syntactic structures are correctly applied according to {target_language} rules
+    - Pay special attention to how parameters and variables (marked with brackets like [countryName]) are integrated grammatically
 
-Example response format:
-{{
-  "Accuracy": {{
-    "score": 5,
-    "explanation": "The translation perfectly conveys the original meaning without any loss or alteration."
-  }},
-  "Fluency": {{
-    "score": 4,
-    "explanation": "The translation is grammatically correct and reads naturally, with minor stylistic improvements possible."
-  }},
-  "Adequacy": {{
-    "score": 5,
-    "explanation": "All important elements from the source text are present in the translation."
-  }},
-  "Consistency": {{
-    "score": 5,
-    "explanation": "Terminology is used consistently throughout the translation."
-  }},
-  "Contextual_Appropriateness": {{
-    "score": 4,
-    "explanation": "The translation reflects the context and cultural nuances well."
-  }},
-  "Terminology_Accuracy": {{
-    "score": 5,
-    "explanation": "All specialized terms are translated correctly."
-  }},
-  "Readability": {{
-    "score": 4,
-    "explanation": "The translation is clear and easy to understand."
-  }},
-  "Format_Preservation": {{
-    "score": 5,
-    "explanation": "The original formatting and layout are perfectly maintained."
-  }},
-  "Error_Rate": {{
-    "score": 5,
-    "explanation": "There are no grammatical or typographical errors."
+  2. **Number and Date Formatting**
+    - Verify that numbers, currencies, dates, and other formatted elements follow {target_language} conventions
+    - Check correct use of decimal and thousand separators according to local standards
+
+  3. **Terminology**
+    - Identify inappropriately borrowed English terms when {target_language} equivalents exist
+    - Financial terms should use standard {target_language} terminology when established
+    - Check for industry-specific terms that may have standardized translations
+
+  4. **Word Order and Syntax**
+    - Evaluate if the translation follows natural {target_language} syntax rather than mirroring English structure
+    - Check if modifiers, adjectives, and other elements are placed correctly according to {target_language} norms
+
+  5. **Stylistic Appropriateness**
+    - Assess if the translation uses unnecessarily verbose or overly literal constructions
+    - Check if idiomatic expressions are appropriately adapted to {target_language}
+    - Evaluate whether the formality level is appropriate for a financial/investment context
+
+  6. **Consistency**
+    - Ensure product features, functions, and key terms are consistently translated
+    - Check that recurring phrases maintain consistent translations throughout
+
+  7. **Parameter Handling**
+    - Verify that dynamic parameters (marked with brackets like [countryName], [brokerName], etc.) are properly integrated with appropriate grammatical adaptations required by {target_language}
+    - Check if numeric parameters need grammatical agreement (e.g., pluralization rules)
+
+  ## Scoring System
+
+  Provide ratings on a scale of 1-5 (where 1 is poor and 5 is excellent) for the following metrics:
+
+  1. **Accuracy**: How accurately the translation conveys the meaning of the source text
+  2. **Fluency**: How naturally and smoothly the translation reads in {target_language}
+  3. **Adequacy**: Whether all information is preserved without additions or omissions
+  4. **Consistency**: Whether terminology and style are consistent throughout
+  5. **Contextual_Appropriateness**: Whether the translation is appropriate for the context and target audience
+  6. **Terminology_Accuracy**: Whether domain-specific terms are correctly translated
+  7. **Readability**: How clear and easy to understand the text is
+  8. **Format_Preservation**: Whether the original formatting and layout are maintained
+  9. **Error_Rate**: Absence of grammatical or typographical errors
+
+  ## Response Format
+
+  You must return your evaluation ONLY as a valid JSON object. Do not include any text before or after the JSON. The response must be parseable by a JSON parser. 
+
+  Your response must follow this exact structure:
+
+  ```json
+  {{
+    "Accuracy": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Fluency": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Adequacy": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Consistency": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Contextual_Appropriateness": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Terminology_Accuracy": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Readability": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Format_Preservation": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }},
+    "Error_Rate": {{
+      "score": [integer between 1-5],
+      "explanation": "Detailed explanation of the score."
+    }}
   }}
-}}"""
-    
-    def create_prompt(self, original_text: str, translation: str) -> str:
-        prompt = f"""Please evaluate the following translation pair and provide a detailed assessment in JSON format.
+  ```
 
-Original Text:
-{original_text}
+  IMPORTANT: The response must be VALID JSON only. Do not include any explanatory text, markdown formatting, or any other content outside of the JSON object. The JSON must be properly formatted with all quotation marks, commas, and brackets in the correct places. Scores must be integers between 1 and 5, not strings or arrays.
 
-Translation:
-{translation}
+  ## Final Notes for Accurate Evaluation
 
-Provide an evaluation using the following criteria, scoring each on a scale of 1-5 where 5 is best.
-Return the evaluation in this exact JSON format:
+  - Always consider {target_language} linguistic norms over literal translations
+  - Pay special attention to cases where parameters ([countryName], [brokerName], etc.) would require grammatical adaptations specific to {target_language}
+  - Consider the financial/investment context of the translations
+  - Focus on both technical accuracy and natural-sounding {target_language}
+  - Be aware of regional variations within {target_language} if applicable
+  """
+      return prompt
 
-{{
-  "Accuracy": {{
-    "score": 5,
-    "explanation": "The translation accurately conveys all the meaning from the source text."
-  }},
-  "Fluency": {{
-    "score": 5,
-    "explanation": "The translation reads naturally and smoothly in the target language."
-  }},
-  "Adequacy": {{
-    "score": 5,
-    "explanation": "All information is preserved without additions or omissions."
-  }},
-  "Consistency": {{
-    "score": 5,
-    "explanation": "Terminology and style are consistent throughout."
-  }},
-  "Contextual_Appropriateness": {{
-    "score": 5,
-    "explanation": "The translation is appropriate for the context and target audience."
-  }},
-  "Terminology_Accuracy": {{
-    "score": 5,
-    "explanation": "Domain-specific terms are correctly translated."
-  }},
-  "Readability": {{
-    "score": 5,
-    "explanation": "The text is clear and easy to understand."
-  }},
-  "Format_Preservation": {{
-    "score": 5,
-    "explanation": "The original formatting and layout are perfectly maintained."
-  }},
-  "Error_Rate": {{
-    "score": 5,
-    "explanation": "There are no grammatical or typographical errors."
-  }}
-}}"""
-        return prompt
-    
-    
-    
     def parse_evaluation_response(self, response: dict, model_to_use: str):
+      print("DEBUG: Raw response:", response)
       content = response['content'].strip()
       if content.startswith('```json'):
           content = content[7:]
@@ -221,7 +239,9 @@ Return the evaluation in this exact JSON format:
       if content.endswith('```'):
           content = content[:-3]
       content = content.strip()
+      print("DEBUG: Content after cleanup:", content)
       evaluation_dict = json.loads(content)
+      print("DEBUG: Parsed evaluation dict:", evaluation_dict)
       # Calculate cost for evaluation
       total_cost, cost_breakdown = LLMPricing.calculate_cost(
           model=model_to_use,
@@ -244,13 +264,14 @@ Return the evaluation in this exact JSON format:
       for criterion, data in evaluation_dict.items():
           raw_score = int(data['score'])
           metrics[criterion.lower()] = EvaluationMetric(
-              score=raw_score,
+              score=float(raw_score),  # Convert to float as required by the model
               raw_score=raw_score,
               explanation=data['explanation']
           )
       
       # Create LLM evaluation with cost info for the UI
-      return LLMEvaluation(
+      print("DEBUG: Final metrics:", metrics)
+      result = LLMEvaluation(
           accuracy=metrics['accuracy'],
           fluency=metrics['fluency'],
           adequacy=metrics['adequacy'],
@@ -260,10 +281,12 @@ Return the evaluation in this exact JSON format:
           readability=metrics['readability'],
           format_preservation=metrics['format_preservation'],
           error_rate=metrics['error_rate'],
-          matches_reference=metrics['accuracy'].score > 7.5,  # Consider it matching if accuracy is high
-          comments="\n".join([f"{k.replace('_', ' ').title()}: {v.explanation}" for k, v in metrics.items()]),
+          matches_reference=metrics['accuracy'].score >= 4,  # Consider it matching if accuracy is high (4 or 5 out of 5)
+          comments="\n".join([f"{k.replace('_', ' ').title()}: {v.explanation}" for k, v in metrics.items() if v and v.explanation]),
           cost_info=cost_info
       )
+      print("DEBUG: Final result comments:", result.comments)
+      return result
 
             
     def _handle_error(self, error_message: str, english_text: str = '', reference_translation: str = '', new_translation: str = '') -> EvaluationResult:
