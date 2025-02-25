@@ -232,6 +232,12 @@ class UI {
             `;
         }).join('');
 
+        // Calculate total costs
+        const totalTranslationCost = data.results.reduce((sum, result) => sum + (result.cost_info ? result.cost_info.total_cost : 0), 0);
+        const totalReferenceEvalCost = data.results.reduce((sum, result) => sum + (result.reference_evaluation && result.reference_evaluation.cost_info ? result.reference_evaluation.cost_info.total_cost : 0), 0);
+        const totalNewEvalCost = data.results.reduce((sum, result) => sum + (result.new_evaluation && result.new_evaluation.cost_info ? result.new_evaluation.cost_info.total_cost : 0), 0);
+        const grandTotalCost = totalTranslationCost + totalReferenceEvalCost + totalNewEvalCost;
+
         const summaryHtml = `
             <div class="summary-card">
                 <h3>Evaluation Summary</h3>
@@ -258,6 +264,28 @@ class UI {
                         ${comparisonRows}
                     </tbody>
                 </table>
+                
+                <div class="total-cost-summary">
+                    <h4>Total Cost Summary</h4>
+                    <div class="cost-grid">
+                        <div class="cost-item">
+                            <label>Translation Cost:</label>
+                            <span>${totalTranslationCost.toFixed(4)}</span>
+                        </div>
+                        <div class="cost-item">
+                            <label>Reference Evaluation Cost:</label>
+                            <span>${totalReferenceEvalCost.toFixed(4)}</span>
+                        </div>
+                        <div class="cost-item">
+                            <label>New Evaluation Cost:</label>
+                            <span>${totalNewEvalCost.toFixed(4)}</span>
+                        </div>
+                        <div class="cost-item total">
+                            <label>Grand Total:</label>
+                            <span>${grandTotalCost.toFixed(4)}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <style>
                 .legend {
@@ -293,6 +321,45 @@ class UI {
                 }
                 .score-arrow {
                     font-size: 1.2em;
+                }
+                .total-cost-summary {
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: #f8f9fa;
+                    border-radius: 4px;
+                    border-left: 4px solid #007bff;
+                }
+                .total-cost-summary h4 {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    color: #007bff;
+                }
+                .cost-grid {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                .cost-item {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 5px 0;
+                }
+                .cost-item label {
+                    font-weight: 500;
+                }
+                .cost-item.total {
+                    border-top: 1px solid #dee2e6;
+                    margin-top: 5px;
+                    padding-top: 10px;
+                    font-weight: bold;
+                }
+                .cost-item.total span {
+                    color: #007bff;
+                }
+                @media (min-width: 768px) {
+                    .cost-grid {
+                        grid-template-columns: 1fr 1fr;
+                    }
                 }
             </style>
         `;
@@ -352,15 +419,15 @@ class UI {
                     <div class="text-samples">
                         <div class="text-sample">
                             <h5>Original Text</h5>
-                            <p>${result.source_text}</p>
+                            <p>${result.source_text || 'No original text available'}</p>
                         </div>
                         <div class="text-sample">
                             <h5>Reference Translation</h5>
-                            <p>${result.reference_translation}</p>
+                            <p>${result.reference_translation || 'No reference translation available'}</p>
                         </div>
                         <div class="text-sample">
                             <h5>New Translation</h5>
-                            <p>${result.new_translation}</p>
+                            <p>${result.new_translation || 'No new translation available'}</p>
                         </div>
                     </div>
 
