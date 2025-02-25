@@ -7,6 +7,7 @@ class ModelName(str, Enum):
     GPT_4O_MINI = "gpt-4o-mini"
     GPT_4O = "gpt-4o"
     GPT_O1_MINI = "o1-mini"
+    CLAUDE_3_5_SONNET = "claude-3-5-sonnet-20240620"
 
 @dataclass
 class ModelConfig:
@@ -45,6 +46,14 @@ class LanguageModels:
             output_cost_per_1k=0.004,
             max_tokens=128000,
             description="The o1 series of models are trained with reinforcement learning to perform complex reasoning. o1 models think before they answer, producing a long internal chain of thought before responding to the user. Learn about the capabilities of o1 models in our reasoning guide.The o1 reasoning model is designed to solve hard problems across domains. o1-mini is a faster and more affordable reasoning model, but we recommend using the newer o3-mini model that features higher intelligence at the same latency and price as o1-mini."
+        ),
+        ModelName.CLAUDE_3_5_SONNET: ModelConfig(
+            name=ModelName.CLAUDE_3_5_SONNET,
+            display_name="Claude Sonnet 3.5",
+            input_cost_per_1k=0.003,
+            output_cost_per_1k=0.015,
+            max_tokens=200000,
+            description="Claude 3.5 Sonnet is Anthropic's latest language model offering high performance and reliability."
         )
     }
 
