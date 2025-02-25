@@ -22,10 +22,13 @@ Create a `.env` file in the root directory with the following:
 
 ```env
 # OpenAI Configuration
+OPENAI_URL=your_openai_compatible_url_here
 OPENAI_API_KEY=your_api_key_here
 ```
 
-Replace `your_api_key_here` with your actual OpenAI API key.
+Replace `your_api_key_here` with your actual OpenAI API key and `your_openai_compatible_url_here` with the appropriate endpoint URL.
+
+Note: This code was tested against a LiteLLM server providing an OpenAI-compatible interface, which is why Claude models appear in the configuration. If you're using different model names, you'll need to modify the values in `domain/models/language_models.py` where these are hard-coded.
 
 ### 3. Running Translation Quality Tests
 
