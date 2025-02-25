@@ -90,6 +90,113 @@ class UI {
             return;
         }
         
+        // Add CSS for the updated UI
+        const styleElement = document.createElement('style');
+        styleElement.textContent = `
+            .pagination-controls {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 15px 0;
+                padding: 10px;
+                background: #f8f9fa;
+                border-radius: 4px;
+            }
+            .pagination-btn {
+                padding: 8px 15px;
+                background: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .pagination-btn:disabled {
+                background: #6c757d;
+                cursor: not-allowed;
+            }
+            .pagination-info {
+                font-weight: bold;
+            }
+            .metrics-comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .metrics-comparison-table th, 
+            .metrics-comparison-table td {
+                padding: 10px;
+                border: 1px solid #dee2e6;
+            }
+            .metrics-comparison-table th {
+                background-color: #f8f9fa;
+            }
+            .ref-score {
+                color: #666;
+                text-align: center;
+            }
+            .new-score {
+                font-weight: bold;
+                text-align: center;
+            }
+            .score-arrow {
+                font-size: 1.2em;
+                text-align: center;
+            }
+            .toggle-btn {
+                padding: 5px 10px;
+                background: #f0f0f0;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .metric-details {
+                margin-top: 10px;
+                padding: 10px;
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+            }
+            .detail-section {
+                margin-bottom: 10px;
+            }
+            .detail-section h6 {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .metrics-legend {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 10px;
+                padding: 10px;
+                background: #f8f9fa;
+                border-radius: 4px;
+            }
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .evaluation-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .evaluation-header h4 {
+                margin: 0;
+            }
+            @media (max-width: 768px) {
+                .evaluation-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 10px;
+                }
+                .pagination-controls {
+                    width: 100%;
+                }
+            }
+        `;
+        document.head.appendChild(styleElement);
+        
         // Extract both new and reference translation averages
         const metrics = [
             { key: 'accuracy', label: 'Accuracy' },
@@ -190,180 +297,169 @@ class UI {
             </style>
         `;
 
-        // Generate the detailed results HTML for each evaluation
-        const detailsHtml = data.results.map(result => `
-            <div class="evaluation-result">
-                <h4>Translation Evaluation</h4>
-                <div class="text-samples">
-                    <div class="text-sample">
-                        <h5>Original Text</h5>
-                        <p>${result.original_text}</p>
-                    </div>
-                    <div class="text-sample">
-                        <h5>Reference Translation</h5>
-                        <p>${result.reference_translation}</p>
-                    </div>
-                    <div class="text-sample">
-                        <h5>New Translation</h5>
-                        <p>${result.new_translation}</p>
-                    </div>
+        // Generate pagination controls
+        const createPaginationControls = (currentPage, totalPages) => {
+            let paginationHtml = `
+                <div class="pagination-controls">
+                    <button class="pagination-btn prev-btn" ${currentPage <= 1 ? 'disabled' : ''} data-page="${currentPage - 1}">« Previous</button>
+                    <span class="pagination-info">Translation ${currentPage} of ${totalPages}</span>
+                    <button class="pagination-btn next-btn" ${currentPage >= totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">Next »</button>
                 </div>
-
-                <div class="evaluation-details">
-                    <h5>Evaluation Details</h5>
-                    <div class="evaluation-tables">
-                        <div class="reference-evaluation">
-                            <h6>Reference Translation Evaluation</h6>
-                            <table class="metrics-table">
-                                <thead>
-                                    <tr>
-                                        <th>Metric</th>
-                                        <th>Score</th>
-                                        <th>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Accuracy</td>
-                                        <td>${result.reference_evaluation.accuracy.score}/5</td>
-                                        <td>${result.reference_evaluation.accuracy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fluency</td>
-                                        <td>${result.reference_evaluation.fluency.score}/5</td>
-                                        <td>${result.reference_evaluation.fluency.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adequacy</td>
-                                        <td>${result.reference_evaluation.adequacy.score}/5</td>
-                                        <td>${result.reference_evaluation.adequacy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Consistency</td>
-                                        <td>${result.reference_evaluation.consistency.score}/5</td>
-                                        <td>${result.reference_evaluation.consistency.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contextual Appropriateness</td>
-                                        <td>${result.reference_evaluation.contextual_appropriateness.score}/5</td>
-                                        <td>${result.reference_evaluation.contextual_appropriateness.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Terminology Accuracy</td>
-                                        <td>${result.reference_evaluation.terminology_accuracy.score}/5</td>
-                                        <td>${result.reference_evaluation.terminology_accuracy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Readability</td>
-                                        <td>${result.reference_evaluation.readability.score}/5</td>
-                                        <td>${result.reference_evaluation.readability.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Format Preservation</td>
-                                        <td>${result.reference_evaluation.format_preservation.score}/5</td>
-                                        <td>${result.reference_evaluation.format_preservation.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Error Rate</td>
-                                        <td>${result.reference_evaluation.error_rate.score}/5</td>
-                                        <td>${result.reference_evaluation.error_rate.explanation}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="new-evaluation">
-                            <h6>New Translation Evaluation</h6>
-                            <table class="metrics-table">
-                                <thead>
-                                    <tr>
-                                        <th>Metric</th>
-                                        <th>Score</th>
-                                        <th>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Accuracy</td>
-                                        <td>${result.new_evaluation.accuracy.score}/5</td>
-                                        <td>${result.new_evaluation.accuracy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fluency</td>
-                                        <td>${result.new_evaluation.fluency.score}/5</td>
-                                        <td>${result.new_evaluation.fluency.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adequacy</td>
-                                        <td>${result.new_evaluation.adequacy.score}/5</td>
-                                        <td>${result.new_evaluation.adequacy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Consistency</td>
-                                        <td>${result.new_evaluation.consistency.score}/5</td>
-                                        <td>${result.new_evaluation.consistency.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contextual Appropriateness</td>
-                                        <td>${result.new_evaluation.contextual_appropriateness.score}/5</td>
-                                        <td>${result.new_evaluation.contextual_appropriateness.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Terminology Accuracy</td>
-                                        <td>${result.new_evaluation.terminology_accuracy.score}/5</td>
-                                        <td>${result.new_evaluation.terminology_accuracy.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Readability</td>
-                                        <td>${result.new_evaluation.readability.score}/5</td>
-                                        <td>${result.new_evaluation.readability.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Format Preservation</td>
-                                        <td>${result.new_evaluation.format_preservation.score}/5</td>
-                                        <td>${result.new_evaluation.format_preservation.explanation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Error Rate</td>
-                                        <td>${result.new_evaluation.error_rate.score}/5</td>
-                                        <td>${result.new_evaluation.error_rate.explanation}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="cost-section">
-                    <h5>Evaluation Cost</h5>
-                    <div class="cost-details">
-                        <div class="cost-item">
-                            <label>Total:</label>
-                            <span>$${result.cost_info.total_cost.toFixed(4)}</span>
-                        </div>
-                        <div class="cost-item">
-                            <label>Input:</label>
-                            <span>$${result.cost_info.input_cost.toFixed(4)} (${result.cost_info.input_tokens} tokens)</span>
-                        </div>
-                        <div class="cost-item">
-                            <label>Output:</label>
-                            <span>$${result.cost_info.output_cost.toFixed(4)} (${result.cost_info.output_tokens} tokens)</span>
-                        </div>
-                        <div class="cost-item">
-                            <label>Model:</label>
-                            <span>${result.cost_info.model}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments">
-                    <strong>Comments:</strong>
-                    <p>${result.new_evaluation.comments}</p>
-                </div>
-            </div>
-        `).join('');
+            `;
+            return paginationHtml;
+        };
         
+        // Generate the detailed results HTML for each evaluation
+        const resultDetailsList = data.results.map((result, index) => {
+            // Create comparison rows for the detailed metrics
+            const metricComparisons = metrics.map(metric => {
+                const refScore = result.reference_evaluation[metric.key].score;
+                const newScore = result.new_evaluation[metric.key].score;
+                const diff = newScore - refScore;
+                const diffColor = diff > 0 ? '#28a745' : diff < 0 ? '#dc3545' : '#6c757d';
+                const diffSymbol = diff > 0 ? '▲' : diff < 0 ? '▼' : '=';
+                
+                return `
+                    <tr>
+                        <td>${metric.label}</td>
+                        <td class="score-cell ref-score">${refScore}/5</td>
+                        <td class="score-arrow" style="color: ${diffColor}">${diffSymbol}</td>
+                        <td class="score-cell new-score">${newScore}/5</td>
+                        <td class="details-cell toggle-details" data-metric="${metric.key}">
+                            <button class="toggle-btn">View Details</button>
+                            <div class="metric-details" style="display: none;">
+                                <div class="detail-section">
+                                    <h6>Reference:</h6>
+                                    <p>${result.reference_evaluation[metric.key].explanation}</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h6>New:</h6>
+                                    <p>${result.new_evaluation[metric.key].explanation}</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            return `
+                <div class="evaluation-result" id="evaluation-${index+1}" style="display: ${index === 0 ? 'block' : 'none'};">
+                    <div class="evaluation-header">
+                        <h4>Translation Evaluation ${index + 1}</h4>
+                        ${createPaginationControls(index + 1, data.results.length)}
+                    </div>
+                    
+                    <div class="text-samples">
+                        <div class="text-sample">
+                            <h5>Original Text</h5>
+                            <p>${result.original_text}</p>
+                        </div>
+                        <div class="text-sample">
+                            <h5>Reference Translation</h5>
+                            <p>${result.reference_translation}</p>
+                        </div>
+                        <div class="text-sample">
+                            <h5>New Translation</h5>
+                            <p>${result.new_translation}</p>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-details">
+                        <h5>Evaluation Metrics Comparison</h5>
+                        <div class="metrics-legend">
+                            <div class="legend-item"><span style="color: #28a745">▲</span> New translation scores higher</div>
+                            <div class="legend-item"><span style="color: #dc3545">▼</span> New translation scores lower</div>
+                            <div class="legend-item"><span style="color: #6c757d">=</span> Scores are equal</div>
+                        </div>
+                        <table class="metrics-comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Reference</th>
+                                    <th></th>
+                                    <th>New</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${metricComparisons}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="cost-section">
+                        <h5>Evaluation Cost</h5>
+                        <div class="cost-details">
+                            <div class="cost-item">
+                                <label>Total:</label>
+                                <span>${result.cost_info.total_cost.toFixed(4)}</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Input:</label>
+                                <span>${result.cost_info.input_cost.toFixed(4)} (${result.cost_info.input_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Output:</label>
+                                <span>${result.cost_info.output_cost.toFixed(4)} (${result.cost_info.output_tokens} tokens)</span>
+                            </div>
+                            <div class="cost-item">
+                                <label>Model:</label>
+                                <span>${result.cost_info.model}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <strong>Comments:</strong>
+                        <p>${result.new_evaluation.comments}</p>
+                    </div>
+                    ${createPaginationControls(index + 1, data.results.length)}
+                </div>
+            `;
+        });
+        
+        const detailsHtml = resultDetailsList.join('');
         const finalHtml = summaryHtml + detailsHtml;
+        
         console.log('Setting final HTML:', finalHtml);
         resultsDiv.innerHTML = finalHtml;
+        
+        // Add event listeners for pagination
+        setTimeout(() => {
+            const paginationButtons = document.querySelectorAll('.pagination-btn');
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPage = parseInt(this.dataset.page);
+                    if (!isNaN(targetPage)) {
+                        // Hide all evaluation results
+                        document.querySelectorAll('.evaluation-result').forEach(result => {
+                            result.style.display = 'none';
+                        });
+                        
+                        // Show the selected result
+                        const targetResult = document.getElementById(`evaluation-${targetPage}`);
+                        if (targetResult) {
+                            targetResult.style.display = 'block';
+                            // Scroll to the top of the result
+                            targetResult.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+            
+            // Add event listeners for metric detail toggles
+            document.querySelectorAll('.toggle-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const detailsDiv = this.parentElement.querySelector('.metric-details');
+                    if (detailsDiv.style.display === 'none') {
+                        detailsDiv.style.display = 'block';
+                        this.textContent = 'Hide Details';
+                    } else {
+                        detailsDiv.style.display = 'none';
+                        this.textContent = 'View Details';
+                    }
+                });
+            });
+        }, 100);
     }
 
     static escapeHtml(unsafe) {
