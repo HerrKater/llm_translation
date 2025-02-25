@@ -352,7 +352,7 @@ class UI {
                     <div class="text-samples">
                         <div class="text-sample">
                             <h5>Original Text</h5>
-                            <p>${result.original_text}</p>
+                            <p>${result.source_text}</p>
                         </div>
                         <div class="text-sample">
                             <h5>Reference Translation</h5>
