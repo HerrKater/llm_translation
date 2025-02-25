@@ -184,7 +184,53 @@ class UI {
             .evaluation-header h4 {
                 margin: 0;
             }
-            @media (max-width: 768px) {
+            .cost-section {
+                margin-top: 15px;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 4px;
+                border-left: 4px solid #007bff;
+            }
+            .cost-section h5 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
+            .cost-details {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .cost-item {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+            }
+            .cost-item label {
+                font-weight: 500;
+            }
+            .cost-item.total {
+                border-top: 1px solid #dee2e6;
+                margin-top: 5px;
+                padding-top: 10px;
+                font-weight: bold;
+            }
+            .cost-item.total span {
+                color: #007bff;
+            }
+            .comments {
+                margin-top: 15px;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 4px;
+                border-left: 4px solid #28a745;
+            }
+            .comments strong {
+                display: block;
+                margin-bottom: 5px;
+                color: #28a745;
+            }
+            @media (min-width: 768px) {
                 .evaluation-header {
                     flex-direction: column;
                     align-items: flex-start;
@@ -192,6 +238,9 @@ class UI {
                 }
                 .pagination-controls {
                     width: 100%;
+                }
+                .cost-details {
+                    grid-template-columns: 1fr 1fr;
                 }
             }
         `;
@@ -455,7 +504,7 @@ class UI {
                     </div>
                     
                     <div class="cost-section">
-                        <h5>Evaluation Cost</h5>
+                        <h5>Translation Cost</h5>
                         <div class="cost-details">
                             <div class="cost-item">
                                 <label>Total:</label>
