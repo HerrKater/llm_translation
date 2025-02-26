@@ -77,7 +77,7 @@ The average token count was:
 
 Based on my findings, I recommend the following enhancements:
 
-### 4.1
+### 4.1 Parameter Preservation
 One of the critical challenges is preserving parameters like [brokerName] or [countryName] while ensuring they integrated correctly with Hungarian grammar.
 
 - Parameter detection and protection during pre-processing
@@ -109,7 +109,7 @@ To address financial terminology challenges, we could create:
    - Implement a feedback mechanism to improve the system based on human review
    - Develop automated error pattern detection for ongoing refinement
 
-### 4.7 Enhanced Context Handling**:
+### 4.7 Enhanced Context Handling:
    - Improve context awareness for ambiguous financial terms
    - Add website section awareness to ensure consistency across related pages
 
