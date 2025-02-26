@@ -5,16 +5,16 @@ from domain.model.settings import Settings
 from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client
 from domain.domain_interfaces.translator_service import TranslatorService
+from domain.model.settings import LLMProvider
 
 class LlmTranslatorService(TranslatorService):
     """Implementation of Translator using OpenAI's API"""
     
     def __init__(self, settings: Settings):
         self.llm_client = create_llm_client(
-            provider=settings.llm_provider,
+            provider=LLMProvider.OPENAI,
             settings=settings
         )
-        self.model = settings.language_model
 
     async def translate(self, request: TranslationRequest, model: str = None) -> Tuple[Translation, Dict]:
         # Use provided model or fallback to default

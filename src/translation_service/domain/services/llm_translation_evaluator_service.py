@@ -9,10 +9,9 @@ from domain.model.llm_evaluation import LLMEvaluation, CostInfo, EvaluationMetri
 class LlmTranslationEvaluatorService(TranslationEvaluatorService):
     def __init__(self, settings: Settings):
         self.llm_client = create_llm_client(
-            provider=settings.llm_provider,
+            provider=LLMProvider.OPENAI,
             settings=settings
         )
-        self.model = settings.language_model
 
     async def evaluate_translation(
         self, 

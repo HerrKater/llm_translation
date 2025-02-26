@@ -14,7 +14,7 @@ class OpenAILLMClient(LlmRepository):
             api_key=settings.api_key,
             base_url=settings.url
         )
-        self.model_name = settings.language_model
+      
         
     async def complete(
         self,
