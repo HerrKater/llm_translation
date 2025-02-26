@@ -24,7 +24,7 @@ class RawTextTranslationRequestDTO(BaseModel):
     """Data Transfer Object for raw text translation requests"""
     text: str
     target_languages: List[str]
-
+    model: str
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
 class CostInfoDTO(BaseModel):

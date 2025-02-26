@@ -32,7 +32,7 @@ class OpenAILLMClient(LlmRepository):
             - usage: Token usage information including prompt_tokens and completion_tokens
         """
         response = await self.client.completions.create(
-            model=model or self.model_name,
+            model=model,
             prompt=prompt,
             temperature=temperature,
             max_tokens=max_tokens,
@@ -62,7 +62,7 @@ class OpenAILLMClient(LlmRepository):
             - usage: Token usage information including prompt_tokens and completion_tokens
         """
         response = await self.client.chat.completions.create(
-            model=model or self.model_name,
+            model=model,
             messages=messages,
             temperature=temperature,
             max_tokens=max_tokens,

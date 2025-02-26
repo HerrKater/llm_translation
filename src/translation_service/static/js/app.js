@@ -25,10 +25,12 @@ class TranslationApp {
         // Model selection change handlers
         $('#translation-model').on('change', (e) => this.updateModelInfo('translation', e.target.value));
         $('#evaluation-model').on('change', (e) => this.updateModelInfo('evaluation', e.target.value));
+        $('#text-translation-model').on('change', (e) => this.updateModelInfo('text-translation', e.target.value));
 
         // Initialize model info
         this.updateModelInfo('translation', $('#translation-model').val());
         this.updateModelInfo('evaluation', $('#evaluation-model').val());
+        this.updateModelInfo('text-translation', $('#text-translation-model').val());
 
         // Translation buttons
         document.getElementById('translateUrlButton')?.addEventListener('click', () => this.handleUrlTranslation());
@@ -53,7 +55,7 @@ class TranslationApp {
 
         // Populate model options
         const modelOptions = Settings.getModelOptions();
-        $('#translation-model, #evaluation-model').html(modelOptions);
+        $('#translation-model, #evaluation-model, #text-translation-model').html(modelOptions);
 
         // Initialize Select2 for translation tabs
         $('#url-languages, #text-languages').select2({
@@ -140,6 +142,7 @@ class TranslationApp {
     async handleTextTranslation() {
         const text = document.getElementById('raw-text').value.trim();
         const languages = $('#text-languages').val();
+        const model = $('#text-translation-model').val();
 
         if (!text) {
             UI.showError('Please enter some text');
@@ -155,7 +158,8 @@ class TranslationApp {
             UI.showLoading('Translating... Please wait...');
             const result = await TranslationAPI.translateContent('/translate/raw', {
                 text,
-                target_languages: languages
+                target_languages: languages,
+                model: model
             });
             UI.displayTranslationResults(result, 'text-results');
         } catch (error) {

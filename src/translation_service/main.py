@@ -81,7 +81,7 @@ async def translate_raw_text(request: RawTextTranslationRequestDTO):
         )
         
         # Translate using the request object
-        translation, cost_info = await translator.translate(translation_request)
+        translation, cost_info = await translator.translate(translation_request, request.model)
         
         return TranslationResponseDTO(
             original_text=request.text,
