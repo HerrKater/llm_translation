@@ -30,7 +30,14 @@ Replace `your_api_key_here` with your actual OpenAI API key and `your_openai_com
 
 Note: This code was tested against a LiteLLM server providing an OpenAI-compatible interface, which is why Claude models appear in the configuration. If you're using different model names, you'll need to modify the values in `domain/models/language_models.py` where these are hard-coded.
 
-### 3. Running Translation Quality Tests
+### 3. Starting the Application
+
+```bash
+# Start the FastAPI application
+uvicorn translation_service.main:app
+```
+
+### 4. Running Translation Quality Tests
 
 ```bash
 # Run the translation quality test
