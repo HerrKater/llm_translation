@@ -1,4 +1,4 @@
-# BrokerChooser2 Translation Service
+# Translation Service
 
 ## Commands
 - Run server: `python src/translation_service/main.py`
