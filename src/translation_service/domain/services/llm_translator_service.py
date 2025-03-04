@@ -6,6 +6,7 @@ from domain.model.llm_pricing import LLMPricing
 from infrastructure.llm.factory import create_llm_client
 from domain.domain_interfaces.translator_service import TranslatorService
 from domain.model.settings import LLMProvider
+from domain.services.translation_system import TranslationSystem
 
 class LlmTranslatorService(TranslatorService):
     """Implementation of Translator using OpenAI's API"""
@@ -15,6 +16,7 @@ class LlmTranslatorService(TranslatorService):
             provider=LLMProvider.OPENAI,
             settings=settings
         )
+        self.translation_system = TranslationSystem()
 
     async def translate(self, request: TranslationRequest, model: str) -> Tuple[Translation, Dict]:
         # Use provided model or fallback to default
@@ -25,21 +27,14 @@ class LlmTranslatorService(TranslatorService):
         
         for language in request.target_languages:
             try:
-                system_prompt = (
-                    f"You are a professional translator. Translate the following "
-                    f"markdown content into {language}. Follow these rules strictly:\n"
-                    f"1. Maintain all original structure, formatting, and markdown syntax\n"
-                    f"2. DO NOT translate any text inside square brackets (e.g. [brokerName])\n"
-                    f"3. Ensure the translation sounds natural in {language}\n"
-                    f"4. Keep all placeholders exactly as they appear in the original text"
-                )
+                system_prompt = self.translation_system.get_translation_prompt(language)
                 
                 # Call LLM and get response with usage info
                 response = await self.llm_client.chat(
                     model=model,
                     messages=[
                         {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": request.source_content}
+                        {"role": "user", "content": f"\n\nTranslate the following text:\n\n{request.source_content}"}
                     ],
                     temperature=0.7,
                     max_tokens=2000

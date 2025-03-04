@@ -17,6 +17,7 @@ class TranslationRequestDTO(BaseModel):
     """Data Transfer Object for translation requests"""
     url: str
     target_languages: List[str]
+    model: str = ModelName.CLAUDE_3_5_SONNET.value
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 

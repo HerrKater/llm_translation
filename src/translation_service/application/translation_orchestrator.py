@@ -5,6 +5,7 @@ from domain.domain_interfaces.translator_service import TranslatorService
 from domain.model.translation_request import TranslationRequest
 from domain.model.translation import Translation
 from domain.model.web_page import WebPage
+from domain.model.language_models import ModelName
 
 class TranslationOrchestrator:
     """Application service that orchestrates the translation process"""
@@ -22,7 +23,8 @@ class TranslationOrchestrator:
     async def translate_webpage(
         self,
         url: str,
-        target_languages: List[str]
+        target_languages: List[str],
+        model: str = ModelName.CLAUDE_3_5_SONNET.value
     ) -> tuple[Translation, dict]:
         """
         Orchestrates the complete webpage translation process:
@@ -50,4 +52,4 @@ class TranslationOrchestrator:
         )
         
         # Translate content and get cost info
-        return await self.translator.translate(request)
+        return await self.translator.translate(request, model)

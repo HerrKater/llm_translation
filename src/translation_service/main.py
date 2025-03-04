@@ -50,7 +50,8 @@ async def translate_url(request: TranslationRequestDTO):
         # Perform translation
         translation, cost_info = await translation_service.translate_webpage(
             str(request.url),
-            request.target_languages
+            request.target_languages,
+            request.model if hasattr(request, 'model') else None
         )
         
         # Convert domain model to DTO
@@ -78,6 +79,7 @@ async def translate_raw_text(request: RawTextTranslationRequestDTO):
         translation_request = TranslationRequest(
             source_content=request.text,
             target_languages=request.target_languages
+
         )
         
         # Translate using the request object

@@ -20,7 +20,8 @@ class OpenAILLMClient(LlmRepository):
         self,
         prompt: str,
         model: str,
-        temperature: float = 0.7,
+        temperature: float = 0.0,
+        top_p : float = 0.5,
         max_tokens: Optional[int] = None,
         stop: Optional[List[str]] = None,
     ) -> Dict[str, any]:
@@ -50,7 +51,8 @@ class OpenAILLMClient(LlmRepository):
         self,
         messages: List[Dict[str, str]],
         model: str,
-        temperature: float = 0.7,
+        temperature: float = 0.0,
+        top_p: float = 0.5,
         max_tokens: Optional[int] = None,
         stop: Optional[List[str]] = None,
     ) -> Dict[str, any]:
