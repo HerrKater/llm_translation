@@ -20,7 +20,7 @@ To add a new language:
 """
 
 from abc import ABC, abstractmethod
-from typing import Optional, Dict
+from typing import Optional, Dict, Type
 
 
 class TranslationRules(ABC):
@@ -163,7 +163,7 @@ class TranslationRulesFactory:
     _language_name_to_code: Dict[str, str] = {}
     
     @classmethod
-    def register(cls, rules_class):
+    def register(cls, rules_class: Type[TranslationRules]):
         """
         Register a translation rules implementation.
         
