@@ -1,39 +1,30 @@
-class TranslationSystem:
-    def __init__(self):
-        # Store language-specific rules that can be reused in both translation and evaluation
-        self.language_rules = {
-            "hungarian": self._get_hungarian_rules()
-        }
-    
-    def _get_hungarian_rules(self):
-        """
-        Store Hungarian-specific translation rules.
-        These rules are used both in translation prompts and evaluation prompts.
-        """
-        return """
-Hungarian Translation Guidelines:
-
-1. Quantity + Singular Noun Rule: 
-   - Nouns preceded by numerals or quantity expressions ALWAYS remain in the singular form
-   - Example: "5 books" → "5 könyv" (NOT "5 könyvek")
-   - Example: "several parameters" → "több paraméter" (NOT "több paraméterek")
-
-2. Parameter Integration:
-   - When a parameter represents a quantity (like [dataPoints]+), the following noun should be singular
-   - Example: "across [dataPoints]+ criteria" → "[dataPoints]+ kritérium mentén"
-
-3. "To" Preposition Translations:
-   - "Alternatives to X" → "Alternatívák X helyett" (using "helyett" meaning "instead of")
-   - NOT "Alternatívák az X számára" (which means "Alternatives for X" - a different meaning)
-   - "Solution to X" → "X megoldása" (possessive construction)
-   - "Guide to X" → "Útmutató az X-hez" (using -hez/-hoz/-höz allative case)
-
-4. Common Patterns:
-   - "X compared to Y" → "X Y-hoz képest" (NOT "X Y számára")
-   - "in addition to X" → "X mellett/X-en kívül" (NOT "X számára")
-   - "according to X" → "X szerint" (NOT "X-nek megfelelően" in most cases)
-   - "similar to X" → "X-hez hasonló" (NOT "X számára hasonló")
 """
+Translation system with language-specific rule integration.
+
+This module integrates with the TranslationRules architecture to provide:
+- Dynamic loading of language-specific rules based on target language
+- Incorporation of rules into translation prompts
+- Incorporation of rules into evaluation prompts
+- Support for examples and fewshot learning
+
+The TranslationSystem no longer stores language rules directly but 
+retrieves them from the TranslationRulesFactory as needed.
+"""
+
+from src.translation_service.domain.model.translation_rules import TranslationRulesFactory
+
+class TranslationSystem:
+    """
+    System for generating translation and evaluation prompts with language-specific rules.
+    
+    This class uses the TranslationRulesFactory to retrieve language-specific rules
+    and incorporate them into translation and evaluation prompts. The rules are
+    dynamically loaded based on the target language, allowing for flexible support
+    of different languages without modifying this class.
+    """
+    def __init__(self):
+        # We no longer need to store rules here as we use the TranslationRulesFactory
+        pass
     
     def get_translation_prompt(self, language):
         """
@@ -57,20 +48,16 @@ Hungarian Translation Guidelines:
         
         # Add language-specific rules if available
         language_key = language.lower()
-        if language_key in self.language_rules:
-            prompt += f"\n## Language-Specific Guidelines for {language}\n"
-            prompt += self.language_rules[language_key]
+        language_rules = TranslationRulesFactory.get_rules(language_key)
+        
+        if language_rules:
+            prompt += f"\n## Language-Specific Guidelines for {language_rules.language_name}\n"
+            prompt += language_rules.get_rules()
             
-            # Add specific examples for this language
-            if language_key == "hungarian":
-                prompt += """
-                
-Examples of correct translations:
-- "10 customers purchased" → "10 ügyfél vásárolt" 
-- "Alternatives to [brokerName]" → "Alternatívák [brokerName] helyett"
-- "across [dataPoints]+ criteria" → "[dataPoints]+ kritérium mentén"
-- "Comparison to market average" → "Összehasonlítás a piaci átlaggal"
-"""
+            # Add specific examples for this language if available
+            examples = language_rules.get_translation_examples()
+            if examples:
+                prompt += examples
         
         return prompt
     
@@ -278,22 +265,15 @@ IMPORTANT:
 
         # Add language-specific rules if available
         target_language_key = target_language.lower()
-        if target_language_key in self.language_rules:
-            prompt += f"\n\n## IMPORTANT NOTE FOR {target_language.upper()} TRANSLATIONS\n"
-            prompt += self.language_rules[target_language_key]
+        language_rules = TranslationRulesFactory.get_rules(target_language_key)
+        
+        if language_rules:
+            prompt += f"\n\n## IMPORTANT NOTE FOR {language_rules.language_name.upper()} TRANSLATIONS\n"
+            prompt += language_rules.get_rules()
             
-            # Add specific fewshot examples for this language
-            if target_language_key == "hungarian":
-                prompt += """
-
-Fewshot Examples:
-| English | Correct Hungarian | Incorrect Hungarian | Note |
-|---------|-------------------|---------------------|------|
-| "10 customers purchased" | "10 ügyfél vásárolt" | "10 ügyfelek vásároltak" | Noun and verb both remain singular |
-| "Several markets showed growth" | "Több piac mutatott növekedést" | "Több piacok mutattak növekedést" | Singular noun with singular verb |
-| "across all parameters" | "minden paraméteren keresztül" | "minden paramétereken keresztül" | Singular noun with case ending |
-| "Alternatives to [brokerName]" | "Alternatívák [brokerName] helyett" | "Alternatívák a [brokerName] számára" | "helyett" means "instead of", "számára" means "for" (different meaning) |
-| "Comparison to market average" | "Összehasonlítás a piaci átlaggal" | "Összehasonlítás a piaci átlag számára" | Use instrumental case (-val/-vel), not "számára" |
-"""
+            # Add specific evaluation examples for this language if available
+            examples = language_rules.get_evaluation_examples()
+            if examples:
+                prompt += examples
         
         return prompt
